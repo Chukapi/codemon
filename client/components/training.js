@@ -11,7 +11,6 @@ class Training extends React.Component {
   }
 
   componentDidMount(){
-    console.log('hello', this.props)
     this.props.fetchProblem(1);
   }
   

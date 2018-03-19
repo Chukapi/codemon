@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
-    attributes: ['id', 'email']
+    attributes: ['id', 'email', 'username', 'solvedProblems']
   })
     .then(users => res.json(users))
     .catch(next);
@@ -16,14 +16,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   User.findById(req.params.id, {
-    include: [{
-      Pokemon,
-      model: Fight,
-      where: {
-        winnerId: req.params.id,
-        loserId: req.params.id
-      }
-    }]
+    include: [Pokemon]
   })
     .then(user => res.json(user))
     .catch(next);

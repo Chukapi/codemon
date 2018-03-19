@@ -19,6 +19,9 @@ const Pokemon = db.define('pokemon', {
       max: 3
     }
   },
+  imageUrl: {
+    type: Sequelize.STRING
+  },
   rare: {
     type: Sequelize.BOOLEAN,
     defaultValue: false

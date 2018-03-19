@@ -13,10 +13,9 @@ import 'brace/snippets/javascript';
 class CodeEntryForm extends React.Component {
   constructor(){
     super();
-    this.state = {
-      input: '',
+    this.state ={
+      code: ''
     }
-    this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
@@ -24,13 +23,11 @@ class CodeEntryForm extends React.Component {
     console.log('here')
   }
 
-  onChange(newValue, event) {
-  //  console.log(newValue, event);
-  }
-
-  onClick(){
+  onClick(event){
+    event.preventDefault()
     const code = this.ace.editor.getValue();
-    this.props.testCode({code: `(${code})(3)`});
+    this.props.testCode({code}, 1)
+    this.setState({code})
   }
   
   // Render editor
@@ -38,31 +35,33 @@ class CodeEntryForm extends React.Component {
     return (
       <div>
         <AceEditor
+          value={this.state.code}
           mode="javascript"
           theme="github"
-          onChange={this.onChange}
           name="UNIQUE_ID_OF_DIV"
           editorProps={{$blockScrolling: true}}
           ref={(ref) => {this.ace = ref}}
         />
         <button onClick={this.onClick}>Submit</button>
+        {this.props.result === true ? <h2>Tests Passed! 10 EXP Earned!</h2> : null}
+        {this.props.result === false ? <h2>Tests Failed. Try Again.</h2> : <h2>{this.props.result}</h2>}
       </div>
     )
   }
 }
 
-// const mapState = (state)  => {
-//   return {
-//     code: state.code
-//   }
-// }
+const mapState = function(state){
+  return {
+    result: state.codeEntry
+  }
+}
 
 const mapDispatch = function (dispatch){
   return {
-    testCode: function(code){
-      dispatch(testCode(code))
+    testCode: function(code, id){
+      dispatch(testCode(code, id))
     }
   }
 }
 
-export default connect(null, mapDispatch)(CodeEntryForm)
+export default connect(mapState, mapDispatch)(CodeEntryForm)

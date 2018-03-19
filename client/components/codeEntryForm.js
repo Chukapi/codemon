@@ -30,7 +30,7 @@ class CodeEntryForm extends React.Component {
 
   onClick(){
     const code = this.ace.editor.getValue();
-    this.props.testCode({code: `(${code})(3)`});
+    this.props.testCode({code}, 1);
   }
   
   // Render editor
@@ -51,16 +51,10 @@ class CodeEntryForm extends React.Component {
   }
 }
 
-// const mapState = (state)  => {
-//   return {
-//     code: state.code
-//   }
-// }
-
 const mapDispatch = function (dispatch){
   return {
-    testCode: function(code){
-      dispatch(testCode(code))
+    testCode: function(code, id){
+      dispatch(testCode(code, id))
     }
   }
 }

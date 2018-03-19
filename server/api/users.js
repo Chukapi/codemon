@@ -1,6 +1,7 @@
-const router = require('express').Router()
-const {User} = require('../db/models')
-module.exports = router
+const router = require('express').Router();
+const { User, Pokemon, Fight } = require('../db/models');
+
+module.exports = router;
 
 router.get('/', (req, res, next) => {
   User.findAll({
@@ -10,5 +11,33 @@ router.get('/', (req, res, next) => {
     attributes: ['id', 'email']
   })
     .then(users => res.json(users))
-    .catch(next)
-})
+    .catch(next);
+});
+
+router.get('/:id', (req, res, next) => {
+  User.findById(req.params.id, {
+    include: [{
+      Pokemon,
+      model: Fight,
+      where: {
+        winnerId: req.params.id,
+        loserId: req.params.id
+      }
+    }]
+  })
+    .then(user => res.json(user))
+    .catch(next);
+});
+
+router.post('/', (req, res, next) => {
+  User.create(req.body)
+    .then(user => res.status(201).json(user))
+    .catch(next);
+});
+
+router.put('/:id', (req, res, next) => {
+  return User.update(req.body, { where: { id: req.params.id } })
+    .then(user => res.json(user))
+    .catch(next);
+});
+

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+// import socket from '../socket';
 
 /**
  * COMPONENT
@@ -53,6 +54,12 @@ const mapSignup = (state) => {
   }
 }
 
+// const mapState = (state) => {
+//   return {
+//     user: state.user
+//   }
+// }
+
 const mapDispatch = (dispatch) => {
   return {
     handleSubmit (evt) {
@@ -65,6 +72,7 @@ const mapDispatch = (dispatch) => {
   }
 }
 
+// export const getSocket = connect(mapState, mapDispatch)(AuthForm)
 export const Login = connect(mapLogin, mapDispatch)(AuthForm)
 export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 

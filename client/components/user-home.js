@@ -3,33 +3,47 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PokemonParty from './pokemonparty';
 import Training from './training';
+import socket from '../socket';
+import {postSocketId} from '../store';
 /**
  * COMPONENT
  */
-export const UserHome = (props) => {
-  const { email, pokemon } = props;
-  console.log(`props! `, props)
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-      <PokemonParty pokemon={pokemon} />
-      <Training />
-    </div>
-  )
+class UserHome extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount(){
+    this.props.postSocketId(this.props.id, {socketId: socket.id})
+  }
+
+  render(){
+    const { id, username, pokemon } = this.props;
+    return (
+      <div>
+        <h3>Welcome, {username}</h3>
+        <PokemonParty pokemon={pokemon} />
+        <Training />
+      </div>
+    )
+  }
 }
 
 /**
  * CONTAINER
  */
 const mapState = (state) => {
-  console.log(`STATE`, state)
   return {
     email: state.user.email,
-    pokemon: state.user.pokemons
+    pokemon: state.user.pokemons,
+    username: state.user.username,
+    id: state.user.id
   }
 }
 
-export default connect(mapState)(UserHome);
+const mapDispatch = { postSocketId }
+
+export default connect(mapState, mapDispatch)(UserHome);
 
 /**
  * PROP TYPES

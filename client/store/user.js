@@ -6,6 +6,7 @@ import history from '../history';
  */
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
+const POST_SOCKET = 'POST_SOCKET';
 /**
  * INITIAL STATE
  */
@@ -16,6 +17,7 @@ const defaultUser = {}
  */
 const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
+const postSocket = socketId => ({type: POST_SOCKET, socketId});
 
 /**
  * THUNK CREATORS
@@ -38,6 +40,15 @@ export const auth = (email, password, method) =>
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
+export const postSocketId = (userId, socketId) => 
+  dispatch => 
+    axios.put(`/api/users/${userId}`, socketId)
+      .then(res => res.data)
+      .then(userData => {
+        dispatch(postSocket(socketId))
+      })
+      .catch(err => console.log(err))
+
 export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
@@ -51,11 +62,14 @@ export const logout = () =>
  * REDUCER
  */
 export default function (state = defaultUser, action) {
+  console.log('STATE', state)
   switch (action.type) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case POST_SOCKET:
+      return Object.assign({}, state, {socketId: action.socketId.socketId})
     default:
       return state
   }

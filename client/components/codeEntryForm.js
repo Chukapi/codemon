@@ -36,7 +36,7 @@ class CodeEntryForm extends Component {
           ref={(ref) => { this.ace = ref }}
         />
         <button onClick={this.onClick}>Submit</button>
-        {this.props.result === true ? <h2>Tests Passed! 10 EXP Earned!</h2> : null}
+        {this.props.result === true ? <h2>Tests Passed! {this.props.exp} EXP Earned!</h2> : null}
         {this.props.result === false ? <h2>Tests Failed. Try Again.</h2> : <h2>{this.props.result}</h2>}
       </div>
     )
@@ -45,7 +45,7 @@ class CodeEntryForm extends Component {
 
 const mapState = state => ({
   result: state.codeEntry,
-  // exp: state.training.experience 
+  exp: state.training.experience
 });
 
 const mapDispatch = dispatch => ({
@@ -53,3 +53,7 @@ const mapDispatch = dispatch => ({
 });
 
 export default connect(mapState, mapDispatch)(CodeEntryForm)
+
+// function returnString(str) {
+//   return str;
+// }

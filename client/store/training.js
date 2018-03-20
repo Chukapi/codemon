@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-// //initial state
-// const prompt = '';
-
 //action types
 const GET_PROBLEM = 'GET_PROBLEM';
 

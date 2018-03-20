@@ -30,12 +30,41 @@ const problems = [
   {
     id: 1,
     prompt: 'Create a function returnString that takes a string and returns the same string.',
-    tests: "returnString('hello world') === 'hello world'"
+    // tests: "const assert = require('chai').assert; assert.equal(returnString('jo'), 'jo')"
+    tests: "assert.deepEqual(returnString('jo'), 'jo')"
+    // tests: "returnString('hello world') === 'hello world'"
   },
   {
     id: 2,
     prompt: 'Write a function doubleNum that takes an integer and returns double that integer',
     tests: "doubleNum(4) === 8"
+  },
+  {
+    id: 3,
+    prompt: 'Write a function tripleNum that takes an integer and returns double that integer',
+    tests: "assert.deepEqual(tripleNum(4), 12)"
+  }
+]
+
+const pokemon = [
+  {
+    id: 1,
+    userId: 2,
+    name: 'Pikachu',
+    exp: 10,
+    imageUrl: '/images/pikachu.gif'
+  },
+  {
+    id: 2, 
+    name: 'Charmander',
+    exp: 10,
+    imageUrl: '/images/charmander.gif'
+  },
+  {
+    id: 3, 
+    name: 'Squirtle',
+    exp: 10,
+    imageUrl: '/images/squirtle.gif'
   }
 ]
 

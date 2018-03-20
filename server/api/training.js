@@ -16,22 +16,23 @@ router.get('/', isAdmin, (req, res, next) => {
     .catch(next)
 })
 
-
+// change this! w/o test
 router.get('/test/:id', (req, res, next) => {
   Problem.findById(req.params.id)
-    .then(problems => res.json(problems))
+    .then(problem => res.json(problem))
     .catch(next);
 })
 
-
+//line 32 is not consistent es6
 router.post('/test/:id', (req, res, next) => {
   Problem.findById(req.params.id)
     .then(problem => problem.tests)
-    .then(test => {
+    .then(tests => {
       const s = new Sandbox();
-      s.run(`${req.body.code}; ${test}`, function (output) {
+      s.run(`${req.body.code}; ${tests}`, function (output) {
         console.log('hey buddy', output)
         res.send(output.result)
       })
     })
 })
+

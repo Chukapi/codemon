@@ -21,6 +21,8 @@ const Evolution = require('./evolution');
 User.hasMany(Pokemon);
 Pokemon.belongsTo(User);
 
+User.hasMany(Problem, { as: "solvedProblems"})
+
 module.exports = {
   User,
   Pokemon,

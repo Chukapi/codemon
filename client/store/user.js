@@ -42,9 +42,10 @@ export const auth = (email, password, method) =>
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
-export const postSocketId = (userId, socketId) => 
-  dispatch => 
-    axios.put(`/api/users/${userId}`, socketId)
+      // change this to {socketID}
+export const postSocketId = (userId, socketId) =>
+  dispatch =>
+    axios.put(`/api/users/${userId}`, {socketId})
       .then(res => res.data)
       .then(userData => {
         dispatch(postSocket(socketId))

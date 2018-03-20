@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import {render} from 'react-dom';
 import Training from './training';
 import socket from '../socket';
 import { fetchOpponent } from '../store';
 import { connect } from 'react-redux';
 
 class Battle extends Component {
-  constructor(){
-    super();
-  }
+
 
   componentDidMount(){
     let opponent = fetchOpponent(this.props.userId)
@@ -35,6 +32,5 @@ const mapState = function (state){
   }
 }
 
-const mapDispatch = {fetchOpponent}
 
-export default connect(mapState, mapDispatch)(Battle)
+export default connect(mapState, null)(Battle)

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Pokemon, Fight } = require('../db/models');
+const { isAdmin, isLoggedIn } = require('./utils');
 
 module.exports = router;
 
@@ -29,8 +30,9 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  return User.update(req.body, { where: { id: req.params.id } })
-    .then(user => res.json(user))
-    .catch(next);
-});
+  return User.findById(req.params.id)
+  .then(foundUser => foundUser.update({socketId: req.body.socketId})
+  .then(user => res.json(user))
+  .catch(next)
+)});
 

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { Login, Signup, UserHome, CodeEntryForm } from './components';
 import {me} from './store'
 import {Training} from './components'
-
+import {Battle} from './components'
 
 
 /**
@@ -25,8 +25,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        {/* <Route exact path="/training" component={Training} /> */}
-        <Route path="/training/test/:id" component={Training} />
+        <Route path="/battle" component={Battle} />
         {
           isLoggedIn &&
           <Switch>

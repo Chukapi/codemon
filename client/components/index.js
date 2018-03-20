@@ -10,4 +10,5 @@ export {Login, Signup} from './auth-form'
 export {default as CodeEntryForm} from './codeEntryForm'
 export {default as Training} from './training'
 export { default as PokemonParty } from './pokemonparty';
+export {default as Battle} from './battle';
 

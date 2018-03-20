@@ -1,4 +1,4 @@
-const {Fight, Pokemon, Problem, User} = require('./server/db/models');
+const { Fight, Pokemon, Problem, User } = require('./server/db/models');
 const db = require('./server/db/db');
 
 const users = [{
@@ -31,8 +31,8 @@ const problems = [
     id: 1,
     prompt: 'Create a function returnString that takes a string and returns the same string.',
     // tests: "const assert = require('chai').assert; assert.equal(returnString('jo'), 'jo')"
-    tests: "assert.deepEqual(returnString('jo'), 'jo')"
-    // tests: "returnString('hello world') === 'hello world'"
+    // tests: "assert.deepEqual(returnString('jo'), 'jo')"
+    tests: "returnString('hello world') === 'hello world'"
   },
   {
     id: 2,
@@ -55,50 +55,50 @@ const pokemon = [
     imageUrl: '/images/pikachu.gif'
   },
   {
-    id: 2, 
+    id: 2,
     name: 'Charmander',
     exp: 10,
     imageUrl: '/images/charmander.gif'
   },
   {
-    id: 3, 
+    id: 3,
     name: 'Squirtle',
     exp: 10,
     imageUrl: '/images/squirtle.gif'
   }
 ]
 
-function buildingUsers(){
+function buildingUsers() {
   return Promise.all(users.map(user => User.create(user)));
 }
 
-function buildingProblems(){
+function buildingProblems() {
   return Promise.all(problems.map(problem => Problem.create(problem)))
 }
 
-function buildingPokemon(){
+function buildingPokemon() {
   return Promise.all(pokemon.map(poke => Pokemon.create(poke)))
 }
 
-function seed(){
+function seed() {
   return buildingUsers()
-  .then(() => buildingProblems())
-  .then(() => buildingPokemon())
+    .then(() => buildingProblems())
+    .then(() => buildingPokemon())
 }
 
 console.log('Syncing Database')
 
-db.sync({force: true})
-.then(() => {
-  console.log('Seeding database');
-  return seed();
-})
-.then(() => console.log('Seeding Successful'))
-.catch(err => {
-  console.error('Error while seeding');
-  console.error(err.stack)
-})
-.finally(() => {
-  db.close();
-  return null;
-})
+db.sync({ force: true })
+  .then(() => {
+    console.log('Seeding database');
+    return seed();
+  })
+  .then(() => console.log('Seeding Successful'))
+  .catch(err => {
+    console.error('Error while seeding');
+    console.error(err.stack)
+  })
+  .finally(() => {
+    db.close();
+    return null;
+  })

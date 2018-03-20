@@ -1,20 +1,16 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store, {fetchProblem} from '../store';
+import { fetchProblem } from '../store';
 import CodeEntryForm from './codeEntryForm';
 
 
-class Training extends React.Component {
-  constructor(){
-    super();
-  }
+class Training extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchProblem(1);
   }
-  
-  render(){
+
+  render() {
     return (
       <div>
         <h1>{this.props.prompt && this.props.prompt}</h1>
@@ -24,18 +20,12 @@ class Training extends React.Component {
   }
 }
 
-const mapState = function(state){
-  return {
-    prompt: state.training
-  }
-}
+const mapState = state => ({
+  prompt: state.training.prompt
+});
 
-const mapDispatch = function (dispatch){
-  return {
-    fetchProblem: function(id){
-      dispatch(fetchProblem(id))
-    }
-  }
-}
+const mapDispatch = dispatch => ({
+  fetchProblem: id => dispatch(fetchProblem(id))
+});
 
-export default connect(mapState, mapDispatch)(Training)
+export default connect(mapState, mapDispatch)(Training);

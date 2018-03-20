@@ -5,6 +5,7 @@ class PokemonParty extends Component {
   state = {
     pokemon: {}
   }
+
   handleClick = (evt, pokeball) => {
     this.setState({ pokemon: pokeball });
   }

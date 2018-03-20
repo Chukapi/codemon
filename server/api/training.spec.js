@@ -13,8 +13,11 @@ describe('Training routes', () => {
     const problemPrompt = 'Create a function returnString that takes a string and returns the same string.'
     const problemTests = "returnString('hello world') === 'hello world'"
 
+    const answer = `function returnString(s){s}`
+
     beforeEach(() => {
       return Problem.create({
+        id: 1,
         prompt: problemPrompt,
         tests: problemTests
       })
@@ -28,6 +31,15 @@ describe('Training routes', () => {
         expect(res.body[0].prompt).to.equal(problemPrompt)
       })
     })
+
+  //   it('POST apl/training/test/1', () => {
+  //     return request(app)
+  //   .post('/api/training/test/1', answer)
+  //   .expect(200)
+  //     .then(res => {
+  //       expect(res.body).to.equal(answer)
+  //     })
+  //  })
 
   })
 })

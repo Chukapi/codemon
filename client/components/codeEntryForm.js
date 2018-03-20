@@ -29,7 +29,7 @@ class CodeEntryForm extends React.Component {
     this.props.testCode({code}, 1)
     this.setState({code})
   }
-  
+
   // Render editor
   render(){
     return (

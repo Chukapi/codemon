@@ -39,6 +39,28 @@ const problems = [
   }
 ]
 
+const pokemon = [
+  {
+    id: 1,
+    userId: 2,
+    name: 'Pikachu',
+    exp: 10,
+    imageUrl: '/images/pikachu.gif'
+  },
+  {
+    id: 2, 
+    name: 'Charmander',
+    exp: 10,
+    imageUrl: '/images/charmander.gif'
+  },
+  {
+    id: 3, 
+    name: 'Squirtle',
+    exp: 10,
+    imageUrl: '/images/squirtle.gif'
+  }
+]
+
 function buildingUsers(){
   return Promise.all(users.map(user => User.create(user)));
 }
@@ -47,9 +69,14 @@ function buildingProblems(){
   return Promise.all(problems.map(problem => Problem.create(problem)))
 }
 
+function buildingPokemon(){
+  return Promise.all(pokemon.map(poke => Pokemon.create(poke)))
+}
+
 function seed(){
   return buildingUsers()
   .then(() => buildingProblems())
+  .then(() => buildingPokemon())
 }
 
 console.log('Syncing Database')

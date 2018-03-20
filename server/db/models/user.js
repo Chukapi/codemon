@@ -35,7 +35,7 @@ const User = db.define('user', {
     type: Sequelize.ARRAY(Sequelize.INTEGER),
     defaultValue: []
   },
-  socketID: {
+  socketId: {
     type: Sequelize.STRING,
     defaultValue: 'none'
   }

@@ -45,7 +45,7 @@ export const postSocketId = (userId, socketId) =>
     axios.put(`/api/users/${userId}`, socketId)
       .then(res => res.data)
       .then(userData => {
-        dispatch(postSocket(userData))
+        dispatch(postSocket(socketId))
       })
       .catch(err => console.log(err))
 
@@ -69,8 +69,7 @@ export default function (state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser
     case POST_SOCKET:
-      // return Object.assign({}, state, {socketId: action.socketId})
-      return Object.assign({}, state, {socketID: action.socketId.id})
+      return Object.assign({}, state, {socketId: action.socketId.socketId})
     default:
       return state
   }

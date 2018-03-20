@@ -43,6 +43,10 @@ class CodeEntryForm extends Component {
   }
 }
 
+//If pass we need to check if exp is >= certain amount
+//If so update evolution level by 1 on pokemon model
+// & update name and imageUrl as well (grab name and image from Evolution model and update that pokemon's id)
+
 const mapState = state => ({
   result: state.codeEntry,
   exp: state.training.experience

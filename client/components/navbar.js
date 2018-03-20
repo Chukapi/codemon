@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn, id }) => (
+
+const Navbar = ({ handleClick, isLoggedIn, id }) => {
+return (
   <div>
     <h1>CODÉMON</h1>
     <nav>
@@ -27,7 +29,8 @@ const Navbar = ({ handleClick, isLoggedIn, id }) => (
     </nav>
     <hr />
   </div>
-)
+  )
+}
 
 /**
  * CONTAINER

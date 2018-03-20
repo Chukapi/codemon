@@ -1,37 +1,30 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, { Component } from 'react';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
-import store, {testCode} from '../store';
+import { testCode } from '../store';
 
 import 'brace/mode/javascript';
 import 'brace/theme/github';
 import 'brace/ext/language_tools';
 import 'brace/snippets/javascript';
 
-class CodeEntryForm extends React.Component {
-  constructor(){
-    super();
-    this.state ={
-      code: ''
-    }
-    this.onClick = this.onClick.bind(this);
-  }
+class CodeEntryForm extends Component {
+  state = { code: '' }
 
-  componentDidMount(){
-    console.log('here')
-  }
+  // componentDidMount() {
+  //   console.log('here')
+  // }
 
-  onClick(event){
+  onClick = event => {
     event.preventDefault()
     const code = this.ace.editor.getValue();
-    this.props.testCode({code}, 1)
-    this.setState({code})
+    this.props.testCode({ code }, 1)
+    this.setState({ code })
   }
 
   // Render editor
-  render(){
+  render() {
     return (
       <div>
         <AceEditor
@@ -39,29 +32,28 @@ class CodeEntryForm extends React.Component {
           mode="javascript"
           theme="github"
           name="UNIQUE_ID_OF_DIV"
-          editorProps={{$blockScrolling: true}}
-          ref={(ref) => {this.ace = ref}}
+          editorProps={{ $blockScrolling: true }}
+          ref={(ref) => { this.ace = ref }}
         />
         <button onClick={this.onClick}>Submit</button>
-        {this.props.result === true ? <h2>Tests Passed! 10 EXP Earned!</h2> : null}
+        {this.props.result === true ? <h2>Tests Passed! {this.props.exp} EXP Earned!</h2> : null}
         {this.props.result === false ? <h2>Tests Failed. Try Again.</h2> : <h2>{this.props.result}</h2>}
       </div>
     )
   }
 }
 
-const mapState = function(state){
-  return {
-    result: state.codeEntry
-  }
-}
+const mapState = state => ({
+  result: state.codeEntry,
+  exp: state.training.experience
+});
 
-const mapDispatch = function (dispatch){
-  return {
-    testCode: function(code, id){
-      dispatch(testCode(code, id))
-    }
-  }
-}
+const mapDispatch = dispatch => ({
+  testCode: (code, id) => dispatch(testCode(code, id))
+});
 
 export default connect(mapState, mapDispatch)(CodeEntryForm)
+
+// function returnString(str) {
+//   return str;
+// }

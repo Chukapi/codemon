@@ -22,10 +22,6 @@ const Pokemon = db.define('pokemon', {
   imageUrl: {
     type: Sequelize.STRING
   },
-  rare: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
-  },
 });
 
 module.exports = Pokemon;

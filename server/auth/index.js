@@ -32,6 +32,11 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/logout', (req, res) => {
+  console.log("req.session", req.session.passport.user)
+  User.findById(req.session.passport.user)
+  .then(foundUser => foundUser.update({
+      socketId: "none"
+  }))
   req.logout()
   req.session.destroy()
   res.redirect('/')

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, id }) => (
   <div>
     <h1>CODÉMON</h1>
     <nav>
@@ -15,7 +15,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link to="/battle">Battle!</Link>
+          <Link to={`/fights/${id}`}>Battle!</Link>
         </div>
       ) : (
         <div>
@@ -34,6 +34,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
  */
 const mapState = state => {
   return {
+    id: state.user.id,
     isLoggedIn: !!state.user.id
   }
 }

@@ -7,6 +7,10 @@ export default class Battle extends Component {
     super();
   }
 
+  // componentDidMount(){
+
+  // }
+
   render(){
     return (
       <div>

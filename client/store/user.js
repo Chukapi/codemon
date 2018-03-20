@@ -7,6 +7,7 @@ import history from '../history';
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 const POST_SOCKET = 'POST_SOCKET';
+
 /**
  * INITIAL STATE
  */
@@ -18,6 +19,7 @@ const defaultUser = {}
 const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 const postSocket = socketId => ({type: POST_SOCKET, socketId});
+
 
 /**
  * THUNK CREATORS

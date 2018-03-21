@@ -12,8 +12,8 @@ const testUserCode = result => ({type: TEST_CODE, result});
 //thunks
 export function testCode(code, id){
   return function thunk(dispatch){
-    return axios.post(`/api/training/test/${id}`, code)
-    .then(res => res.data)
+    return axios.post(`/api/training/${id}`, code)
+    .then(res => {console.log(res.data); return res.data})
     .then(bool => dispatch(testUserCode(bool)))
     .catch(err => console.log(err));
   }

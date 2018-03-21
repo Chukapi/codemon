@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 //initial state
 const fight = {opponentSocketId: ''};
@@ -24,7 +24,7 @@ export default function reducer(state = fight, action){
   switch (action.type) {
     case GET_OPPONENT:
       return Object.assign({}, state, {opponentSocketId: action.opponent.socketId} )
-    default: 
+    default:
       return state
   }
 }

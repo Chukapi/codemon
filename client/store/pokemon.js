@@ -3,6 +3,7 @@ import axios from 'axios';
 //ACTION TYPES
 const SET_POKEMON = 'SET_POKEMON';
 const UPDATE_POKEMON = 'UPDATE_POKEMON';
+// const TRIGGER_EVOLUTION = 'TRIGGER_EVOLUTION';
 
 //ACTION CREATORS
 export const setPokemon = currentPokemon => ({ type: SET_POKEMON, currentPokemon });
@@ -16,12 +17,24 @@ export const fetchPokemon = id => dispatch =>
     .then(pokemon => dispatch(setPokemon(pokemon.data)))
     .catch(err => console.error(`You got an error ${err}`));
 
-export const revisePokemon = (id, info) => dispatch => {
-  console.log('id and info', id, info);
-  return axios.put(`/api/pokemon/${id}`, info)
+export const revisePokemon = (id, info) => dispatch =>
+  axios.put(`/api/pokemon/${id}`, info)
     .then(pokemon => dispatch(updatePokemon(pokemon.data)))
     .catch(err => console.error(`Failed to update ${err}`));
-}
+
+export const triggerEvolution = (id, pokeName) => dispatch =>
+  axios.get(`/api/evolution/${pokeName}`)
+    .then(pokemon => {
+      const { name, imageUrl, stage } = pokemon.data;
+      const updatedInfo = {
+        name: name,
+        imageUrl: imageUrl,
+        evolutionLevel: stage
+      }
+
+      dispatch(revisePokemon(id, updatedInfo))
+    })
+    .catch(err => console.error('Could not trigger evolution', err));
 
 
 //REDUCER

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { revisePokemon } from './pokemon';
+import { revisePokemon, triggerEvolution } from './pokemon';
 
 //ACTION TYPE
 const TEST_CODE = 'TEST_CODE';
@@ -14,6 +14,12 @@ export const testCode = (userCode, id, pokemon, exp) => dispatch =>
     .then(bool => {
       if (bool) {
         let totalExp = pokemon.exp + exp;
+        if (totalExp >= 1600 && pokemon.evolutionLevel === 1) {
+          dispatch(triggerEvolution(pokemon.id, pokemon.name))
+        }
+        // if (totalExp >= 3600 && pokemon.evolutionLevel === 2) {
+
+        // }
         dispatch(revisePokemon(pokemon.id, { exp: totalExp }));
       }
       dispatch(testUserCode(bool));

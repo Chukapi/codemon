@@ -15,8 +15,6 @@ class CodeEntryForm extends Component {
   onClick = event => {
     event.preventDefault()
 
-    console.log('NO LOOK AT THIS', this.props.currentPokemon, this.props.exp)
-
     const { currentPokemon, exp, testSpecCode } = this.props;
     const code = this.ace.editor.getValue();
 
@@ -64,7 +62,3 @@ const mapDispatch = dispatch => ({
 });
 
 export default connect(mapState, mapDispatch)(CodeEntryForm)
-
-// function returnString(str) {
-//   return str;
-// }

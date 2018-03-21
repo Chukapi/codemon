@@ -20,6 +20,7 @@ const Evolution = require('./evolution');
 
 User.hasMany(Pokemon);
 Pokemon.belongsTo(User);
+User.hasMany(Problem, { as: 'problemsSolved'});
 
 module.exports = {
   User,

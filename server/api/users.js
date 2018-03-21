@@ -31,8 +31,8 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   User.findById(req.params.id)
-    .then(foundUser => foundUser.update({ socketId: req.body.socketId }))
-    .then(updatedUser => res.json(updatedUser))
-    .catch(next)
+  .then(foundUser => foundUser.update({socketId: Object.keys(req.body)[0]}))
+  .then(updatedUser => res.json(updatedUser))
+  .catch(next)
 });
 

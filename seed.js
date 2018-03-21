@@ -32,6 +32,7 @@ const problems = [
     prompt: 'Create a function returnString that takes a string and returns the same string.',
     // tests: "const assert = require('chai').assert; assert.equal(returnString('jo'), 'jo')"
     // tests: "assert.deepEqual(returnString('jo'), 'jo')"
+    // tests: ["returnString('hello world') === 'hello world'", "returnString('1') === '1'"]
     tests: "returnString('hello world') === 'hello world'"
   },
   {

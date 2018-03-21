@@ -9,12 +9,9 @@ import {postSocketId} from '../store';
  * COMPONENT
  */
 class UserHome extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount(){
-    this.props.postSocketId(this.props.id, {socketId: socket.id})
+    this.props.postSocketId(this.props.id, socket.id)
   }
 
   render(){

@@ -42,8 +42,8 @@ export const auth = (email, password, method) =>
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
-export const postSocketId = (userId, socketId) => 
-  dispatch => 
+export const postSocketId = (userId, socketId) =>
+  dispatch =>
     axios.put(`/api/users/${userId}`, socketId)
       .then(res => res.data)
       .then(userData => {
@@ -71,7 +71,7 @@ export default function (state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser
     case POST_SOCKET:
-      return Object.assign({}, state, {socketId: action.socketId.socketId})
+      return Object.assign({}, state, {socketId: action.socketId})
     default:
       return state
   }

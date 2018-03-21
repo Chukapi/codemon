@@ -50,9 +50,9 @@ const pokemon = [
   {
     id: 1,
     userId: 2,
-    name: 'Pikachu',
+    name: 'Pichu',
     exp: 10,
-    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pikachu.gif'
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pichu.gif'
   },
   {
     id: 2,

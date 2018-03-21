@@ -2,7 +2,6 @@ import React from 'react';
 
 const SinglePokemon = props => {
   const { pokemon } = props;
-  console.log(pokemon.experience)
   return (
     <div>
       <div>

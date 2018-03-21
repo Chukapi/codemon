@@ -6,9 +6,9 @@ const Evolution = db.define('evolution', {
     type: Sequelize.STRING,
     unique: true
   },
-  // stage: {
-  //   type: Sequelize.ENUM('1', '2', '3')
-  // },
+  stage: {
+    type: Sequelize.ENUM('1', '2', '3')
+  },
   next: {
     type: Sequelize.STRING
   },

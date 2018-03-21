@@ -24,4 +24,7 @@ const Pokemon = db.define('pokemon', {
   },
 });
 
+
+
+
 module.exports = Pokemon;

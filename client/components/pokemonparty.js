@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SinglePokemon from './singlepokemon';
+import { connect } from 'react-redux';
+import { setPokemon } from '../store';
 
 class PokemonParty extends Component {
   state = {
@@ -8,6 +10,10 @@ class PokemonParty extends Component {
 
   handleClick = (evt, pokeball) => {
     this.setState({ pokemon: pokeball });
+  }
+
+  componentDidUpdate() {
+    this.props.setCurrent(this.state.pokemon)
   }
 
   render() {
@@ -36,4 +42,8 @@ class PokemonParty extends Component {
   }
 }
 
-export default PokemonParty;
+const mapDispatch = dispatch => ({
+  setCurrent: (poke) => dispatch(setPokemon(poke))
+});
+
+export default connect(null, mapDispatch)(PokemonParty);

@@ -88,6 +88,7 @@ const startListening = () => {
 
   // set up our socket control center
   const io = socketio(server)
+  app.io = io;
   require('./socket')(io)
 }
 

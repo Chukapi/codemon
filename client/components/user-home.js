@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PokemonParty from './pokemonparty';
 import Training from './training';
-import socket from '../socket';
-import {postSocketId} from '../store';
 /**
  * COMPONENT
  */
 class UserHome extends React.Component {
 
-  componentDidMount(){
-    this.props.postSocketId(this.props.id, socket.id)
-  }
+  // componentDidMount(){
+
+  // }
 
   render(){
-    const { id, username, pokemon } = this.props;
+    const { username, pokemon } = this.props;
     return (
       <div>
         <h3>Welcome, {username}</h3>
@@ -34,13 +32,12 @@ const mapState = (state) => {
     email: state.user.email,
     pokemon: state.user.pokemons,
     username: state.user.username,
-    id: state.user.id
   }
 }
 
-const mapDispatch = { postSocketId }
+// const mapDispatch = { postSocketId }
 
-export default connect(mapState, mapDispatch)(UserHome);
+export default connect(mapState)(UserHome);
 
 /**
  * PROP TYPES

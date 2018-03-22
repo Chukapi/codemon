@@ -1,5 +1,7 @@
 import axios from 'axios';
 import history from '../history';
+import socket from '../socket';
+// import socket from '../socket';
 
 /**
  * ACTION TYPES
@@ -24,11 +26,16 @@ const postSocket = socketId => ({type: POST_SOCKET, socketId});
 /**
  * THUNK CREATORS
  */
-export const me = () =>
+export const me = (socketId) =>
   dispatch =>
     axios.get('/auth/me')
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
+      .then(res => {
+        if(res.user.id){
+          dispatch(postSocketId(res.user.id, socketId))
+        }
+      })
       .catch(err => console.log(err));
 
 export const auth = (email, password, method) =>

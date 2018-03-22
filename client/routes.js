@@ -3,20 +3,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, UserStats, CodeEntryForm, Training, Battle } from './components';
-import { me } from './store'
+import { Login, Signup, UserHome, UserStats, CodeEntryForm, Training, Battle} from './components';
+import {me} from './store'
 import socket from './socket';
+
 
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
 
-    console.log('FIRST ', socket.id);
-    this.props.loadInitialData()
-    console.log('SECOND  ', socket);
+  componentDidMount() {
+    socket.on('connect', () => {
+      this.props.loadInitialData(socket.id) 
+    })
   }
 
   render() {
@@ -50,14 +51,15 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    id: state.user.id    
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData() {
-      dispatch(me())
+    loadInitialData(id) {
+      dispatch(me(id))
     }
   }
 }

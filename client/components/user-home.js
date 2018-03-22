@@ -17,7 +17,7 @@ class UserHome extends React.Component {
   }
 
   render() {
-    const { id, username, pokemon } = this.props;
+    const { username } = this.props;
     return (
       <div>
         <h3>Welcome, {username}</h3>

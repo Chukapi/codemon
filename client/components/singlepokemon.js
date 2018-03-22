@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 const SinglePokemon = props => {
   const { pokemonId, allPokemon } = props;
-  console.log(props)
 
   return (
     <div>

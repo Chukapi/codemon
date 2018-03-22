@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
-import { testCode, revisePokemon } from '../store';
+import { testCode } from '../store';
 
 import 'brace/mode/javascript';
 import 'brace/theme/github';
@@ -13,15 +13,15 @@ class CodeEntryForm extends Component {
   state = { code: '' } //Don't think we need this
 
   onClick = event => {
-    event.preventDefault()
+    event.preventDefault();
 
     const code = this.ace.editor.getValue();
     const { currentPokemonId, exp, testSpecCode, allPokemon } = this.props;
 
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
 
-    testSpecCode({ code }, 1, currentPokemon, exp)
-    this.setState({ code }) //Don't think we need this
+    testSpecCode({ code }, 1, currentPokemon, exp);
+    this.setState({ code });
   }
 
   // RENDER EDITOR
@@ -59,7 +59,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   testSpecCode: (code, id, poke, probExp) => dispatch(testCode(code, id, poke, probExp)),
-  // updateExp: (id, exp) => dispatch(revisePokemon(id, exp))
 });
 
 export default connect(mapState, mapDispatch)(CodeEntryForm)

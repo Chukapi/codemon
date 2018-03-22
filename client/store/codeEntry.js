@@ -13,7 +13,6 @@ export const testCode = (userCode, id, pokemon, exp) => dispatch =>
     .then(res => res.data)
     .then(bool => {
       if (bool) {
-        console.log('POKEMON ID', pokemon.id)
         let totalExp = pokemon.exp + exp;
         if (totalExp >= 1600 && pokemon.evolutionLevel === 1) {
           dispatch(triggerEvolution(pokemon.id, pokemon.name));

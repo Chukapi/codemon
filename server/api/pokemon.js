@@ -9,12 +9,6 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
-// router.get('/:id', (req, res, next) => {
-//   Pokemon.findById(req.params.id)
-//     .then(pokemon => res.json(pokemon))
-//     .catch(next);
-// });
-
 // router.post('/:id', (req, res, next) => {
 //   Pokemon.create(req.body)
 //   // here set userId by req.params.id

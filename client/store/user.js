@@ -18,7 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
-const postSocket = socketId => ({type: POST_SOCKET, socketId});
+const postSocket = socketId => ({ type: POST_SOCKET, socketId });
 
 
 /**
@@ -64,14 +64,13 @@ export const logout = () =>
  * REDUCER
  */
 export default function (state = defaultUser, action) {
-  console.log('STATE', state)
   switch (action.type) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
       return defaultUser
     case POST_SOCKET:
-      return Object.assign({}, state, {socketId: action.socketId})
+      return Object.assign({}, state, { socketId: action.socketId })
     default:
       return state
   }

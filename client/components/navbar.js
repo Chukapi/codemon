@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { logout, fetchOpponent } from '../store'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout, fetchOpponent } from '../store';
 
 const Navbar = ({ handleClick, battleClick, isLoggedIn, id }) => {
   return (

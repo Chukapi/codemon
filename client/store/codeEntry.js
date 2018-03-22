@@ -20,6 +20,7 @@ export const testCode = (userCode, id, pokemon, exp) => dispatch =>
         if (totalExp >= 3600 && pokemon.evolutionLevel === 2) {
           dispatch(triggerEvolution(pokemon.id, pokemon.name));
         }
+        ///render new problem
         dispatch(revisePokemon(pokemon.id, { exp: totalExp }));
       }
       dispatch(testUserCode(bool));
@@ -30,6 +31,7 @@ export const testCode = (userCode, id, pokemon, exp) => dispatch =>
 export default function reducer(result = '', action) {
   switch (action.type) {
     case TEST_CODE:
+    console.log("action.result", action.result)
       return action.result;
     default:
       return result;

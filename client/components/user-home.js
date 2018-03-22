@@ -8,10 +8,6 @@ import Training from './training';
  */
 class UserHome extends React.Component {
 
-  // componentDidMount(){
-
-  // }
-
   render(){
     const { username, pokemon } = this.props;
     return (
@@ -34,8 +30,6 @@ const mapState = (state) => {
     username: state.user.username,
   }
 }
-
-// const mapDispatch = { postSocketId }
 
 export default connect(mapState)(UserHome);
 

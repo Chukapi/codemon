@@ -12,7 +12,7 @@ router.get('/', isAdmin, (req, res, next) => {
   Problem.findAll({
     attributes: ['id', 'tests', 'prompt']
   })
-    .then(problem => res.json(problem))
+    .then(problems => res.json(problems))
     .catch(next)
 })
 

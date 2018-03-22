@@ -4,6 +4,7 @@ import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
 import { testCode, revisePokemon } from '../store';
 
+
 import 'brace/mode/javascript';
 import 'brace/theme/github';
 import 'brace/ext/language_tools';
@@ -17,8 +18,8 @@ class CodeEntryForm extends Component {
 
     const { currentPokemon, exp, testSpecCode } = this.props;
     const code = this.ace.editor.getValue();
-
-    testSpecCode({ code }, 1, currentPokemon, exp)
+    console.log("code", code)
+    testSpecCode({ code }, this.props.problemId, currentPokemon, exp)
     this.setState({ code }) //Don't think we need this
   }
 
@@ -48,7 +49,8 @@ class CodeEntryForm extends Component {
   }
 }
 
-const mapState = state => ({
+const mapState = (state, ownProps) => ({
+  problemId: ownProps.id,
   result: state.codeEntry,
   exp: state.training.experience,
   currentPokemon: state.currentPokemon

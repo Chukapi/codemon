@@ -40,7 +40,7 @@ class Navbar extends Component {
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
               <Link to={`/mystats/${user.id}`}>My Statistics</Link>
-              <Link to={`/fights/${user.id}`}>Battle!</Link>
+              <Link onClick={this.battleClick} to={`/fights/${user.id}`}>Battle!</Link>
               <a href="#" onClick={this.handleClick}>Logout</a>
             </div>
           ) : (

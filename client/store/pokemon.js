@@ -3,12 +3,11 @@ import axios from 'axios';
 //ACTION TYPES
 const SET_POKEMON = 'SET_POKEMON';
 const UPDATE_POKEMON = 'UPDATE_POKEMON';
-// const TRIGGER_EVOLUTION = 'TRIGGER_EVOLUTION';
 
 //ACTION CREATORS
-export const setPokemon = currentPokemon => ({ type: SET_POKEMON, currentPokemon });
+export const setPokemon = allPokemon => ({ type: SET_POKEMON, allPokemon });
 
-export const updatePokemon = currentPokemon => ({ type: UPDATE_POKEMON, currentPokemon });
+export const updatePokemon = selectedPokemon => ({ type: UPDATE_POKEMON, selectedPokemon });
 
 
 //THUNK CREATORS
@@ -38,16 +37,16 @@ export const triggerEvolution = (id, pokeName) => dispatch =>
 
 
 //REDUCER
-export default (currentPokemon = {}, action) => {
+export default (allPokemon = [], action) => {
   switch (action.type) {
 
     case SET_POKEMON:
-      return action.currentPokemon;
+      return action.allPokemon;
 
     case UPDATE_POKEMON:
-      return action.currentPokemon;
+      return allPokemon.map(poke => (poke.id === action.selectedPokemon.id ? action.selectedPokemon : poke));
 
-    default: return currentPokemon;
+    default: return allPokemon;
   }
 }
 

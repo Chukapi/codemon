@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link, NavLink} from 'react-router-dom'
-import {logout, fetchOpponent} from '../store'
-import socket from '../socket'
-
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout, fetchOpponent } from '../store';
+import socket from '../socket';
+       
 class Navbar extends Component {
   constructor(){
     super();
@@ -32,19 +32,17 @@ class Navbar extends Component {
   render(){
     return (
       <div>
-        <h1>CODÉMON</h1>
-        <nav>
-          {this.props.isLoggedIn ? (
-            <div>
-              {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
-              <a href="#" onClick={this.handleClick}>
-                Logout
-              </a>
-              <Link to={`/mystats/${this.props.user.id}`}>My Statistics</Link>
-              <Link onClick={this.battleClick} to={`/fights/${this.props.user.id}`}>Battle!</Link>
-            </div>
-          ) : (
+         <Link to='/home'><img src='https://fontmeme.com/permalink/180322/3dfe322ae57284bad89b0a9f92ab5ae5.png' alt='pokemon-font' border='0' /></Link> 
+      <nav>
+        {isLoggedIn ? (
+          <div>
+            {/* The navbar will show these links after you log in */}
+            <Link to="/home">Home</Link>
+            <Link to={`/mystats/${id}`}>My Statistics</Link>
+            <Link to={`/fights/${id}`}>Battle!</Link>
+            <a href="#" onClick={handleClick}>Logout</a>
+          </div>
+        ) : (
             <div>
               {/* The navbar will show these links before you log in */}
               <Link to="/login">Login</Link>
@@ -57,7 +55,6 @@ class Navbar extends Component {
       )
   }
 }
-
 
 /**
  * CONTAINER
@@ -72,7 +69,6 @@ const mapState = state => {
 
 const mapDispatch = { logout, fetchOpponent }
 
-
 export default connect(mapState, mapDispatch)(Navbar)
 
 /**
@@ -82,4 +78,3 @@ export default connect(mapState, mapDispatch)(Navbar)
 //   handleClick: PropTypes.func.isRequired,
 //   isLoggedIn: PropTypes.bool.isRequired
 // }
-

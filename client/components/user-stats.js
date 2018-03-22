@@ -1,28 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FontIcon from "material-ui/FontIcon";
 
-class UserStats extends React.Component {
-  componentDidMount(){
-    console.log("UserStats props", this.props)
-  }
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from "material-ui/Card";
 
-  render(){
-    const { email, username, pokemon } = this.props;
-    return(
+function UserStats(props) {
+
+  const { email, username, pokemon } = props;
+
+    return (
+      <div className="container">
       <div>
         <h1>{username}'s Statistics!</h1>
         <h3> Your email: {email}</h3>
         <h3> Your Pokemon:
-        <br/> {pokemon.map(poke => poke.name)} <br/> Experience Level: {pokemon.map(poke => poke.exp)}
+          <Card >
+          <CardText>
+       {pokemon.map(poke => <CardTitle key={poke.id} title={poke.name} /> )} Experience Level: {pokemon.map(poke => poke.exp)}
+        {pokemon.map(poke => <img src={poke.imageUrl} key={poke.id} />)}
         <br/>
         Evolution Level: {pokemon.map(poke => poke.evolutionLevel )}
-        <br/>
-         {pokemon.map(poke => poke.imageUrl)}
+        </CardText>
+        </Card>
         </h3>
-
+      </div>
       </div>
     )
-  }
+
 }
 
 const mapState = (state) => {
@@ -33,7 +44,5 @@ const mapState = (state) => {
     id: state.user.id
   }
 }
-
-
 
 export default connect(mapState, null)(UserStats)

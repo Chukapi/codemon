@@ -32,14 +32,14 @@ passport.deserializeUser((id, done) =>
 
 const createApp = () => {
   // logging middleware
-  app.use(morgan('dev'))
+  app.use(morgan('dev'));
 
   // body parsing middleware
-  app.use(bodyParser.json())
-  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   // compression middleware
-  app.use(compression())
+  app.use(compression());
 
   // session middleware with passport
   app.use(session({
@@ -47,52 +47,52 @@ const createApp = () => {
     store: sessionStore,
     resave: false,
     saveUninitialized: false
-  }))
-  app.use(passport.initialize())
-  app.use(passport.session())
+  }));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   // auth and api routes
-  app.use('/auth', require('./auth'))
-  app.use('/api', require('./api'))
+  app.use('/auth', require('./auth'));
+  app.use('/api', require('./api'));
 
   // static file-serving middleware
-  app.use(express.static(path.join(__dirname, '..', 'public')))
+  app.use(express.static(path.join(__dirname, '..', 'public')));
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
-      const err = new Error('Not found')
-      err.status = 404
-      next(err)
+      const err = new Error('Not found');
+      err.status = 404;
+      next(err);
     } else {
-      next()
+      next();
     }
-  })
+  });
 
   // sends index.html
   app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
-  })
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'));
+  });
 
   // error handling endware
   app.use((err, req, res, next) => {
-    console.error(err)
-    console.error(err.stack)
-    res.status(err.status || 500).send(err.message || 'Internal server error.')
-  })
+    console.error(err);
+    console.error(err.stack);
+    res.status(err.status || 500).send(err.message || 'Internal server error.');
+  });
 }
 
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)
-  const server = app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
+  const server = app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`));
 
   // set up our socket control center
-  const io = socketio(server)
+  const io = socketio(server);
   app.io = io;
-  require('./socket')(io)
+  require('./socket')(io);
 }
 
-const syncDb = () => db.sync({})
+const syncDb = () => db.sync({});
 
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
@@ -102,7 +102,7 @@ if (require.main === module) {
   sessionStore.sync()
     .then(syncDb)
     .then(createApp)
-    .then(startListening)
+    .then(startListening);
 } else {
-  createApp()
+  createApp();
 }

@@ -3,10 +3,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, CodeEntryForm } from './components';
+import { Login, Signup, UserHome, UserStats, CodeEntryForm, Training, Battle} from './components';
 import {me} from './store'
-import {Training} from './components'
-import {Battle} from './components'
 
 
 /**
@@ -30,6 +28,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/mystats/:id" component={UserStats} />
             <Route path="/fights/:id" component={Battle} />
           </Switch>
         }

@@ -16,7 +16,8 @@ return (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link onClick={() => battleClick(id)} to={`/fights/${id}`}>Battle!</Link>
+          <Link to={`/mystats/${id}`}>My Statistics</Link>
+          <Link to={`/fights/${id}`}>Battle!</Link>
         </div>
       ) : (
         <div>

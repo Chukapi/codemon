@@ -24,7 +24,8 @@ class CodeEntryForm extends Component {
 
   // RENDER EDITOR
   render() {
-    console.log('inside render', this.props)
+    const { currentPokemon, result } = this.props;
+
     return (
       <div>
         <AceEditor
@@ -34,21 +35,18 @@ class CodeEntryForm extends Component {
           name="UNIQUE_ID_OF_DIV"
           editorProps={{ $blockScrolling: true }}
           ref={(ref) => { this.ace = ref }}
+          readOnly={!currentPokemon.id}
         />
-        <button onClick={this.onClick}>Submit</button>
+        <button onClick={this.onClick} disabled={!currentPokemon.id}>Submit</button>
 
-        {this.props.result &&
+        {result === true &&
           <h2>Tests Passed! {this.props.exp} EXP Earned!</h2>}
 
-        {!this.props.result ? <h2>Tests Failed. Try Again.</h2> : <h2>{this.props.result}</h2>}
+        {result === false ? <h2>Tests Failed. Try Again.</h2> : <h2>{result}</h2>}
       </div>
     )
   }
 }
-
-//If pass we need to check if exp is >= certain amount
-//If so update evolution level by 1 on pokemon model
-// & update name and imageUrl as well (grab name and image from Evolution model and update that pokemon's id)
 
 const mapState = state => ({
   result: state.codeEntry,

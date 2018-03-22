@@ -13,7 +13,7 @@ import SinglePokemon from './singlepokemon';
 class UserHome extends React.Component {
 
   componentDidMount() {
-    this.props.postSocketId(this.props.id, socket.id)
+    postSocketId(this.props.id, socket.id)
     this.props.loadPokemon(this.props.id);
   }
 
@@ -41,11 +41,10 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = dispatch => ({
-  postSocketId,
   loadPokemon: (id) => dispatch(fetchPokemon(id))
 });
 
-export default connect(mapState)(UserHome);
+export default connect(mapState, mapDispatch)(UserHome);
 
 /**
  * PROP TYPES

@@ -24,7 +24,7 @@ const users = [{
   username: 'Veronica',
   email: 'veronica@fullstack.com',
   password: 'password',
-}]
+}];
 
 const problems = [
   {
@@ -68,7 +68,35 @@ const pokemon = [
     name: 'Squirtle',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/squirtle.gif'
-  }
+  },
+  {
+    id: 4,
+    userId: 3,
+    name: 'Dratini',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/dratini.gif'
+  },
+  {
+    id: 5,
+    userId: 1,
+    name: 'Pidgey',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pidgey.gif'
+  },
+  {
+    id: 6,
+    userId: 1,
+    name: 'Horsea',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/horsea.gif'
+  },
+  {
+    id: 7,
+    userId: 2,
+    name: 'Bulbasaur',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/bulbasaur.gif'
+  },
 ]
 
 const evolutions = [

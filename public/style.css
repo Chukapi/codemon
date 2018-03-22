@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Exo 2', sans-serif;
   height: 100%;
 }
 
@@ -11,14 +11,39 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
+nav {
+  display: inline-flex;
   margin: 1em;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav a {
+  display: inline-flex;
+  align-content: center;
+  justify-content: space-between;
+  margin-right: 15px;
+}
+
+nav a:last-of-type {
+  margin-right: 0;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.poke-images {
+  width: 15%;
+}
+
+.pokemon-nav {
+  display: inline-flex;
+}
+
+.pokemon-nav img {
+  width: 45px;
 }
 
 @font-face {

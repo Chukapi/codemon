@@ -7,23 +7,25 @@ import { logout, fetchOpponent } from '../store'
 const Navbar = ({ handleClick, battleClick, isLoggedIn, id }) => {
   return (
     <div>
-      <Link to='/home'><img src='https://fontmeme.com/permalink/180322/3dfe322ae57284bad89b0a9f92ab5ae5.png' alt='pokemon-font' border='0' /></Link> <nav>
-        {isLoggedIn ? (
-          <div>
-            {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
-            <Link to={`/mystats/${id}`}>My Statistics</Link>
-            <Link to={`/fights/${id}`}>Battle!</Link>
-            <a href="#" onClick={handleClick}>Logout</a>
-          </div>
-        ) : (
-            <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+      <div className="nav-bar">
+        <Link className="logo" to='/home'><img src='https://fontmeme.com/permalink/180322/3dfe322ae57284bad89b0a9f92ab5ae5.png' alt='pokemon-font' border='0' /></Link> <nav>
+          {isLoggedIn ? (
+            <div className="nav-links">
+              {/* The navbar will show these links after you log in */}
+              <Link to="/home">Home</Link>
+              <Link to={`/mystats/${id}`}>My Statistics</Link>
+              <Link to={`/fights/${id}`}>Battle!</Link>
+              <a href="#" onClick={handleClick}>Logout</a>
             </div>
-          )}
-      </nav>
+          ) : (
+              <div className="nav-links">
+                {/* The navbar will show these links before you log in */}
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+            )}
+        </nav>
+      </div>
       <hr />
     </div >
   )

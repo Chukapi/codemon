@@ -3,17 +3,27 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PokemonParty from './pokemonparty';
 import Training from './training';
+import socket from '../socket';
+import { postSocketId, fetchPokemon } from '../store';
+import SinglePokemon from './singlepokemon';
+
 /**
  * COMPONENT
  */
 class UserHome extends React.Component {
 
-  render(){
-    const { username, pokemon } = this.props;
+  componentDidMount() {
+    postSocketId(this.props.id, socket.id)
+    this.props.loadPokemon(this.props.id);
+  }
+
+  render() {
+    const { username } = this.props;
     return (
       <div>
         <h3>Welcome, {username}</h3>
-        <PokemonParty pokemon={pokemon} />
+        <PokemonParty />
+        <SinglePokemon />
         <Training />
       </div>
     )
@@ -23,15 +33,18 @@ class UserHome extends React.Component {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
-  return {
-    email: state.user.email,
-    pokemon: state.user.pokemons,
-    username: state.user.username,
-  }
-}
+const mapState = (state) => ({
+  email: state.user.email,
+  pokemon: state.allPokemon,
+  username: state.user.username,
+  id: state.user.id
+})
 
-export default connect(mapState)(UserHome);
+const mapDispatch = dispatch => ({
+  loadPokemon: (id) => dispatch(fetchPokemon(id))
+});
+
+export default connect(mapState, mapDispatch)(UserHome);
 
 /**
  * PROP TYPES

@@ -1,63 +1,61 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link, NavLink} from 'react-router-dom'
-import {logout, fetchOpponent} from '../store'
-import socket from '../socket'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout, fetchOpponent } from '../store';
+import socket from '../socket';
 
 class Navbar extends Component {
-  constructor(){
+  constructor() {
     super();
     this.handleClick = this.handleClick.bind(this)
     this.battleClick = this.battleClick.bind(this)
     this.challenge = this.challenge.bind(this)
   }
 
-  handleClick(){
+  handleClick() {
     this.props.logout()
   }
 
-  challenge(opponentId, msg){
+  challenge(opponentId, msg) {
     socket.emit('battle click', opponentId, msg)
   }
 
   //does not work on first click
-  battleClick(){
+  battleClick() {
     this.props.fetchOpponent(this.props.user.id)
-    if(this.props.opponent.opponentSocketId){
+    if (this.props.opponent.opponentSocketId) {
       socket.on('battle click', this.challenge(this.props.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`))
     }
   }
 
-  render(){
+  render() {
+    const { isLoggedIn, user } = this.props;
     return (
       <div>
-        <h1>CODÉMON</h1>
+        <Link to='/home'><img src='https://fontmeme.com/permalink/180322/3dfe322ae57284bad89b0a9f92ab5ae5.png' alt='pokemon-font' border='0' /></Link>
         <nav>
-          {this.props.isLoggedIn ? (
+          {isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
-              <a href="#" onClick={this.handleClick}>
-                Logout
-              </a>
-              <Link to={`/mystats/${this.props.user.id}`}>My Statistics</Link>
-              <Link onClick={this.battleClick} to={`/fights/${this.props.user.id}`}>Battle!</Link>
+              <Link to={`/mystats/${user.id}`}>My Statistics</Link>
+              <Link onClick={this.battleClick} to={`/fights/${user.id}`}>Battle!</Link>
+              <a href="#" onClick={this.handleClick}>Logout</a>
             </div>
           ) : (
-            <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
-          )}
+              <div>
+                {/* The navbar will show these links before you log in */}
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+            )}
         </nav>
         <hr />
       </div>
-      )
+    )
   }
 }
-
 
 /**
  * CONTAINER
@@ -72,7 +70,6 @@ const mapState = state => {
 
 const mapDispatch = { logout, fetchOpponent }
 
-
 export default connect(mapState, mapDispatch)(Navbar)
 
 /**
@@ -82,4 +79,3 @@ export default connect(mapState, mapDispatch)(Navbar)
 //   handleClick: PropTypes.func.isRequired,
 //   isLoggedIn: PropTypes.bool.isRequired
 // }
-

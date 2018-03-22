@@ -11,31 +11,37 @@ function UserStats(props) {
 
   const { email, username, pokemon } = props;
 
-    return (
-      <div className="container">
+  return (
+    <div className="container">
       <div>
         <h1>{username}'s Statistics!</h1>
         <h3> Your email: {email}</h3>
         <h3> Your Pokemon:
           <Card >
-          <CardText>
-       {pokemon.map(poke => <CardTitle key={poke.id} title={poke.name} /> )} Experience Level: {pokemon.map(poke => poke.exp)}
-        {pokemon.map(poke => <img src={poke.imageUrl} key={poke.id} />)}
-        <br/>
-        Evolution Level: {pokemon.map(poke => poke.evolutionLevel )}
-        </CardText>
-        </Card>
+            <CardText>
+              {pokemon.map(poke =>
+                (<div key={poke.id}>
+                  <CardTitle title={poke.name} />
+                  <img src={poke.imageUrl} />
+                  <p>Experience Level: {poke.exp}</p>
+                  <p>Evolution Level: {poke.evolutionLevel}</p>
+                </div>
+                )
+              )}
+              <br />
+            </CardText>
+          </Card>
         </h3>
       </div>
-      </div>
-    )
+    </div>
+  )
 
 }
 
 const mapState = (state) => {
   return {
     email: state.user.email,
-    pokemon: state.user.pokemons,
+    pokemon: state.allPokemon,
     username: state.user.username,
     id: state.user.id
   }

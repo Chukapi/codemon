@@ -17,7 +17,7 @@ class Training extends Component {
 
     let getRandomIndex = Math.floor(Math.random() * Math.floor(this.props.problems.length - 1))
     let currentProblem =  this.props.problems[getRandomIndex]
-    this.setState({ problem: currentProblem});
+    this.setState({ problem: currentProblem });
 
     // .then(
     // console.log("PRBLES", this.props.problems))

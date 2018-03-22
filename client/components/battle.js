@@ -30,4 +30,4 @@ const mapState = function (state){
   }
 }
 
-export default connect(mapState, null)(Battle)
+export default connect(mapState)(Battle)

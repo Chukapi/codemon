@@ -6,6 +6,7 @@ import Training from './training';
 import socket from '../socket';
 import { postSocketId, fetchPokemon } from '../store';
 import SinglePokemon from './singlepokemon';
+
 /**
  * COMPONENT
  */
@@ -44,7 +45,7 @@ const mapDispatch = dispatch => ({
   loadPokemon: (id) => dispatch(fetchPokemon(id))
 });
 
-export default connect(mapState, mapDispatch)(UserHome);
+export default connect(mapState)(UserHome);
 
 /**
  * PROP TYPES

@@ -6,6 +6,7 @@ module.exports = (io) => {
       console.log(`Connection ${socket.id} has left the building`)
     })
     socket.on('battle click', (opponentId, msg) => {
+      console.log('hey', opponentId, msg)
       socket.broadcast.to(opponentId).emit('my message', msg)
     })
   })

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const SinglePokemon = props => {
   const { pokemon } = props;
@@ -16,4 +17,6 @@ const SinglePokemon = props => {
   )
 }
 
-export default SinglePokemon;
+const mapState = state => ({ pokemon: state.currentPokemon });
+
+export default connect(mapState)(SinglePokemon);

@@ -15,11 +15,11 @@ export const testCode = (userCode, id, pokemon, exp) => dispatch =>
       if (bool) {
         let totalExp = pokemon.exp + exp;
         if (totalExp >= 1600 && pokemon.evolutionLevel === 1) {
-          dispatch(triggerEvolution(pokemon.id, pokemon.name))
+          dispatch(triggerEvolution(pokemon.id, pokemon.name));
         }
-        // if (totalExp >= 3600 && pokemon.evolutionLevel === 2) {
-
-        // }
+        if (totalExp >= 3600 && pokemon.evolutionLevel === 2) {
+          dispatch(triggerEvolution(pokemon.id, pokemon.name));
+        }
         dispatch(revisePokemon(pokemon.id, { exp: totalExp }));
       }
       dispatch(testUserCode(bool));
@@ -27,7 +27,7 @@ export const testCode = (userCode, id, pokemon, exp) => dispatch =>
     .catch(err => console.log(err));
 
 //REDUCER
-export default function reducer(result = false, action) {
+export default function reducer(result = '', action) {
   switch (action.type) {
     case TEST_CODE:
       return action.result;

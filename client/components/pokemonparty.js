@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import SinglePokemon from './singlepokemon';
+// import SinglePokemon from './singlepokemon';
 import { connect } from 'react-redux';
-import { setPokemon } from '../store';
+import { setCurrentPokemon } from '../store';
 
 class PokemonParty extends Component {
-  state = {
-    pokemon: {}
+  // state = {
+  //   pokemon: {}
+  // }
+
+  handleClick = (evt, pokeId) => {
+    this.props.setCurrent(pokeId);
   }
 
-  handleClick = (evt, pokeball) => {
-    this.setState({ pokemon: pokeball });
-  }
-
-  componentDidUpdate() {
-    this.props.setCurrent(this.state.pokemon)
-  }
+  // componentDidUpdate() {
+  //   this.props.setCurrent(this.state.pokemon)
+  // }
 
   render() {
     const { pokemon } = this.props;
@@ -23,27 +23,31 @@ class PokemonParty extends Component {
       <div>
         <div className="pokemon-nav">
           {
-            pokemon.map(pokeball => {
+            pokemon && pokemon.map(pokeball => {
               return (
                 <div key={pokeball.id}>
-                  <img onClick={(evt) => this.handleClick(evt, pokeball)} src="https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG" />
+                  <img onClick={(evt) => this.handleClick(evt, pokeball.id)} src="https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG" />
                 </div>
               )
             })
           }
         </div>
         {
-          this.state.pokemon.id ?
-            <SinglePokemon pokemon={this.state.pokemon} /> :
-            <img src="http://24.media.tumblr.com/5b94f3545e5e0afa339efe86b6f723f4/tumblr_mgxqxcFyJT1rmazn7o1_400.gif" />
+          // this.state.pokemon.id ?
+          // <SinglePokemon pokemon={this.state.pokemon} /> :
+          // <img src="http://24.media.tumblr.com/5b94f3545e5e0afa339efe86b6f723f4/tumblr_mgxqxcFyJT1rmazn7o1_400.gif" />
         }
       </div>
     )
   }
 }
 
+const mapState = state => ({
+  pokemon: state.allPokemon
+})
+
 const mapDispatch = dispatch => ({
-  setCurrent: (poke) => dispatch(setPokemon(poke))
+  setCurrent: (poke) => dispatch(setCurrentPokemon(poke))
 });
 
-export default connect(null, mapDispatch)(PokemonParty);
+export default connect(mapState, mapDispatch)(PokemonParty);

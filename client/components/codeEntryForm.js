@@ -15,8 +15,10 @@ class CodeEntryForm extends Component {
   onClick = event => {
     event.preventDefault()
 
-    const { currentPokemon, exp, testSpecCode } = this.props;
     const code = this.ace.editor.getValue();
+    const { currentPokemonId, exp, testSpecCode, allPokemon } = this.props;
+
+    const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
 
     testSpecCode({ code }, 1, currentPokemon, exp)
     this.setState({ code }) //Don't think we need this
@@ -24,7 +26,7 @@ class CodeEntryForm extends Component {
 
   // RENDER EDITOR
   render() {
-    const { currentPokemon, result } = this.props;
+    const { currentPokemonId, result } = this.props;
 
     return (
       <div>
@@ -35,9 +37,9 @@ class CodeEntryForm extends Component {
           name="UNIQUE_ID_OF_DIV"
           editorProps={{ $blockScrolling: true }}
           ref={(ref) => { this.ace = ref }}
-          readOnly={!currentPokemon.id}
+          readOnly={!currentPokemonId}
         />
-        <button onClick={this.onClick} disabled={!currentPokemon.id}>Submit</button>
+        <button onClick={this.onClick} disabled={!currentPokemonId}>Submit</button>
 
         {result === true &&
           <h2>Tests Passed! {this.props.exp} EXP Earned!</h2>}
@@ -51,12 +53,13 @@ class CodeEntryForm extends Component {
 const mapState = state => ({
   result: state.codeEntry,
   exp: state.training.experience,
-  currentPokemon: state.currentPokemon
+  currentPokemonId: state.currentPokemonId,
+  allPokemon: state.allPokemon
 });
 
 const mapDispatch = dispatch => ({
   testSpecCode: (code, id, poke, probExp) => dispatch(testCode(code, id, poke, probExp)),
-  updateExp: (id, exp) => dispatch(revisePokemon(id, exp))
+  // updateExp: (id, exp) => dispatch(revisePokemon(id, exp))
 });
 
 export default connect(mapState, mapDispatch)(CodeEntryForm)

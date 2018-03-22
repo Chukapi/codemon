@@ -22,18 +22,7 @@ router.get('/:id', (req, res, next) => {
   }})
   .then(users => {
     let getRandomIndex = Math.floor(Math.random() * Math.floor(users.length))
-    return users[getRandomIndex].socketId
+    res.json(users[getRandomIndex])
   })
-  // .then(res => res.data)
-  .then(opponentId => {
-    // console.log('HI THERE', Object.keys(req.socket), 'OPPONENT', opponentId)
-    req.socket.on('battle click', () => {
-      console.log('here')
-      req.socket.broadcast.to(opponentId).emit('my message', 'BATTLE!')
-    })
-    // let socketId = opponent.socketId;
-    // req.app.io.sockets.socket[req.session.socketID].emit('battle')
-    // , console.log("You've been challenged to a battle!"))
-    res.json(opponentId)
-  })
+  .catch(next)
 })

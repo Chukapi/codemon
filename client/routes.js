@@ -1,10 +1,11 @@
 
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, UserStats, CodeEntryForm, Training, Battle} from './components';
-import {me} from './store'
+import { Login, Signup, UserHome, UserStats, CodeEntryForm, Training, Battle } from './components';
+import { me } from './store'
+import socket from './socket';
 
 
 /**
@@ -12,7 +13,10 @@ import {me} from './store'
  */
 class Routes extends Component {
   componentDidMount() {
+
+    console.log('FIRST ', socket.id);
     this.props.loadInitialData()
+    console.log('SECOND  ', socket);
   }
 
   render() {

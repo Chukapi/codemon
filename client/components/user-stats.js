@@ -17,7 +17,7 @@ class UserStats extends React.Component {
         <br/>
         Evolution Level: {pokemon.map(poke => poke.evolutionLevel )}
         <br/>
-        `url(${ {pokemon.map(poke => poke.imageUrl)} })`
+         {pokemon.map(poke => poke.imageUrl)}
         </h3>
 
       </div>

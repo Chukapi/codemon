@@ -24,4 +24,5 @@ router.get('/:id', (req, res, next) => {
     let getRandomIndex = Math.floor(Math.random() * Math.floor(users.length))
     res.json(users[getRandomIndex])
   })
+  .catch(next)
 })

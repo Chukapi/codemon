@@ -9,7 +9,7 @@ const testUserCode = result => ({ type: TEST_CODE, result });
 
 //THUNKS
 export const testCode = (userCode, id, pokemon, exp) => dispatch =>
-  axios.post(`/api/training/test/${id}`, userCode)
+  axios.post(`/api/training/${id}`, userCode)
     .then(res => res.data)
     .then(bool => {
       if (bool) {

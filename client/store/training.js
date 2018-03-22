@@ -9,7 +9,7 @@ const getProblem = problem => ({ type: GET_PROBLEM, problem });
 //thunks
 export function fetchProblem(id) {
   return function thunk(dispatch) {
-    return axios.get(`/api/training/test/${id}`)
+    return axios.get(`/api/training/${id}`)
       .then(res => res.data)
       .then(problem => dispatch(getProblem(problem)))
       .catch(err => console.log(err));

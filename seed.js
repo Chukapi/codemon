@@ -33,17 +33,17 @@ const problems = [
     // tests: "const assert = require('chai').assert; assert.equal(returnString('jo'), 'jo')"
     // tests: "assert.deepEqual(returnString('jo'), 'jo')"
     // tests: ["returnString('hello world') === 'hello world'", "returnString('1') === '1'"]
-    tests: "returnString('hello world') === 'hello world'"
+    tests: ["returnString('hello world') === 'hello world'", "returnString('howdy') === 'howdy'"]
   },
   {
     id: 2,
     prompt: 'Write a function doubleNum that takes an integer and returns double that integer',
-    tests: "doubleNum(4) === 8"
+    tests: ["doubleNum(4) === 8"]
   },
   {
     id: 3,
     prompt: 'Write a function tripleNum that takes an integer and returns double that integer',
-    tests: "assert.deepEqual(tripleNum(4), 12)"
+    tests: ["assert.deepEqual(tripleNum(4), 12)"]
   }
 ]
 

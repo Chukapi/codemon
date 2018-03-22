@@ -21,7 +21,7 @@ const Problem = db.define('problem', {
     type: Sequelize.ARRAY(Sequelize.STRING)
   },
   tests: {
-    type: Sequelize.TEXT,
+    type: Sequelize.ARRAY(Sequelize.STRING),
     allowNull: false
   }
 });

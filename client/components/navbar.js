@@ -2,10 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
-import {logout} from '../store'
+import {logout, fetchOpponent} from '../store'
 
-
-const Navbar = ({ handleClick, isLoggedIn, id }) => {
+const Navbar = ({ handleClick, battleClick, isLoggedIn, id }) => {
 return (
   <div>
     <h1>CODÉMON</h1>
@@ -47,6 +46,9 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+    },
+    battleClick(id) {
+      dispatch(fetchOpponent(id))
     }
   }
 }

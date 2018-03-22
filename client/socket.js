@@ -6,4 +6,8 @@ socket.on('connect', () => {
   console.log('Connected!', socket)
 })
 
+// socket.on('Battle click', () => {
+//   console.log('Time to Battle!')
+// })
+
 export default socket

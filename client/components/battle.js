@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
 import Training from './training';
-import socket from '../socket';
 import { fetchOpponent } from '../store';
 import { connect } from 'react-redux';
 
 class Battle extends Component {
 
-
   componentDidMount(){
-    let opponent = fetchOpponent(this.props.userId)
-    console.log('THIS>PROPS', this.props)
-    socket.on('say to someone', function(id, msg){
-      socket.broadcast.to(opponent).emit('my message', 'BATTLE!')
-    })
+    // let opponent = fetchOpponent(this.props.userId)
+    // console.log('THIS>PROPS', this.props)
+    // socket.on('say to someone', function(id, msg){
+    //   socket.broadcast.to(opponent).emit('my message', 'BATTLE!')
+    // })
   }
 
   render(){

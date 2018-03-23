@@ -11,7 +11,7 @@ import 'brace/ext/language_tools';
 import 'brace/snippets/javascript';
 
 class CodeEntryForm extends Component {
-  state = { code: '' } //Don't think we need this
+  state = { code: '' }
 
   onClick = event => {
     event.preventDefault();
@@ -20,7 +20,6 @@ class CodeEntryForm extends Component {
     const { currentPokemonId, testSpecCode, allPokemon } = this.props;
 
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
-    // console.log('EXP',exp)
     testSpecCode({ code }, this.props.problem.id, currentPokemon, this.props.problem.experience);
     this.setState({ code });
   }
@@ -52,10 +51,9 @@ class CodeEntryForm extends Component {
 }
 
 const mapState = (state, ownProps) => {
-  console.log('OWN', ownProps)
   return {
   problem: ownProps.problem,
-  result: state.codeEntry,
+  result: state.codeEntry.output,
   currentPokemonId: state.currentPokemonId,
   allPokemon: state.allPokemon
   }

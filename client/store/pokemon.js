@@ -16,11 +16,12 @@ export const fetchPokemon = id => dispatch =>
     .then(pokemon => dispatch(setPokemon(pokemon.data)))
     .catch(err => console.error(`You got an error ${err}`));
 
-export const revisePokemon = (id, info) => dispatch =>
+export const revisePokemon = (id, info) => dispatch => {
+  console.log("INFO", info)
   axios.put(`/api/pokemon/${id}`, info)
     .then(pokemon => dispatch(updatePokemon(pokemon.data)))
     .catch(err => console.error(`Failed to update ${err}`));
-
+}
 export const triggerEvolution = (id, pokeName) => dispatch =>
   axios.get(`/api/evolution/${pokeName}`)
     .then(pokemon => {

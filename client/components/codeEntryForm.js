@@ -4,23 +4,23 @@ import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
 import { testCode } from '../store';
 
+
 import 'brace/mode/javascript';
 import 'brace/theme/github';
 import 'brace/ext/language_tools';
 import 'brace/snippets/javascript';
 
 class CodeEntryForm extends Component {
-  state = { code: '' } //Don't think we need this
+  state = { code: '' }
 
   onClick = event => {
     event.preventDefault();
 
     const code = this.ace.editor.getValue();
-    const { currentPokemonId, exp, testSpecCode, allPokemon } = this.props;
+    const { currentPokemonId, testSpecCode, allPokemon } = this.props;
 
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
-
-    testSpecCode({ code }, 1, currentPokemon, exp);
+    testSpecCode({ code }, this.props.problem.id, currentPokemon, this.props.problem.experience);
     this.setState({ code });
   }
 
@@ -42,7 +42,7 @@ class CodeEntryForm extends Component {
         <button onClick={this.onClick} disabled={!currentPokemonId}>Submit</button>
 
         {result === true &&
-          <h2>Tests Passed! {this.props.exp} EXP Earned!</h2>}
+          <h2>Tests Passed! {this.props.problem.experience} EXP Earned!</h2>}
 
         {result === false ? <h2>Tests Failed. Try Again.</h2> : <h2>{result}</h2>}
       </div>
@@ -50,12 +50,14 @@ class CodeEntryForm extends Component {
   }
 }
 
-const mapState = state => ({
-  result: state.codeEntry,
-  exp: state.training.experience,
+const mapState = (state, ownProps) => {
+  return {
+  problem: ownProps.problem,
+  result: state.codeEntry.output,
   currentPokemonId: state.currentPokemonId,
   allPokemon: state.allPokemon
-});
+  }
+};
 
 const mapDispatch = dispatch => ({
   testSpecCode: (code, id, poke, probExp) => dispatch(testCode(code, id, poke, probExp)),

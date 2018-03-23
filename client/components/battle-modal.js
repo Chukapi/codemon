@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 import {connect} from 'react-redux';
 
-export class BattleModal extends Component {
+class BattleModal extends Component {
 
   render(){
-    if(this.props.showBattleModal){
+    // if(this.props.showBattleModal){
+      console.log('BATTLE MODAL')
       return(
-        <Modal>
+        <ReactModal>
           <button>Accept</button>
-        </Modal>
+        </ReactModal>
       )
-    }
+    // }
   }
 }
 

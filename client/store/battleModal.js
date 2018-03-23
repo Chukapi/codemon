@@ -5,7 +5,10 @@ const showModal = false;
 const TRIGGER_MODAL = 'TRIGGER_MODAL';
 
 //ACTION CREATORS
-export const triggerModal = () => ({ type: TRIGGER_MODAL });
+export const triggerModal = () => {
+  console.log('MADE IT HERE')
+  return { type: TRIGGER_MODAL }
+};
 
 
 //THUNK CREATORS
@@ -15,6 +18,7 @@ export const triggerModal = () => ({ type: TRIGGER_MODAL });
 export default (state = showModal, action) => {
   switch (action.type) {
     case TRIGGER_MODAL:
+      console.log('AND HERE TOO!!', state)
       return !showModal;
     default: 
       return state;

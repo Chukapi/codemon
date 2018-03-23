@@ -14,14 +14,11 @@ class Training extends Component {
 
   componentDidMount() {
     this.props.fetchAllTheProblems()
+    console.log(this.props, "Training this.props")
 
     let getRandomIndex = Math.floor(Math.random() * Math.floor(this.props.problems.length - 1))
     let currentProblem =  this.props.problems[getRandomIndex]
     this.setState({ problem: currentProblem });
-
-    // .then(
-    // console.log("PRBLES", this.props.problems))
-    // this.props.fetchProblem(1);
   }
 
   render() {

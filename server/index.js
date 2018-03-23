@@ -1,16 +1,17 @@
-const path = require('path')
-const express = require('express')
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
-const compression = require('compression')
-const session = require('express-session')
-const passport = require('passport')
-const SequelizeStore = require('connect-session-sequelize')(session.Store)
-const db = require('./db')
-const sessionStore = new SequelizeStore({ db })
+const path = require('path');
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const session = require('express-session');
+const passport = require('passport');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const db = require('./db');
+const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 8080
-const app = express()
-const socketio = require('socket.io')
+const app = express();
+const socketio = require('socket.io');
+// const { hello } = require('./api/utils');
 module.exports = app
 
 /**
@@ -53,6 +54,7 @@ const createApp = () => {
 
   // auth and api routes
   app.use('/auth', require('./auth'));
+  // app.use(hello);
   app.use('/api', require('./api'));
 
   // static file-serving middleware

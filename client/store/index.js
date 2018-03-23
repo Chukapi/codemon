@@ -6,11 +6,11 @@ import user from './user';
 import codeEntry from './codeEntry';
 import training from './training';
 import fight from './fight';
-import currentPokemon from './pokemon';
-import userStats from './userStats';
+import currentPokemonId from './currentPokemon';
+import allPokemon from './pokemon';
 
 
-const reducer = combineReducers({ user, codeEntry, training, fight, currentPokemon, userStats })
+const reducer = combineReducers({ user, codeEntry, training, fight, currentPokemonId, allPokemon })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true })
@@ -23,4 +23,4 @@ export * from './codeEntry';
 export * from './training';
 export * from './fight';
 export * from './pokemon';
-export * from './userStats'
+export * from './currentPokemon';

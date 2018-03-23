@@ -1,13 +1,16 @@
 import axios from 'axios';
 import { revisePokemon, triggerEvolution } from './pokemon';
+import {putSolvedProbs} from './user';
 
 //ACTION TYPE
 const TEST_CODE = 'TEST_CODE';
 
 //ACTION CREATOR
-const testUserCode = result => ({ type: TEST_CODE, result });
+const testUserCode = bool => ({ type: TEST_CODE, bool });
 
 //THUNKS
+
+
 export const testCode = (userCode, id, pokemon, exp) => dispatch =>
   axios.post(`/api/training/${id}`, userCode)
     .then(res => res.data)
@@ -20,18 +23,24 @@ export const testCode = (userCode, id, pokemon, exp) => dispatch =>
         if (totalExp >= 3600 && pokemon.evolutionLevel === 2) {
           dispatch(triggerEvolution(pokemon.id, pokemon.name));
         }
+
+        ///render new problem
         dispatch(revisePokemon(pokemon.id, { exp: totalExp }));
+        dispatch(putSolvedProbs(id))
       }
       dispatch(testUserCode(bool));
     })
     .catch(err => console.log(err));
 
+
+
 //REDUCER
-export default function reducer(result = '', action) {
+export default function reducer(state = '',  action) {
+
   switch (action.type) {
     case TEST_CODE:
-      return action.result;
+      return action.bool;
     default:
-      return result;
+      return state
   }
 }

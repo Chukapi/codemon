@@ -7,7 +7,7 @@ import history from '../history';
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 const POST_SOCKET = 'POST_SOCKET';
-
+const UPDATE_SOLVED = 'UPDATE_SOLVED';
 /**
  * INITIAL STATE
  */
@@ -18,17 +18,21 @@ const defaultUser = {}
  */
 const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
-const postSocket = socketId => ({type: POST_SOCKET, socketId});
-
-
+const postSocket = socketId => ({ type: POST_SOCKET, socketId });
+const updateSolved = newProb => ({type: UPDATE_SOLVED, newProb});
 /**
  * THUNK CREATORS
  */
-export const me = () =>
+export const me = (socketId) =>
   dispatch =>
     axios.get('/auth/me')
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
+      .then(res => {
+        if(res.user.id){
+          dispatch(postSocketId(res.user.id, socketId))
+        }
+      })
       .catch(err => console.log(err));
 
 export const auth = (email, password, method) =>
@@ -46,7 +50,7 @@ export const postSocketId = (userId, socketId) =>
   dispatch =>
     axios.put(`/api/users/${userId}`, socketId)
       .then(res => res.data)
-      .then(userData => {
+      .then(_ => {
         dispatch(postSocket(socketId))
       })
       .catch(err => console.log(err))
@@ -60,18 +64,28 @@ export const logout = () =>
       })
       .catch(err => console.log(err));
 
+export const putSolvedProbs = (problemId) => {
+  return dispatch =>
+    axios.put(`/api/training/${problemId}`)
+    .then(res => res.data)
+    .then(_ => dispatch(updateSolved([problemId])))
+    .catch(err => console.log(err));
+}
+
+
 /**
  * REDUCER
  */
 export default function (state = defaultUser, action) {
-  console.log('STATE', state)
   switch (action.type) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
       return defaultUser
     case POST_SOCKET:
-      return Object.assign({}, state, {socketId: action.socketId})
+      return Object.assign({}, state, { socketId: action.socketId })
+    case UPDATE_SOLVED:
+      return Object.assign({}, state, {solvedProblems: state.solvedProblems.concat(action.newProb)})
     default:
       return state
   }

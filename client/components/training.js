@@ -1,31 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProblem } from '../store';
+import { fetchAllProblems } from '../store';
 import CodeEntryForm from './codeEntryForm';
 
 
 class Training extends Component {
 
   componentDidMount() {
-    this.props.fetchProblem(1);
+    this.props.fetchAllTheProblems()
   }
 
   render() {
+    const {usersSolved} = this.props;
+    let validProbs = this.props.problems.filter(prob => usersSolved.indexOf(prob.id) === -1);
+    const getRandomIndex = Math.floor(Math.random() * Math.floor(validProbs.length))
+    let currentProblem = validProbs[getRandomIndex];
     return (
       <div>
-        <h1>{this.props.prompt && this.props.prompt}</h1>
-        <CodeEntryForm />
+        { currentProblem ?  <h1>{currentProblem.prompt }</h1> :  null }
+        { currentProblem ? <CodeEntryForm problem={currentProblem} /> : null }
       </div>
     )
   }
 }
 
-const mapState = state => ({
-  prompt: state.training.prompt
-});
+const mapState = state => {
+  return {
+    usersSolved: state.user.solvedProblems,
+   problems: state.training
+ }
+};
 
 const mapDispatch = dispatch => ({
-  fetchProblem: id => dispatch(fetchProblem(id))
+  fetchAllTheProblems: () => dispatch(fetchAllProblems())
 });
 
 export default connect(mapState, mapDispatch)(Training);

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
-import { testCode, revisePokemon } from '../store';
+import { testCode } from '../store';
+
 
 import 'brace/mode/javascript';
 import 'brace/theme/github';
@@ -10,21 +11,22 @@ import 'brace/ext/language_tools';
 import 'brace/snippets/javascript';
 
 class CodeEntryForm extends Component {
-  state = { code: '' } //Don't think we need this
+  state = { code: '' }
 
   onClick = event => {
-    event.preventDefault()
+    event.preventDefault();
 
-    const { currentPokemon, exp, testSpecCode } = this.props;
     const code = this.ace.editor.getValue();
+    const { currentPokemonId, testSpecCode, allPokemon } = this.props;
 
-    testSpecCode({ code }, 1, currentPokemon, exp)
-    this.setState({ code }) //Don't think we need this
+    const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
+    testSpecCode({ code }, this.props.problem.id, currentPokemon, this.props.problem.experience);
+    this.setState({ code });
   }
 
   // RENDER EDITOR
   render() {
-    const { currentPokemon, result } = this.props;
+    const { currentPokemonId, result } = this.props;
 
     return (
       <div>
@@ -35,12 +37,12 @@ class CodeEntryForm extends Component {
           name="UNIQUE_ID_OF_DIV"
           editorProps={{ $blockScrolling: true }}
           ref={(ref) => { this.ace = ref }}
-          readOnly={!currentPokemon.id}
+          readOnly={!currentPokemonId}
         />
-        <button onClick={this.onClick} disabled={!currentPokemon.id}>Submit</button>
+        <button onClick={this.onClick} disabled={!currentPokemonId}>Submit</button>
 
         {result === true &&
-          <h2>Tests Passed! {this.props.exp} EXP Earned!</h2>}
+          <h2>Tests Passed! {this.props.problem.experience} EXP Earned!</h2>}
 
         {result === false ? <h2>Tests Failed. Try Again.</h2> : <h2>{result}</h2>}
       </div>
@@ -48,15 +50,17 @@ class CodeEntryForm extends Component {
   }
 }
 
-const mapState = state => ({
-  result: state.codeEntry,
-  exp: state.training.experience,
-  currentPokemon: state.currentPokemon
-});
+const mapState = (state, ownProps) => {
+  return {
+  problem: ownProps.problem,
+  result: state.codeEntry.output,
+  currentPokemonId: state.currentPokemonId,
+  allPokemon: state.allPokemon
+  }
+};
 
 const mapDispatch = dispatch => ({
   testSpecCode: (code, id, poke, probExp) => dispatch(testCode(code, id, poke, probExp)),
-  updateExp: (id, exp) => dispatch(revisePokemon(id, exp))
 });
 
 export default connect(mapState, mapDispatch)(CodeEntryForm)

@@ -3,15 +3,9 @@ const { Pokemon } = require('../db/models');
 
 module.exports = router;
 
-// router.get('/', (req, res, next) => {
-//   return Pokemon.findAll({})
-//     .then(allpokes => res.json(allpokes))
-//     .catch(next);
-// });
-
 router.get('/:id', (req, res, next) => {
-  Pokemon.findById(req.params.id)
-    .then(pokemon => res.json(pokemon))
+  return Pokemon.findAll({ where: { userId: req.params.id } })
+    .then(allpokes => res.json(allpokes))
     .catch(next);
 });
 

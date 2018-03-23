@@ -7,36 +7,40 @@ import CodeEntryForm from './codeEntryForm';
 class Training extends Component {
   constructor(){
     super()
-    this.state = {
-      problem: {}
-    }
+    // this.state = {
+    //   problem: {}
+    // }
   }
 
   componentDidMount() {
     this.props.fetchAllTheProblems()
-    console.log(this.props, "Training this.props")
+    // console.log(this.props, "Training this.props")
 
-    let getRandomIndex = Math.floor(Math.random() * Math.floor(this.props.problems.length - 1))
-    let currentProblem =  this.props.problems[getRandomIndex]
-    this.setState({ problem: currentProblem });
+    //
+    // let currentProblem =
+    // this.setState({ problem: currentProblem });
   }
 
   render() {
-    console.log("STATE PROBLEM", this.state.problem)
+    console.log("STATE PROBLEM", this.props.problems)
+    let getRandomIndex = Math.floor(Math.random() * Math.floor(this.props.problems.length - 1))
+    let currentProblem = this.props.problems[getRandomIndex]
+    console.log("current", currentProblem)
     return (
       <div>
-
-        {/* <h1>{this.state.problem.prompt && this.state.problem.prompt}</h1> */}
-        {/* <CodeEntryForm problemId = {this.state.problem.id}/> */}
+        { currentProblem ?  <h1>{currentProblem.prompt }</h1> :  null }
+        { currentProblem ? <CodeEntryForm problem={currentProblem}/> : null }
       </div>
     )
   }
 }
 
-const mapState = state => ({
-  // prompt: state.training.prompt,
-  problems: state.training
-});
+const mapState = state => {
+  console.log("STATE", state.training)
+  return {
+   problems: state.training
+ }
+};
 
 const mapDispatch = dispatch => ({
   // fetchProblem: () => dispatch(fetchProblem()),

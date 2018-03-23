@@ -9,9 +9,7 @@ const assert = require('assert');
 module.exports = router
 
 router.get('/', isAdmin, (req, res, next) => {
-  Problem.findAll({
-    attributes: ['id', 'tests', 'prompt']
-  })
+  Problem.findAll()
     .then(problems => res.json(problems))
     .catch(next)
 })

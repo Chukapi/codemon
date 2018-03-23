@@ -17,11 +17,11 @@ class CodeEntryForm extends Component {
     event.preventDefault();
 
     const code = this.ace.editor.getValue();
-    const { currentPokemonId, exp, testSpecCode, allPokemon } = this.props;
+    const { currentPokemonId, testSpecCode, allPokemon } = this.props;
 
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
-
-    testSpecCode({ code }, 1, currentPokemon, exp);
+    // console.log('EXP',exp)
+    testSpecCode({ code }, this.props.problem.id, currentPokemon, this.props.problem.experience);
     this.setState({ code });
   }
 
@@ -43,7 +43,7 @@ class CodeEntryForm extends Component {
         <button onClick={this.onClick} disabled={!currentPokemonId}>Submit</button>
 
         {result === true &&
-          <h2>Tests Passed! {this.props.exp} EXP Earned!</h2>}
+          <h2>Tests Passed! {this.props.problem.experience} EXP Earned!</h2>}
 
         {result === false ? <h2>Tests Failed. Try Again.</h2> : <h2>{result}</h2>}
       </div>
@@ -51,13 +51,15 @@ class CodeEntryForm extends Component {
   }
 }
 
-const mapState = (state, ownProps) => ({
-  problemId: ownProps.id,
+const mapState = (state, ownProps) => {
+  console.log('OWN', ownProps)
+  return {
+  problem: ownProps.problem,
   result: state.codeEntry,
-  exp: state.training.experience,
   currentPokemonId: state.currentPokemonId,
   allPokemon: state.allPokemon
-});
+  }
+};
 
 const mapDispatch = dispatch => ({
   testSpecCode: (code, id, poke, probExp) => dispatch(testCode(code, id, poke, probExp)),

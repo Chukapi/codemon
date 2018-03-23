@@ -43,7 +43,7 @@ const problems = [
   {
     id: 3,
     prompt: 'Write a function tripleNum that takes an integer and returns double that integer',
-    tests: ["assert.deepEqual(tripleNum(4), 12)"]
+    tests: ["tripleNum(4) === 12)"]
   }
 ]
 

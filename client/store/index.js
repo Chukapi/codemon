@@ -7,16 +7,19 @@ import codeEntry from './codeEntry';
 import training from './training';
 import fight from './fight';
 import currentPokemonId from './currentPokemon';
-import userStats from './userStats';
 import allPokemon from './pokemon';
 
 
+<<<<<<< HEAD
 const reducer = combineReducers({ user, codeEntry, training, fight, currentPokemonId, userStats, allPokemon })
 
 let wildPokemonMiddleware = store => next => action => {
   console.log('Middleware triggered:', action);
   next(action);
 }
+=======
+const reducer = combineReducers({ user, codeEntry, training, fight, currentPokemonId, allPokemon })
+>>>>>>> master
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true }),
@@ -30,5 +33,4 @@ export * from './codeEntry';
 export * from './training';
 export * from './fight';
 export * from './pokemon';
-export * from './userStats';
 export * from './currentPokemon';

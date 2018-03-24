@@ -26,11 +26,14 @@ const updateSolved = newProb => ({type: UPDATE_SOLVED, newProb});
 export const me = (socketId) =>
   dispatch =>
     axios.get('/auth/me')
-      .then(res =>
-        dispatch(getUser(res.data || defaultUser)))
       .then(res => {
-        if(res.user.id){
-          dispatch(postSocketId(res.user.id, socketId))
+        dispatch(getUser(res.data || defaultUser))
+        return res.data
+      })
+      .then(user => {
+        //bug: does not post socket ID on first login, must hard refresh
+        if(user.id){
+          dispatch(postSocketId(user.id, socketId))
         }
       })
       .catch(err => console.log(err));

@@ -10,21 +10,19 @@ import fight from './fight';
 import currentPokemonId from './currentPokemon';
 import allPokemon from './pokemon';
 import battleModal from './battleModal';
+import wildModal, { wildAttack } from './wildModal';
 
 
-<<<<<<< HEAD
-const reducer = combineReducers({ user, codeEntry, training, fight, currentPokemonId, allPokemon });
-=======
-const reducer = combineReducers({ user, battleModal, codeEntry, training, fight, currentPokemonId, allPokemon })
->>>>>>> master
+const reducer = combineReducers({ user, battleModal, codeEntry, training, fight, currentPokemonId, allPokemon, wildModal })
 
 let wildPokemonMiddleware = store => next => action => {
   console.log('Middleware triggered:', action);
   let chance = Math.random();
 
-  if (chance <= 1 && !store.getState().fight.opponentSocketId) {
+  if (chance <= 0.05 && !store.getState().fight.opponentSocketId) {
     console.log(`we in hia boooooooiiiiiiii`, store.getState().fight);
     //DISPATCH AN ACTION THATLL TOGGLE WILD POKEMON ATTACK
+    store.dispatch(wildAttack());
   }
   next(action);
 }

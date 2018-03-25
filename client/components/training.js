@@ -11,14 +11,15 @@ class Training extends Component {
   }
 
   render() {
-    const {usersSolved} = this.props;
+    const { usersSolved } = this.props;
     let validProbs = this.props.problems.filter(prob => usersSolved.indexOf(prob.id) === -1);
     const getRandomIndex = Math.floor(Math.random() * Math.floor(validProbs.length))
     let currentProblem = validProbs[getRandomIndex];
+
     return (
-      <div>
-        { currentProblem ?  <h1>{currentProblem.prompt }</h1> :  null }
-        { currentProblem ? <CodeEntryForm problem={currentProblem} /> : null }
+      <div className="training-area">
+        {currentProblem ? <h1>{currentProblem.prompt}</h1> : null}
+        {currentProblem ? <CodeEntryForm problem={currentProblem} /> : null}
       </div>
     )
   }
@@ -27,8 +28,8 @@ class Training extends Component {
 const mapState = state => {
   return {
     usersSolved: state.user.solvedProblems,
-   problems: state.training
- }
+    problems: state.training
+  }
 };
 
 const mapDispatch = dispatch => ({

@@ -23,8 +23,10 @@ class UserHome extends React.Component {
       <div>
         <h3>Welcome, {username}</h3>
         <PokemonParty />
-        <SinglePokemon />
-        <Training />
+        <div className="training-container">
+          <SinglePokemon />
+          <Training />
+        </div>
       </div>
     )
   }

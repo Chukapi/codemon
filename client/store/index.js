@@ -9,9 +9,14 @@ import training from './training';
 import fight from './fight';
 import currentPokemonId from './currentPokemon';
 import allPokemon from './pokemon';
+import battleModal from './battleModal';
 
 
+<<<<<<< HEAD
 const reducer = combineReducers({ user, codeEntry, training, fight, currentPokemonId, allPokemon });
+=======
+const reducer = combineReducers({ user, battleModal, codeEntry, training, fight, currentPokemonId, allPokemon })
+>>>>>>> master
 
 let wildPokemonMiddleware = store => next => action => {
   console.log('Middleware triggered:', action);
@@ -37,3 +42,4 @@ export * from './training';
 export * from './fight';
 export * from './pokemon';
 export * from './currentPokemon';
+export * from './battleModal';

@@ -6,6 +6,7 @@ import Training from './training';
 import socket from '../socket';
 import { postSocketId, fetchPokemon } from '../store';
 import SinglePokemon from './singlepokemon';
+import BattleModal from './battle-modal';
 
 /**
  * COMPONENT
@@ -37,7 +38,7 @@ const mapState = (state) => ({
   email: state.user.email,
   pokemon: state.allPokemon,
   username: state.user.username,
-  id: state.user.id
+  id: state.user.id,
 })
 
 const mapDispatch = dispatch => ({

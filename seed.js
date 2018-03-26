@@ -35,12 +35,12 @@ const problems = [
   {
     id: 2,
     prompt: 'Write a function doubleNum that takes an integer and returns double that integer',
-    tests: ["doubleNum(4) === 8"]
+    tests: ['doubleNum(4) === 8']
   },
   {
     id: 3,
-    prompt: 'Write a function tripleNum that takes an integer and returns double that integer',
-    tests: ["tripleNum(4) === 12)"]
+    prompt: 'Write a function tripleNum that takes an integer and returns triple that integer',
+    tests: ['tripleNum(4) === 12)']
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ const problems = [
     id: 8,
     category: 'recursion',
     difficulty: 'easy',
-    prompt: 'Write a recursive function to compute the exponent of a number. Example: exponentRecursive(4,2) === 16.',
+    prompt: 'Write a recursive function exponentRecursive to compute the exponent of a number. Example: exponentRecursive(4,2) === 16.',
     tests: ['exponentRecursive(4,2) === 16']
   },
   {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal';
 import {connect} from 'react-redux';
-
+Modal.setAppElement("#app")
 
 class BattleModal extends Component {
 
@@ -30,9 +30,9 @@ class BattleModal extends Component {
     }
       return (
         <div>
-          <div style={modalStyle}>
-            <h2>HELLO</h2>
-          </div>
+          <Modal isOpen={this.props.showBattleModal} style={modalStyle}>
+            <h2>{this.props.msg}</h2>
+          </Modal>
           <div style={backdropStyle}/>
         </div>
       )
@@ -40,8 +40,8 @@ class BattleModal extends Component {
 }
 
 const mapState = (state) => ({
-  showBattleModal: state.battleModal, 
-  // msg: state.battleModal.msg
+  showBattleModal: state.battleModal.isOpen, 
+  msg: state.battleModal.msg
 })
 
 export default connect(mapState)(BattleModal)

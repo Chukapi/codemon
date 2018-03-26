@@ -21,11 +21,13 @@ class Navbar extends Component {
     socket.emit('battle click', opponentId, msg)
   }
 
-  //does not work on first click
   battleClick() {
     this.props.fetchOpponent(this.props.user.id)
-    if (this.props.opponent.opponentSocketId) {
-      socket.on('battle click', this.challenge(this.props.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`))
+  }
+
+  componentWillReceiveProps(nextProps){
+    if (nextProps.opponent.opponentSocketId) {
+      socket.on('battle click', this.challenge(nextProps.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`))
     }
   }
 

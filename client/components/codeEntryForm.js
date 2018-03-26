@@ -31,6 +31,7 @@ class CodeEntryForm extends Component {
     return (
       <div>
         <AceEditor
+          className="text-editor"
           value={this.state.code}
           mode="javascript"
           theme="github"
@@ -52,10 +53,10 @@ class CodeEntryForm extends Component {
 
 const mapState = (state, ownProps) => {
   return {
-  problem: ownProps.problem,
-  result: state.codeEntry,
-  currentPokemonId: state.currentPokemonId,
-  allPokemon: state.allPokemon
+    problem: ownProps.problem,
+    result: state.codeEntry,
+    currentPokemonId: state.currentPokemonId,
+    allPokemon: state.allPokemon
   }
 };
 

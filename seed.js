@@ -97,6 +97,13 @@ const pokemon = [
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/bulbasaur.gif'
   },
+  {
+    id: 8,
+    userId: 4,
+    name: 'Abra',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/abra.gif'
+  }
 ]
 
 const evolutions = [

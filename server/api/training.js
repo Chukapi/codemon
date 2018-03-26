@@ -2,24 +2,28 @@ const router = require('express').Router()
 const Sandbox = require('sandbox');
 const Problem = require('../db/models/problem.js')
 const { isAdmin } = require('./utils')
-// const assert = require('assert');
 const User = require('../db/models/user.js')
-// const assert = require('chai').assert;
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
+
 
 
 module.exports = router
 
-router.get('/', isAdmin, (req, res, next) => {
-  Problem.findAll()
-    .then(problems => res.json(problems))
-    .catch(next)
-})
 
-router.get('/:id', (req, res, next) => {
-  Problem.findById(req.params.id)
-    .then(problems => res.json(problems))
-    .catch(next);
-})
+router.get('/:userId', (req, res, next) => {
+  User.findById(req.params.userId)
+  .then(user => user.solvedProblems)
+  .then(solvedProblems =>
+    Problem.findAll()
+  .then(allProblems => allProblems.filter(prob => !solvedProblems.includes(prob.id)))
+  .then(problems => {
+    const getRandomIndex = Math.floor(Math.random() * Math.floor(problems.length))
+    res.send(problems[getRandomIndex])
+  })
+  .catch(next)
+  )})
+
 
 router.put('/:problemId', (req, res, next) => {
   User.findOne( {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { testCode, fetchOneProblem } from '../store';
-// import CodeEntryForm from './codeEntryForm';
 import AceEditor from 'react-ace';
 
 import 'brace/mode/javascript';

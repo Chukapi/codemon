@@ -78,3 +78,13 @@ footer {
   width: 50%;
   align-self: center;
 }
+
+.wild-poke-attack {
+  display: flex;
+  overflow: auto;
+}
+
+.wild-poke-code-area{
+  /* max-width: 300px; */
+  max-height: 300px;
+}

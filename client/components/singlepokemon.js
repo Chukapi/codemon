@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 const SinglePokemon = props => {
   const { pokemonId, allPokemon } = props;
-
   return (
     <div className="single-pokemon-view">
       {!pokemonId ?
@@ -26,7 +25,7 @@ const SinglePokemon = props => {
 
 const mapState = state => ({
   pokemonId: state.currentPokemonId,
-  allPokemon: state.allPokemon
+  allPokemon: state.allPokemon,
 });
 
 export default connect(mapState)(SinglePokemon);

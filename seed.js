@@ -125,9 +125,9 @@ const pokemon = [
   {
     id: 5,
     userId: 1,
-    name: 'Pidgey',
+    name: 'Igglybuff',
     exp: 10,
-    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pidgey.gif'
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/igglybuff.gif'
   },
   {
     id: 6,
@@ -143,6 +143,13 @@ const pokemon = [
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/bulbasaur.gif'
   },
+  {
+    id: 8,
+    userId: 4,
+    name: 'Abra',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/abra.gif'
+  }
 ]
 
 const evolutions = [

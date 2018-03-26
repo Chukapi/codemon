@@ -6,6 +6,7 @@ router.use('/fights', require('./fights'));
 router.use('/training', require('./training'));
 router.use('/pokemon', require('./pokemon'));
 router.use('/evolution', require('./evolution'));
+router.use('/wildpokemon', require('./wildpokemon'));
 
 
 router.use((req, res, next) => {
@@ -13,5 +14,4 @@ router.use((req, res, next) => {
   error.status = 404;
   next(error);
 });
-
 

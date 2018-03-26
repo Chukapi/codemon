@@ -13,16 +13,21 @@ import 'brace/snippets/javascript';
 class CodeEntryForm extends Component {
   state = { code: '' }
 
+
+
   onClick = event => {
     event.preventDefault();
 
     const code = this.ace.editor.getValue();
-    const { currentPokemonId, testSpecCode, allPokemon } = this.props;
+    const { currentPokemonId, testSpecCode, allPokemon, problem } = this.props;
 
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
-    testSpecCode({ code }, this.props.problem.id, currentPokemon, this.props.problem.experience);
+    testSpecCode({ code }, problem.id, currentPokemon, problem.experience);
     this.setState({ code });
   }
+
+  // shouldComponentUpdate()
+
 
   // RENDER EDITOR
   render() {

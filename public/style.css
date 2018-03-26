@@ -15,7 +15,10 @@ nav {
   display: inline-flex;
   margin: 1em;
   justify-content: space-around;
-  align-items: center;
+}
+
+.nav-bar-poke {
+  text-align: center;
 }
 
 nav a {
@@ -59,7 +62,7 @@ form div {
 
 .training-container {
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
 }
 
@@ -73,4 +76,5 @@ footer {
 
 .single-pokemon-view {
   width: 50%;
+  align-self: center;
 }

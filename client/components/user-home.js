@@ -23,6 +23,7 @@ class UserHome extends React.Component {
       <div>
         <h3>Welcome, {username}</h3>
         <PokemonParty />
+        <br />
         <div className="training-container">
           <SinglePokemon />
           <Training />

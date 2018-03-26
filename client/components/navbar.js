@@ -32,11 +32,12 @@ class Navbar extends Component {
   render() {
     const { isLoggedIn, user } = this.props;
     return (
-      <div>
-        <Link to='/home'><img src='https://fontmeme.com/permalink/180322/3dfe322ae57284bad89b0a9f92ab5ae5.png' alt='pokemon-font' border='0' /></Link>
+      <div className="nav-bar-poke">
+        <Link className="logo-image" to='/home'><img src='https://fontmeme.com/permalink/180322/3dfe322ae57284bad89b0a9f92ab5ae5.png' alt='pokemon-font' border='0' /></Link>
+        <br />
         <nav>
           {isLoggedIn ? (
-            <div>
+            <div className="nav-links">
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
               <Link to={`/mystats/${user.id}`}>My Statistics</Link>
@@ -44,7 +45,7 @@ class Navbar extends Component {
               <a href="#" onClick={this.handleClick}>Logout</a>
             </div>
           ) : (
-              <div>
+              <div className="nav-links">
                 {/* The navbar will show these links before you log in */}
                 <Link to="/login">Login</Link>
                 <Link to="/signup">Sign Up</Link>

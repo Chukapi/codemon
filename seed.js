@@ -50,30 +50,30 @@ const problems = [
 const pokemon = [
   {
     id: 1,
-    userId: 2,
+    userId: 3,
     name: 'Pichu',
-    exp: 10,
+    exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pichu.gif'
   },
   {
     id: 2,
-    userId: 4,
+    userId: 3,
     name: 'Charmander',
-    exp: 10,
+    exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/charmander.gif'
   },
   {
     id: 3,
     userId: 3,
     name: 'Squirtle',
-    exp: 10,
+    exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/squirtle.gif'
   },
   {
     id: 4,
     userId: 3,
     name: 'Dratini',
-    exp: 10,
+    exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/dratini.gif'
   },
   {

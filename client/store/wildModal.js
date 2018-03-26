@@ -33,9 +33,9 @@ export default (state = initial, action) => {
     case WILD_ATTACK:
       return { ...state, showModal: true };
     case GET_WILD_POKEMON:
-      return { ...state, wildPokemon: state.wildPokemon };
+      return { ...state, wildPokemon: action.wildPokemon };
     case GET_WILD_PROBLEM:
-      return { ...state, wildProblem: state.wildProblem };
+      return { ...state, wildProblem: action.wildProblem };
     case HIDE_MODAL:
       return { ...state, showModal: false };
     default:

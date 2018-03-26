@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { fetchWildProblem, fetchWildPokemon } from '../store';
+import Training from './training';
 import Modal from 'react-responsive-modal';
 import { hideModal } from '../store';
 
@@ -19,17 +19,22 @@ const customStyles = {
 class WildPokemonModal extends Component {
 
   render() {
-    const { showModal, onCloseModal } = this.props;
+    const { open, wildPokemon, wildProblem, onCloseModal } = this.props;
     return (
-      <div>
+      <div className='wild-poke-attack'>
         <Modal
-          open={showModal}
+          open={open}
           onClose={onCloseModal}
           styles={customStyles}
           little
           classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
         >
-          <h2>Modal</h2>
+          <img src={wildPokemon.imageUrl} />
+          <h3>Wild {wildPokemon.name} has attacked!</h3>
+          <p>To catch it, solve the problem below</p>
+          <div className='wild-poke-code-area'>
+            <Training />
+          </div>
         </Modal>
       </div>
     )
@@ -37,7 +42,9 @@ class WildPokemonModal extends Component {
 }
 
 const mapState = state => ({
-  openModal: state.showModal
+  open: state.wildModal.showModal,
+  wildPokemon: state.wildModal.wildPokemon,
+  wildProblem: state.wildModal.wildProblem
 });
 
 const mapDispatch = dispatch => ({

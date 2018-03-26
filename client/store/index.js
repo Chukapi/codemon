@@ -19,7 +19,7 @@ let wildPokemonMiddleware = store => next => action => {
   console.log('Middleware triggered:', action);
   let chance = Math.random();
 
-  if (chance <= 0.05 && !store.getState().fight.opponentSocketId) {
+  if (chance <= 0.50 && !store.getState().fight.opponentSocketId) {
     console.log(`we in hia boooooooiiiiiiii`, store.getState().fight);
     //DISPATCH AN ACTION THATLL TOGGLE WILD POKEMON ATTACK
     store.dispatch(wildAttack());

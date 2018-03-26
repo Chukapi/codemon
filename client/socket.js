@@ -10,7 +10,7 @@ socket.on('connect', () => {
 socket.on('my message', (msg) => {
   console.log('Time to Battle!')
   // alert(msg)
-  store.dispatch(triggerModal())
+  store.dispatch(triggerModal(msg))
 })
 
 export default socket

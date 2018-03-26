@@ -10,17 +10,6 @@ const Op = Sequelize.Op;
 
 module.exports = router
 
-// router.get('/', isAdmin, (req, res, next) => {
-//   Problem.findAll()
-//     .then(problems => res.json(problems))
-//     .catch(next)
-// })
-
-// var arr = [1,2,3,4],
-//     brr = [2,4],
-//     res = arr.filter(f => !brr.includes(f));
-// console.log(res);
-
 
 router.get('/:userId', (req, res, next) => {
   User.findById(req.params.userId)

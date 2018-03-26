@@ -7,10 +7,8 @@
 export { default as Navbar } from './navbar';
 export { default as UserHome } from './user-home';
 export { Login, Signup } from './auth-form';
-export { default as CodeEntryForm } from './codeEntryForm';
 export { default as Training } from './training';
 export { default as PokemonParty } from './pokemonparty';
 export { default as Battle } from './battle';
 export { default as UserStats } from './user-stats';
-export { default as BattleModal } from './battle-modal'
-;
+export { default as BattleModal } from './battle-modal';

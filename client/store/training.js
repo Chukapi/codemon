@@ -12,11 +12,12 @@ const oneProblem = problem => ({type: GET_ONE_PROBLEM, problem})
 
 //thunks
 
-export function fetchOneProblem(id) {
+export function fetchOneProblem(userId) {
   return function thunk(dispatch){
-    return axios.get(`/api/training/${id}`)
+    return axios.get(`/api/training/${userId}`)
     .then(res => res.data)
     .then(problem => {
+      console.log("PROBLEM", problem)
       dispatch(oneProblem(problem))})
     .catch(err => console.log(err))
   }

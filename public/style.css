@@ -51,10 +51,6 @@ form div {
   display: inline-flex;
 }
 
-.battle-modal-poke {
-  align-self: center;
-}
-
 .pokemon-nav img {
   width: 45px;
 }

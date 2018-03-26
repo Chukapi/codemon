@@ -13,3 +13,4 @@ export { default as Battle } from './battle';
 export { default as UserStats } from './user-stats';
 export { default as BattleModal } from './battle-modal';
 export { default as WildPokemonModal } from './wildPokemonModal';
+export { default as BattleModalPokemon } from './battle-modPokemon';

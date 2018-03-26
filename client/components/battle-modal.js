@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
-import Modal from 'react-modal';
 import {connect} from 'react-redux';
-import {setCurrentPokemon} from '../store'
-Modal.setAppElement("#app")
+import Modal from 'react-responsive-modal';
+import BattleModalPokemon from './battle-modPokemon'
+import {closeModal} from '../store';
 
 class BattleModal extends Component {
-  
-  handleClick = (evt, pokeId) => {
-    this.props.setCurrent(pokeId)
-  }
+
+
+  // declineBattle = () => {
+  //   closeModal();
+  // }
 
   render(){
-    console.log('IN BATTLE MODAL', this.props)
-    if(this.props.showBattleModal === false){
+    console.log('HI PROPS', this.props)
+    const {decline, showBattleModal, msg} = this.props
+    
+    if(showBattleModal === false){
       return null;
     }
 
@@ -41,18 +44,13 @@ class BattleModal extends Component {
     }
       return (
         <div style={backdropStyle}>
-          <Modal isOpen={this.props.showBattleModal} style={modalStyle}>
-            <h2>{this.props.msg}</h2>
-            <p>Select one of your Pokemon and click "Battle!" to accept your opponent's challenge</p>
-            {this.props.pokemons.map(pokemon => {
-              return (
-                  <img className="poke-images" key={pokemon.id} onClick={(evt) => this.handleClick(evt, pokemon.id)} src={pokemon.imageUrl} />
-              )
-            })}
-            <div>
-              <button>Battle!</button>
-              <button>Decline</button>
-            </div>
+          <Modal 
+            open={showBattleModal} 
+            styles={modalStyle}
+            onClose={decline}
+            closeButton={true}>
+            <h2>{msg}</h2>
+            <BattleModalPokemon />
           </Modal>
         </div>
       )
@@ -60,13 +58,12 @@ class BattleModal extends Component {
 }
 
 const mapState = (state) => ({
-  pokemons: state.user.pokemons,
   showBattleModal: state.battleModal.isOpen, 
   msg: state.battleModal.msg
 })
 
 const mapDispatch = (dispatch) => ({
-  setCurrent: (poke) => dispatch(setCurrentPokemon(poke))
+  decline: () => dispatch(closeModal())
 })
 
-export default connect(mapState)(BattleModal)
+export default connect(mapState, mapDispatch)(BattleModal)

@@ -19,7 +19,8 @@ class UserHome extends Component {
   }
 
   render() {
-    const { username } = this.props;
+    const { username, solved } = this.props;
+    console.log('-----------', solved);
     return (
       <div>
         <h3>Welcome, {username}</h3>
@@ -42,6 +43,7 @@ const mapState = (state) => ({
   pokemon: state.allPokemon,
   username: state.user.username,
   id: state.user.id,
+  solved: state.user.solvedProblems
 });
 
 const mapDispatch = dispatch => ({

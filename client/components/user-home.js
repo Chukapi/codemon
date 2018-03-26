@@ -24,8 +24,11 @@ class UserHome extends Component {
       <div>
         <h3>Welcome, {username}</h3>
         <PokemonParty />
-        <SinglePokemon />
-        <Training />
+        <br />
+        <div className="training-container">
+          <SinglePokemon />
+          <Training />
+        </div>
       </div>
     )
   }

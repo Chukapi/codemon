@@ -4,19 +4,18 @@ import { connect } from 'react-redux';
 const SinglePokemon = props => {
   const { pokemonId, allPokemon } = props;
   return (
-    <div>
+    <div className="single-pokemon-view">
       {!pokemonId ?
         (<img src="http://24.media.tumblr.com/5b94f3545e5e0afa339efe86b6f723f4/tumblr_mgxqxcFyJT1rmazn7o1_400.gif" />) :
         allPokemon.filter(poke => pokemonId === poke.id).map(pokemon =>
           (<div key={pokemon.id}>
-            <div>
+            <div className="poke-image-container">
               <img className="poke-images" src={pokemon.imageUrl} />
             </div>
             <div className="poke-stats">
               <h3>{pokemon.name}</h3>
               <p>Level: {Math.floor(pokemon.exp / 100)}</p>
               <p>EXP: {pokemon.exp}</p>
-              <p>Pokemon is Copyright Gamefreak, Nintendo and The Pokémon Company 2001-2013</p>
             </div>
           </div>))
       }

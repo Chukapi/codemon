@@ -31,6 +31,7 @@ class CodeEntryForm extends Component {
     return (
       <div>
         <AceEditor
+          className="text-editor"
           value={this.state.code}
           mode="javascript"
           theme="github"

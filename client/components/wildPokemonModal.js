@@ -20,14 +20,15 @@ class WildPokemonModal extends Component {
 
 
   render() {
-    const { showModal } = this.props;
+    const { showModal, onCloseModal } = this.props;
     return (
       <div>
         {showModal && <Modal
           open={open}
-          onClose={this.onCloseModal}
+          onClose={onCloseModal}
+          styles={customStyles}
           little
-          classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
+        // classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
         >
           <h2>Modal</h2>
         </Modal>}
@@ -41,7 +42,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  onClose: () => dispatch(hideModal())
+  onCloseModal: () => dispatch(hideModal())
 })
 
 export default connect(mapState, mapDispatch)(WildPokemonModal);

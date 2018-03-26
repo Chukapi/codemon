@@ -100,9 +100,15 @@ const pokemon = [
   {
     id: 8,
     userId: 4,
+<<<<<<< HEAD
     name: 'Togepi',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/togepi.gif'
+=======
+    name: 'Abra',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/abra.gif'
+>>>>>>> master
   }
 ]
 

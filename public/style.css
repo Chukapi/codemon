@@ -15,7 +15,10 @@ nav {
   display: inline-flex;
   margin: 1em;
   justify-content: space-around;
-  align-items: center;
+}
+
+.nav-bar-poke {
+  text-align: center;
 }
 
 nav a {
@@ -34,8 +37,14 @@ form div {
   display: inline-block;
 }
 
+.poke-image-container {
+  display: flex;
+  align-items: center;
+}
+
 .poke-images {
-  width: 15%;
+  width: 35%;
+  align-self: center;
 }
 
 .pokemon-nav {
@@ -49,4 +58,23 @@ form div {
 @font-face {
   font-family: 'Lato', sans-serif;
   src: url('https://fonts.googleapis.com/css?family=Lato')
+}
+
+.training-container {
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.training-area {
+  width: 50%;
+}
+
+footer {
+  text-align: center;
+}
+
+.single-pokemon-view {
+  width: 50%;
+  align-self: center;
 }

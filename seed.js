@@ -30,9 +30,6 @@ const problems = [
   {
     id: 1,
     prompt: 'Create a function returnString that takes a string and returns the same string.',
-    // tests: "const assert = require('chai').assert; assert.equal(returnString('jo'), 'jo')"
-    // tests: "assert.deepEqual(returnString('jo'), 'jo')"
-    // tests: ["returnString('hello world') === 'hello world'", "returnString('1') === '1'"]
     tests: ["returnString('hello world') === 'hello world'", "returnString('howdy') === 'howdy'"]
   },
   {
@@ -84,7 +81,7 @@ const problems = [
     id: 9,
     category: 'recursion',
     difficulty: 'medium',
-    prompt: 'Write a recursive function to compute the first n Fibonacci numbers. Note: The Fibonacci Sequence is the series of numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34. . . Each subsequent number is the sum of the previous two. Example: fibRecursive(8) === [ 0, 1, 1, 2, 3, 5, 8, 13, 21 ]',
+    prompt: 'Write a recursive function fibRecursive to compute the first n Fibonacci numbers. Note: The Fibonacci Sequence is the series of numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34. . . Each subsequent number is the sum of the previous two. Example: fibRecursive(8) === [ 0, 1, 1, 2, 3, 5, 8, 13, 21 ]',
     tests: ['fibRecursive(8) === [ 0, 1, 1, 2, 3, 5, 8, 13, 21 ]']
   },
   {

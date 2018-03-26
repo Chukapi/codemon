@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import PokemonParty from './pokemonparty';
 import Training from './training';
 import socket from '../socket';
-import { postSocketId, fetchPokemon } from '../store';
+import {
+  postSocketId,
+  fetchPokemon,
+  fetchWildInfo,
+} from '../store';
 import SinglePokemon from './singlepokemon';
 import BattleModal from './battle-modal';
 
@@ -14,13 +18,15 @@ import BattleModal from './battle-modal';
 class UserHome extends Component {
 
   componentDidMount() {
-    postSocketId(this.props.id, socket.id)
-    this.props.loadPokemon(this.props.id);
+    const { id } = this.props;
+
+    postSocketId(id, socket.id)
+    this.props.loadPokemon(id);
+    this.props.loadWildInfo(id);
   }
 
   render() {
-    const { username, solved } = this.props;
-    console.log('-----------', solved);
+    const { username } = this.props;
     return (
       <div>
         <h3>Welcome, {username}</h3>
@@ -38,16 +44,16 @@ class UserHome extends Component {
 /**
  * CONTAINER
  */
-const mapState = (state) => ({
+const mapState = state => ({
   email: state.user.email,
   pokemon: state.allPokemon,
   username: state.user.username,
   id: state.user.id,
-  solved: state.user.solvedProblems
 });
 
 const mapDispatch = dispatch => ({
-  loadPokemon: (id) => dispatch(fetchPokemon(id))
+  loadPokemon: id => dispatch(fetchPokemon(id)),
+  loadWildInfo: id => dispatch(fetchWildInfo(id))
 });
 
 export default connect(mapState, mapDispatch)(UserHome);

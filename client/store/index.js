@@ -41,3 +41,4 @@ export * from './fight';
 export * from './pokemon';
 export * from './currentPokemon';
 export * from './battleModal';
+export * from './wildModal';

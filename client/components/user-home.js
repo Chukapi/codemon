@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PokemonParty from './pokemonparty';
@@ -11,7 +11,7 @@ import BattleModal from './battle-modal';
 /**
  * COMPONENT
  */
-class UserHome extends React.Component {
+class UserHome extends Component {
 
   componentDidMount() {
     postSocketId(this.props.id, socket.id)
@@ -39,7 +39,7 @@ const mapState = (state) => ({
   pokemon: state.allPokemon,
   username: state.user.username,
   id: state.user.id,
-})
+});
 
 const mapDispatch = dispatch => ({
   loadPokemon: (id) => dispatch(fetchPokemon(id))

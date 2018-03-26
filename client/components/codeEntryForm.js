@@ -40,7 +40,6 @@ class CodeEntryForm extends Component {
           readOnly={!currentPokemonId}
         />
         <button onClick={this.onClick} disabled={!currentPokemonId}>Submit</button>
-        {console.log("props", this.props)}
         {result === true &&
           <h2>Tests Passed! {this.props.problem.experience} EXP Earned!</h2>}
 
@@ -52,10 +51,10 @@ class CodeEntryForm extends Component {
 
 const mapState = (state, ownProps) => {
   return {
-  problem: ownProps.problem,
-  result: state.codeEntry,
-  currentPokemonId: state.currentPokemonId,
-  allPokemon: state.allPokemon
+    problem: ownProps.problem,
+    result: state.codeEntry,
+    currentPokemonId: state.currentPokemonId,
+    allPokemon: state.allPokemon
   }
 };
 

@@ -20,6 +20,7 @@ const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 const postSocket = socketId => ({ type: POST_SOCKET, socketId });
 const updateSolved = newProb => ({type: UPDATE_SOLVED, newProb});
+
 /**
  * THUNK CREATORS
  */

@@ -12,3 +12,4 @@ export { default as PokemonParty } from './pokemonparty';
 export { default as Battle } from './battle';
 export { default as UserStats } from './user-stats';
 export { default as BattleModal } from './battle-modal';
+export { default as WildPokemonModal } from './wildPokemonModal';

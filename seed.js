@@ -35,12 +35,12 @@ const problems = [
   {
     id: 2,
     prompt: 'Write a function doubleNum that takes an integer and returns double that integer',
-    tests: ["doubleNum(4) === 8"]
+    tests: ['doubleNum(4) === 8']
   },
   {
     id: 3,
-    prompt: 'Write a function tripleNum that takes an integer and returns double that integer',
-    tests: ["tripleNum(4) === 12)"]
+    prompt: 'Write a function tripleNum that takes an integer and returns triple that integer',
+    tests: ['tripleNum(4) === 12)']
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ const problems = [
     id: 8,
     category: 'recursion',
     difficulty: 'easy',
-    prompt: 'Write a recursive function to compute the exponent of a number. Example: exponentRecursive(4,2) === 16.',
+    prompt: 'Write a recursive function exponentRecursive to compute the exponent of a number. Example: exponentRecursive(4,2) === 16.',
     tests: ['exponentRecursive(4,2) === 16']
   },
   {
@@ -125,9 +125,9 @@ const pokemon = [
   {
     id: 5,
     userId: 1,
-    name: 'Pidgey',
+    name: 'Igglybuff',
     exp: 10,
-    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pidgey.gif'
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/igglybuff.gif'
   },
   {
     id: 6,
@@ -143,6 +143,13 @@ const pokemon = [
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/bulbasaur.gif'
   },
+  {
+    id: 8,
+    userId: 4,
+    name: 'Abra',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/abra.gif'
+  }
 ]
 
 const evolutions = [

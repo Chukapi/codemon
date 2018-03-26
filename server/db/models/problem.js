@@ -11,7 +11,7 @@ const Problem = db.define('problem', {
   },
   experience: {
     type: Sequelize.INTEGER,
-    defaultValue: 10
+    defaultValue: 25
   },
   prompt: {
     type: Sequelize.TEXT,

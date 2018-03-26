@@ -18,20 +18,19 @@ const customStyles = {
 
 class WildPokemonModal extends Component {
 
-
   render() {
     const { showModal, onCloseModal } = this.props;
     return (
       <div>
-        {showModal && <Modal
-          open={open}
+        <Modal
+          open={showModal}
           onClose={onCloseModal}
           styles={customStyles}
           little
-        // classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
+          classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
         >
           <h2>Modal</h2>
-        </Modal>}
+        </Modal>
       </div>
     )
   }

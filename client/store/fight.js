@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //initial state
-const fight = {opponentSocketId: ''};
+const fight = {opponentSocketId: '', showBattleModal: false};
 
 //action types
 const GET_OPPONENT = 'GET_OPPONENT';

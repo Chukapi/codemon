@@ -50,30 +50,30 @@ const problems = [
 const pokemon = [
   {
     id: 1,
-    userId: 3,
+    userId: 2,
     name: 'Pichu',
-    exp: 1590,
+    exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pichu.gif'
   },
   {
     id: 2,
-    userId: 3,
+    userId: 4,
     name: 'Charmander',
-    exp: 1590,
+    exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/charmander.gif'
   },
   {
     id: 3,
     userId: 3,
     name: 'Squirtle',
-    exp: 1590,
+    exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/squirtle.gif'
   },
   {
     id: 4,
     userId: 3,
     name: 'Dratini',
-    exp: 1590,
+    exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/dratini.gif'
   },
   {
@@ -97,6 +97,13 @@ const pokemon = [
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/bulbasaur.gif'
   },
+  {
+    id: 8,
+    userId: 4,
+    name: 'Abra',
+    exp: 10,
+    imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/abra.gif'
+  }
 ]
 
 const evolutions = [

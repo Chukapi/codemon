@@ -53,17 +53,10 @@ class CodeEntryForm extends Component {
 
 const mapState = (state, ownProps) => {
   return {
-<<<<<<< HEAD
     problem: ownProps.problem,
-    result: state.codeEntry.output,
+    result: state.codeEntry,
     currentPokemonId: state.currentPokemonId,
     allPokemon: state.allPokemon
-=======
-  problem: ownProps.problem,
-  result: state.codeEntry,
-  currentPokemonId: state.currentPokemonId,
-  allPokemon: state.allPokemon
->>>>>>> master
   }
 };
 

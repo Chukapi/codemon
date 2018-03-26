@@ -29,7 +29,8 @@ class UserHome extends Component {
     const { username } = this.props;
     return (
       <div>
-        <h3>Welcome, {username}</h3>
+        <h2>Welcome, {username}</h2>
+        <h4>Here are your current Pokemon! To train your Pokemon, select one of your Pokeballs and solve the problem below. To catch 'em all, stay on the lookout for wild Pokemon attacks!</h4>
         <PokemonParty />
         <br />
         <div className="training-container">

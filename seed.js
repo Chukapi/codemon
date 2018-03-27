@@ -95,56 +95,48 @@ const problems = [
 
 const pokemon = [
   {
-    id: 1,
     userId: 2,
     name: 'Pichu',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pichu.gif'
   },
   {
-    id: 2,
     userId: 4,
     name: 'Charmander',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/charmander.gif'
   },
   {
-    id: 3,
     userId: 3,
     name: 'Squirtle',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/squirtle.gif'
   },
   {
-    id: 4,
     userId: 3,
     name: 'Dratini',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/dratini.gif'
   },
   {
-    id: 5,
     userId: 1,
     name: 'Igglybuff',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/igglybuff.gif'
   },
   {
-    id: 6,
     userId: 1,
     name: 'Horsea',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/horsea.gif'
   },
   {
-    id: 7,
     userId: 2,
     name: 'Bulbasaur',
     exp: 10,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/bulbasaur.gif'
   },
   {
-    id: 8,
     userId: 4,
     name: 'Abra',
     exp: 10,

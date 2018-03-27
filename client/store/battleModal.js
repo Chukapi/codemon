@@ -1,6 +1,6 @@
 
 const showModal = {
-  isOpen: false, 
+  isOpen: false,
   msg: ''
 }
 //ACTION TYPES

@@ -8,9 +8,11 @@ const App = () => {
       <Navbar />
       <WildPokemonModal />
       <BattleModal />
-      <Routes />
+      <div className="codemon-body">
+        <Routes />
+      </div>
       <footer>
-        <p>Pokemon is Copyright Gamefreak, Nintendo and The Pokémon Company 2001-2013</p>
+        <p>Pokémon is Copyright Gamefreak, Nintendo and The Pokémon Company 2001-2018</p>
       </footer>
     </div>
   )

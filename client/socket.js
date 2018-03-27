@@ -8,11 +8,12 @@ socket.on('connect', () => {
 })
 
 socket.on('my message', (msg, poke) => {
+  console.log('MY MESSAGE', msg, poke)
   store.dispatch(triggerModal(msg, poke))
 })
 
-socket.on('fetch fight', (id) => {
-  store.dispatch(getFightAfterAccept(id))
+socket.on('ready to fight', (id, pokeId) => {
+  store.dispatch(getFightAfterAccept(id, pokeId))
 })
 
 export default socket

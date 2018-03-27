@@ -5,15 +5,20 @@ import { connect } from 'react-redux';
 import socket from '../socket';
 
 class Battle extends Component {
-  
+
+
   render(){
-    const {pokemons, currentPokemon, challenger, userSocket} = this.props;
-    const battlePokemon = pokemons.find(poke => poke.id === currentPokemon);
+    const {pokemons} = this.props;
+    console.log(pokemons)
+    // const battlePokemon = pokemons.find(poke => poke.id === currentPokemon);
     return (
       <div>
-        {battlePokemon && <img src={battlePokemon.imageUrl} />}
+        {/* {battlePokemon && <img src={battlePokemon.imageUrl} />} */}
+        {pokemons[0] && <img src={pokemons[0].imageUrl} />}
         <h1>VS.</h1>
-        <img src={challenger.imageUrl} />
+        {pokemons[0] && <img src={pokemons[1].imageUrl} />}
+        
+        {/* <img src={challenger.imageUrl} /> */}
         <Training />
       </div>
     )
@@ -23,14 +28,14 @@ class Battle extends Component {
 
 const mapState = function (state){
   return {
-    opponent: state.fight,
-    userId: state.user.id,
-    userSocket: state.user.socketId,
-    pokemons: state.user.pokemons,
-    currentPokemon: state.currentPokemonId,
-    challenger: state.battleModal.pokemon,
-    // opponentPoke: state.fight.fightInfo.opponentPokemonId
+    // opponent: state.fight,
+    // userId: state.user.id,
+    // userSocket: state.user.socketId,
+    pokemons: state.fight.pokemon,
+    // currentPokemon: state.currentPokemonId,
   }
 }
+
+// const mapDispatch = {fetchOpponentsPokemon}
 
 export default connect(mapState)(Battle)

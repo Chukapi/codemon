@@ -8,8 +8,8 @@ module.exports = (io) => {
     socket.on('battle click', (opponentId, msg, poke) => {
       socket.broadcast.to(opponentId).emit('my message', msg, poke)
     })
-    socket.on('accept', (socketId, fightId) => {
-      socket.broadcast.to(socketId).emit('fetch fight', fightId)
+    socket.on('fetch fight', (socketId, fightId, pokeId) => {
+      socket.broadcast.to(socketId).emit('ready to fight', fightId, pokeId)
     })
   })
 }

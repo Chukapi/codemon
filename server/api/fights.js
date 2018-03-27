@@ -1,4 +1,4 @@
-const { Fight, User } = require('../db/models');
+const { Fight, User, Pokemon } = require('../db/models');
 const router = require('express').Router();
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op;
@@ -40,6 +40,15 @@ router.get('/:id', (req, res, next) => {
 
 router.get('/find/:fightId', (req, res, next) => {
   Fight.findById(req.params.fightId)
-  .then(fight => res.json(fight))
+  .then(fight => {
+    let pokemon = [fight]
+    Pokemon.findAll({
+      where: {
+        [Op.or]: [{id: fight.challengerPokemonId}, {id: fight.opponentPokemonId}]
+      }
+    })
+    .then(result => pokemon.concat(result))
+    .then(final => res.json(final))
+  })
   .catch(next)
 })

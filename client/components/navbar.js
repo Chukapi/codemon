@@ -10,15 +10,10 @@ class Navbar extends Component {
     super();
     this.handleClick = this.handleClick.bind(this)
     this.battleClick = this.battleClick.bind(this)
-    this.challenge = this.challenge.bind(this)
   }
 
   handleClick() {
     this.props.logout()
-  }
-
-  challenge(opponentId, msg, poke) {
-    socket.emit('battle click', opponentId, msg, poke)
   }
 
   invalidBattleClick(){
@@ -33,13 +28,8 @@ class Navbar extends Component {
         opponentSocket: this.props.opponent.opponentSocketId,
         challengerPokemonId: this.props.currentPokemonId
       })
+      socket.emit('battle click', this.props.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`, this.props.challengerPokemon)
     })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.opponent.opponentSocketId) {
-      socket.on('battle click', this.challenge(nextProps.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`, nextProps.challengerPokemon))
-    }
   }
 
 

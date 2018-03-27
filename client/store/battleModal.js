@@ -11,7 +11,9 @@ const CLOSE_MODAL = 'CLOSE_MODAL';
 //ACTION CREATORS
 export const triggerModal = (msg, pokemon) => ({ type: TRIGGER_MODAL, msg, pokemon });
 
-export const closeModal = () => ({type: CLOSE_MODAL})
+export const closeModal = () => {
+  return {type: CLOSE_MODAL}
+}
 
 
 //REDUCER

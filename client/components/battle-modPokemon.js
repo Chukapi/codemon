@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {closeModal, putSelectedPokemon} from '../store';
+import {closeModal, putSelectedPokemon, getFightAfterAccept} from '../store';
 import { Link } from 'react-router-dom';
 import socket from '../socket'
 
@@ -11,16 +11,9 @@ class BattleModalPokemon extends Component {
   }
 
   onClick = () => {
-    this.tellChallengerToFetch(this.props.challengerId, this.props.fightId);
+    socket.emit('fetch fight', this.props.challengerId, this.props.fightId, this.props.currentPokemon);
     this.props.close()
-  }
-
-  acceptChallenge = (socketId, fightId) => {
-    socket.emit('accept', socketId, fightId)
-  }
-
-  tellChallengerToFetch = (socketId, fightId) => {
-    socket.on('accept', this.acceptChallenge(socketId, fightId))
+    this.props.getFightAfterAccept(this.props.fightId)
   }
 
   render(){
@@ -56,7 +49,8 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   setCurrent: (pokeId, socketId) => dispatch(putSelectedPokemon(pokeId, socketId)),
-  close: () => dispatch(closeModal())
+  close: () => dispatch(closeModal()),
+  getFightAfterAccept: (fightId) => dispatch(getFightAfterAccept(fightId))
 })
 
 export default connect(mapState, mapDispatch)(BattleModalPokemon)

@@ -9,7 +9,7 @@ import battle from '.';
 class BattleModal extends Component {
 
   render(){
-    const {decline, showBattleModal, msg} = this.props
+    const {close, showBattleModal, msg} = this.props
     let modalStyle = {
       content : {
         position: 'absolute',        
@@ -32,7 +32,7 @@ class BattleModal extends Component {
           <Modal 
             open={showBattleModal} 
             styles={modalStyle}
-            onClose={decline}
+            onClose={close}
             closeButton={true}>
             <h2>{msg}</h2>
             <img src={this.props.challenger.imageUrl} />
@@ -51,7 +51,7 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-  decline: () => dispatch(closeModal())
+  close: () => dispatch(closeModal())
 })
 
 export default connect(mapState, mapDispatch)(BattleModal)

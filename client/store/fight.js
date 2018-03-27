@@ -3,7 +3,8 @@ import axios from 'axios';
 //initial state
 const fight = {
   opponentSocketId: '',
-  fightInfo: {}
+  fightInfo: {},
+  pokemon: []
 };
 
 //action types
@@ -11,12 +12,14 @@ const GET_OPPONENT = 'GET_OPPONENT';
 const NEW_FIGHT = 'NEW_FIGHT';
 const SET_FIGHT = 'SET_FIGHT';
 const GET_UPDATED_FIGHT = 'GET_UPDATED_FIGHT';
+const GET_POKE = 'GET_POKE';
 
 //action creators
 export const getOpponent = opponent => ({type: GET_OPPONENT, opponent});
 export const newFight = fight => ({type: NEW_FIGHT, fight})
 export const setFight = fight => ({type: SET_FIGHT, fight})
 export const getUpdatedFight = fight => ({type: GET_UPDATED_FIGHT, fight})
+export const getPoke = pokemon => ({type: GET_POKE, pokemon})
 
 //thunks
 export function startFight(body){
@@ -41,7 +44,10 @@ export function getFightAfterAccept(fightId){
   return function thunk(dispatch){
     return axios.get(`/api/fights/find/${fightId}`)
     .then(res => res.data)
-    .then(fight => dispatch(getUpdatedFight(fight)))
+    .then(arr => {
+      dispatch(getUpdatedFight(arr[0]))
+      dispatch(getPoke(arr.slice(1)))
+    })
     .catch(err => console.log(err));
   }
 }
@@ -56,7 +62,9 @@ export default function reducer(state = fight, action){
     case SET_FIGHT:
       return Object.assign({}, state, {fightInfo: action.fight})
     case GET_UPDATED_FIGHT:
-      return Object.assign({}, state, {fightInfo: action.fight})      
+      return Object.assign({}, state, {fightInfo: action.fight})     
+    case GET_POKE:
+      return Object.assign({}, state, {pokemon: action.pokemon}) 
     default:
       return state
   }

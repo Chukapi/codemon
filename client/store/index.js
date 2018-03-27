@@ -16,12 +16,10 @@ import wildModal, { wildAttack } from './wildModal';
 const reducer = combineReducers({ user, battleModal, codeEntry, training, fight, currentPokemonId, allPokemon, wildModal })
 
 let wildPokemonMiddleware = store => next => action => {
-  console.log('Middleware triggered:', action);
   let chance = Math.random();
 
   if (chance <= 0.50 && !store.getState().fight.opponentSocketId) {
     console.log(`we in hia boooooooiiiiiiii`, store.getState().fight);
-    //DISPATCH AN ACTION THATLL TOGGLE WILD POKEMON ATTACK
     store.dispatch(wildAttack());
   }
   next(action);

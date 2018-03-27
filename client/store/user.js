@@ -19,7 +19,7 @@ const defaultUser = {}
 const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 const postSocket = socketId => ({ type: POST_SOCKET, socketId });
-const updateSolved = newProb => ({type: UPDATE_SOLVED, newProb});
+const updateSolved = newProb => ({ type: UPDATE_SOLVED, newProb });
 
 /**
  * THUNK CREATORS
@@ -33,7 +33,7 @@ export const me = (socketId) =>
       })
       .then(user => {
         //bug: does not post socket ID on first login, must hard refresh
-        if(user.id){
+        if (user.id) {
           dispatch(postSocketId(user.id, socketId))
         }
       })
@@ -72,9 +72,9 @@ export const logout = () =>
 export const putSolvedProbs = (problemId) => {
   return dispatch =>
     axios.put(`/api/training/${problemId}`)
-    .then(res => res.data)
-    .then(_ => dispatch(updateSolved([problemId])))
-    .catch(err => console.log(err));
+      .then(res => res.data)
+      .then(_ => dispatch(updateSolved([problemId])))
+      .catch(err => console.log(err));
 }
 
 
@@ -90,7 +90,7 @@ export default function (state = defaultUser, action) {
     case POST_SOCKET:
       return Object.assign({}, state, { socketId: action.socketId })
     case UPDATE_SOLVED:
-      return Object.assign({}, state, {solvedProblems: state.solvedProblems.concat(action.newProb)})
+      return Object.assign({}, state, { solvedProblems: state.solvedProblems.concat(action.newProb) })
     default:
       return state
   }

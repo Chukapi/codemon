@@ -1,7 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import createLogger from 'redux-logger'
-import thunkMiddleware from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import createLogger from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 import codeEntry from './codeEntry';
 import training from './training';
@@ -12,12 +12,12 @@ import battleModal from './battleModal';
 import wildModal, { wildAttack } from './wildModal';
 
 
-const reducer = combineReducers({ user, battleModal, codeEntry, training, fight, currentPokemonId, allPokemon, wildModal })
+const reducer = combineReducers({ user, battleModal, codeEntry, training, fight, currentPokemonId, allPokemon, wildModal });
 
 let wildPokemonMiddleware = store => next => action => {
   let chance = Math.random();
 
-  if (chance <= 0.05 && !store.getState().fight.opponentSocketId) {
+  if (chance <= 0.1 && !store.getState().fight.opponentSocketId && action.type !== 'REMOVE_USER' && action.type !== 'GET_USER') {
     store.dispatch(wildAttack());
   }
   next(action);
@@ -26,8 +26,9 @@ const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true }),
   wildPokemonMiddleware
-))
-const store = createStore(reducer, middleware)
+));
+
+const store = createStore(reducer, middleware);
 
 export default store;
 export * from './user';

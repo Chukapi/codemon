@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-responsive-modal';
-import { hideModal, testCode } from '../store';
+import { hideModal, testCode, clearResult } from '../store';
 import AceEditor from 'react-ace';
 
 import 'brace/mode/javascript';
@@ -30,7 +30,7 @@ class WildPokemonModal extends Component {
     const currentPokemon = {
       name: wildPokemon.name,
       exp: wildProblem.experience,
-      evolutionLevel: 1,
+      evolutionLevel: '1',
       imageUrl: wildPokemon.imageUrl,
       userId: uId
     }
@@ -41,7 +41,7 @@ class WildPokemonModal extends Component {
 
 
   render() {
-    const { open, wildPokemon, wildProblem, onCloseModal } = this.props;
+    const { open, wildPokemon, wildProblem, onCloseModal, result } = this.props;
 
     return (
       <div className="wild-poke-attack">
@@ -56,7 +56,6 @@ class WildPokemonModal extends Component {
             <h3>Wild {wildPokemon.name} has attacked!</h3>
             <p>To catch it, solve the problem below</p>
           </div>
-
 
           <div className="wild-poke-code-area">
             <h5>{wildProblem.prompt}</h5>
@@ -76,6 +75,16 @@ class WildPokemonModal extends Component {
             <button type="submit" onClick={this.onClick}>Capture</button>
             <button onClick={onCloseModal}>Run Away</button>
           </div>
+          <div>
+            {result !== null && (result === false || result.includes('Error')) ? (
+              <div>
+                <h2>Unsuccessful. Try Again.</h2>
+                <p>{result}</p>
+              </div>
+            )
+              : null}
+            {result === true ? <h2>You have successfully captured {wildPokemon.name}!</h2> : null}
+          </div>
         </Modal>
       </div>
     )
@@ -86,11 +95,15 @@ const mapState = state => ({
   open: state.wildModal.showModal,
   wildPokemon: state.wildModal.wildPokemon,
   wildProblem: state.wildModal.wildProblem,
-  uId: state.user.id
+  uId: state.user.id,
+  result: state.codeEntry
 });
 
 const mapDispatch = dispatch => ({
-  onCloseModal: () => dispatch(hideModal()),
+  onCloseModal: () => {
+    dispatch(hideModal())
+    dispatch(clearResult());
+  },
   testSpecCode: (code, id, poke, probExp) => dispatch(testCode(code, id, poke, probExp))
 });
 

@@ -19,8 +19,6 @@ export const hideModal = () => ({ type: HIDE_MODAL });
 export const fetchWildInfo = id => dispatch =>
   axios.get(`/api/wildpokemon/${id}`)
     .then(({ data }) => {
-      console.log('DATA.WILDPROBLEM', data.wildProblem);
-      console.log('DATA.WILDPOKEMON', data.wildPokemon);
       dispatch(getProblem(data.wildProblem))
       dispatch(getPokemon(data.wildPokemon))
     })

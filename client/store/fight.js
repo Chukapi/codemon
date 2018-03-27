@@ -3,16 +3,27 @@ import axios from 'axios';
 //initial state
 const fight = {
   opponentSocketId: '',
-  opponentPokemon: {}
+  fightInfo: {}
 };
 
 //action types
 const GET_OPPONENT = 'GET_OPPONENT';
+const NEW_FIGHT = 'NEW_FIGHT';
 
 //action creators
-const getOpponent = opponent => ({type: GET_OPPONENT, opponent});
+export const getOpponent = opponent => ({type: GET_OPPONENT, opponent});
+export const newFight = fight => ({type: NEW_FIGHT, fight})
 
 //thunks
+export function startFight(body){
+  return function thunk(dispatch){
+    return axios.post("/api/fights", body)
+    .then(res => res.data)
+    .then(fight => dispatch(newFight(fight)))
+    .catch(err => console.log(err))
+  }
+}
+
 export function fetchOpponent(id){
   return function thunk(dispatch){
     return axios.get(`/api/fights/${id}`)
@@ -26,7 +37,9 @@ export function fetchOpponent(id){
 export default function reducer(state = fight, action){
   switch (action.type) {
     case GET_OPPONENT:
-      return Object.assign({}, state, {opponentSocketId: action.opponent.socketId} )
+      return Object.assign({}, state, {opponentSocketId: action.opponent.socketId})
+    case NEW_FIGHT:
+      return Object.assign({}, state, {fightInfo: action.fight})
     default:
       return state
   }

@@ -2,10 +2,16 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setCurrentPokemon, closeModal} from '../store';
 import { Link } from 'react-router-dom';
+import socket from '../socket'
 
 class BattleModalPokemon extends Component {
+
+  challenge = (socketId, pokeId) => {
+    socket.emit('pokemon select', socketId, pokeId)
+  }
     
   handleClick = (evt, pokeId) => {
+    console.log(this.props.user.socketId)
     this.props.setCurrent(pokeId)
   }
 
@@ -34,6 +40,8 @@ class BattleModalPokemon extends Component {
 const mapState = (state) => ({
   user: state.user,
   pokemons: state.user.pokemons,
+  opponentId: state.fight.opponentSocketId,
+  currentPokemon: state.currentPokemonId
 })
 
 const mapDispatch = (dispatch) => ({

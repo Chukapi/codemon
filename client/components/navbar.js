@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logout, fetchOpponent } from '../store';
+import { logout, fetchOpponent, startFight } from '../store';
 import socket from '../socket';
 
 class Navbar extends Component {
@@ -27,6 +27,13 @@ class Navbar extends Component {
 
   battleClick() {
     this.props.fetchOpponent(this.props.user.id)
+    .then(opponent => {
+      this.props.startFight({
+        challengerSocket: this.props.user.socketId,
+        opponentSocket: this.props.opponent.opponentSocketId,
+        challengerPokemonId: this.props.currentPokemonId
+      })
+    })
   }
 
   componentWillReceiveProps(nextProps){
@@ -34,6 +41,7 @@ class Navbar extends Component {
       socket.on('battle click', this.challenge(nextProps.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`))
     }
   }
+
 
   render() {
     const { isLoggedIn, user } = this.props;
@@ -76,7 +84,7 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = { logout, fetchOpponent }
+const mapDispatch = { logout, fetchOpponent, startFight }
 
 export default connect(mapState, mapDispatch)(Navbar)
 

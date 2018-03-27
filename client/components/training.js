@@ -32,7 +32,7 @@ class Training extends Component {
 
 
   render() {
-    const { currentPokemonId, result, problem } = this.props;
+    const { currentPokemonId, result, problem, showWildModal } = this.props;
     return (
       <div className="training-area">
         <h3>{problem.prompt}</h3>
@@ -48,10 +48,14 @@ class Training extends Component {
         />
         <button onClick={this.onClick} disabled={!currentPokemonId}>Submit</button>
         <button onClick={this.onNextClick}> Next Problem </button>
-        {result === true ?
-          <h2>Tests Passed! {problem.experience} EXP Earned!</h2> : null}
-
-        {result === false ? <h2>Tests Failed. Try Again.</h2> : <h2>{result}</h2>}
+        {
+          showWildModal ? null :
+            result && typeof result === 'boolean' ? (
+              <h2>Tests Passed! {problem.experience} EXP Earned!</h2>
+            ) : (
+                <h2>{result}</h2>
+              )
+        }
       </div>
     )
   }
@@ -63,7 +67,8 @@ const mapState = state => {
     userId: state.user.id,
     result: state.codeEntry,
     currentPokemonId: state.currentPokemonId,
-    allPokemon: state.allPokemon
+    allPokemon: state.allPokemon,
+    showWildModal: state.wildModal.showModal
   }
 };
 

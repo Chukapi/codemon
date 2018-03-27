@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logout, fetchOpponent } from '../store';
+import { logout, fetchOpponent, startFight } from '../store';
 import socket from '../socket';
 
 class Navbar extends Component {
@@ -10,26 +10,28 @@ class Navbar extends Component {
     super();
     this.handleClick = this.handleClick.bind(this)
     this.battleClick = this.battleClick.bind(this)
-    this.challenge = this.challenge.bind(this)
   }
 
   handleClick() {
     this.props.logout()
   }
 
-  challenge(opponentId, msg) {
-    socket.emit('battle click', opponentId, msg)
+  invalidBattleClick(){
+    alert('Please select a Pokemon in your Gym to battle with.')
   }
 
   battleClick() {
     this.props.fetchOpponent(this.props.user.id)
+    .then(opponent => {
+      this.props.startFight({
+        challengerSocket: this.props.user.socketId,
+        opponentSocket: this.props.opponent.opponentSocketId,
+        challengerPokemonId: this.props.currentPokemonId
+      })
+      socket.emit('battle click', this.props.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`, this.props.challengerPokemon)
+    })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.opponent.opponentSocketId) {
-      socket.on('battle click', this.challenge(nextProps.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`))
-    }
-  }
 
   render() {
     const { isLoggedIn, user } = this.props;
@@ -41,9 +43,9 @@ class Navbar extends Component {
           {isLoggedIn ? (
             <div className="nav-links">
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">HOME</Link> &emsp;
+              <Link to="/home">GYM</Link>
               <Link to={`/mystats/${user.id}`}>STATISTICS</Link>&emsp;
-              <Link onClick={this.battleClick} to={`/fights/${user.id}`}>BATTLE</Link>&emsp;
+              {this.props.currentPokemonId ? <Link onClick={this.battleClick} to={`/fights/${user.id}`}>BATTLE</Link> : <Link to="/home" onClick={this.invalidBattleClick}>BATTLE</Link>}&emsp;
               <a href="#" onClick={this.handleClick}>LOGOUT</a>
             </div>
           ) : (
@@ -67,11 +69,13 @@ const mapState = state => {
   return {
     user: state.user,
     isLoggedIn: !!state.user.id,
-    opponent: state.fight
+    opponent: state.fight,
+    challengerPokemon: state.allPokemon.find(poke => poke.id === state.currentPokemonId),
+    currentPokemonId: state.currentPokemonId
   }
 }
 
-const mapDispatch = { logout, fetchOpponent }
+const mapDispatch = { logout, fetchOpponent, startFight }
 
 export default connect(mapState, mapDispatch)(Navbar)
 

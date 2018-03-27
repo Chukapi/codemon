@@ -9,6 +9,12 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
+// router.get('/fight/:pokemonId', (req, res, next) => {
+//   Pokemon.findById(req.params.pokemonId)
+//   .then(pokemon => res.json(pokemon))
+//   .catch(next)
+// })
+
 router.post('/', (req, res, next) => {
   Pokemon.create(req.body)
     .then(pokemon => res.json(pokemon))

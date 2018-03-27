@@ -5,9 +5,11 @@ module.exports = (io) => {
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`)
     })
-    socket.on('battle click', (opponentId, msg) => {
-      console.log('hey', opponentId, msg)
-      socket.broadcast.to(opponentId).emit('my message', msg)
+    socket.on('battle click', (opponentId, msg, poke) => {
+      socket.broadcast.to(opponentId).emit('my message', msg, poke)
+    })
+    socket.on('fetch fight', (socketId, fightId, pokeId) => {
+      socket.broadcast.to(socketId).emit('ready to fight', fightId, pokeId)
     })
   })
 }

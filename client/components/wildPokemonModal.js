@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import Training from './training';
 import Modal from 'react-responsive-modal';
 import { hideModal } from '../store';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/javascript';
+import 'brace/theme/github';
+import 'brace/ext/language_tools';
+import 'brace/snippets/javascript';
 
 
 const customStyles = {
@@ -16,29 +22,27 @@ const customStyles = {
   }
 };
 
-class WildPokemonModal extends Component {
+const WildPokemonModal = props => {
+  const { open, wildPokemon, wildProblem, onCloseModal } = props;
 
-  render() {
-    const { open, wildPokemon, wildProblem, onCloseModal } = this.props;
-    return (
-      <div className='wild-poke-attack'>
-        <Modal
-          open={open}
-          onClose={onCloseModal}
-          styles={customStyles}
-          little
-          classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
-        >
-          <img src={wildPokemon.imageUrl} />
-          <h3>Wild {wildPokemon.name} has attacked!</h3>
-          <p>To catch it, solve the problem below</p>
-          <div className='wild-poke-code-area'>
-            <Training />
-          </div>
-        </Modal>
-      </div>
-    )
-  }
+  return (
+    <div className='wild-poke-attack'>
+      <Modal
+        open={open}
+        onClose={onCloseModal}
+        styles={customStyles}
+        little
+        classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}>
+        <img src={wildPokemon.imageUrl} />
+        <h3>Wild {wildPokemon.name} has attacked!</h3>
+        <p>To catch it, solve the problem below</p>
+        <div className='wild-poke-code-area'>
+          <Training />
+        </div>
+      </Modal>
+    </div>
+  )
+
 }
 
 const mapState = state => ({

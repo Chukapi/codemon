@@ -10,7 +10,7 @@ import 'brace/snippets/javascript';
 
 
 class Training extends Component {
-  state = {code: ''}
+  state = { code: '' }
 
   componentDidMount() {
     this.props.fetchProblem(this.props.userId);
@@ -32,10 +32,10 @@ class Training extends Component {
 
 
   render() {
-    const { currentPokemonId, result, problem} = this.props;
+    const { currentPokemonId, result, problem } = this.props;
     return (
       <div className="training-area">
-        <h1>{problem.prompt}</h1>
+        <h3>{problem.prompt}</h3>
         <AceEditor
           className="text-editor"
           value={this.state.code}
@@ -73,10 +73,3 @@ const mapDispatch = dispatch => ({
 });
 
 export default connect(mapState, mapDispatch)(Training);
-
-
-
-
-
-
-

@@ -1,6 +1,8 @@
 body {
   font-family: 'Exo 2', sans-serif;
   height: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 a {
@@ -19,6 +21,12 @@ nav {
 
 .nav-bar-poke {
   text-align: center;
+  background-color: #efefef;
+  width: 100%;
+}
+
+.codemon-body {
+  margin: 25px;
 }
 
 nav a {
@@ -26,10 +34,17 @@ nav a {
   align-content: center;
   justify-content: space-between;
   margin-right: 15px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #4484ce;
 }
 
 nav a:last-of-type {
   margin-right: 0;
+}
+
+nav a:hover {
+  background-color: #f9cf00;
 }
 
 form div {
@@ -53,6 +68,10 @@ form div {
 
 .pokemon-nav img {
   width: 45px;
+}
+
+.pokemon-nav img :first-of-type {
+  margin-left: 25px;
 }
 
 @font-face {
@@ -81,10 +100,10 @@ footer {
 
 .wild-poke-attack {
   display: flex;
-  overflow: auto;
+  overflow: hidden;
 }
 
-.wild-poke-code-area{
+.wild-poke-code-area {
   /* max-width: 300px; */
   max-height: 300px;
 }

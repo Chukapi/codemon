@@ -29,7 +29,7 @@ class PokemonParty extends Component {
 
 const mapState = state => ({
   pokemon: state.allPokemon
-})
+});
 
 const mapDispatch = dispatch => ({
   setCurrent: (poke) => dispatch(setCurrentPokemon(poke))

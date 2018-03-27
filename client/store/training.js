@@ -8,18 +8,18 @@ const GET_ONE_PROBLEM = 'GET_ONE_PROBLEM'
 
 //action creators
 // const allProblems = problems => ({ type: ALL_PROBLEMS, problems })
-const oneProblem = problem => ({type: GET_ONE_PROBLEM, problem})
+const oneProblem = problem => ({ type: GET_ONE_PROBLEM, problem })
 
 //thunks
 
 export function fetchOneProblem(userId) {
-  return function thunk(dispatch){
+  return function thunk(dispatch) {
     return axios.get(`/api/training/${userId}`)
-    .then(res => res.data)
-    .then(problem => {
-      console.log("PROBLEM", problem)
-      dispatch(oneProblem(problem))})
-    .catch(err => console.log(err))
+      .then(res => res.data)
+      .then(problem => {
+        dispatch(oneProblem(problem))
+      })
+      .catch(err => console.log(err))
   }
 }
 

@@ -9,10 +9,11 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
-// router.post('/:id', (req, res, next) => {
-//   Pokemon.create(req.body)
-//   // here set userId by req.params.id
-// });
+router.post('/', (req, res, next) => {
+  Pokemon.create(req.body)
+    .then(pokemon => res.json(pokemon))
+    .catch(next);
+});
 
 router.put('/:id', (req, res, next) => {
   Pokemon.update(req.body, { where: { id: req.params.id }, returning: true })

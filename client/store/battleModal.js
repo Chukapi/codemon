@@ -1,14 +1,15 @@
 
 const showModal = {
   isOpen: false,
-  msg: ''
+  msg: '',
+  pokemon: {}
 }
 //ACTION TYPES
 const TRIGGER_MODAL = 'TRIGGER_MODAL';
 const CLOSE_MODAL = 'CLOSE_MODAL';
 
 //ACTION CREATORS
-export const triggerModal = (msg) => ({ type: TRIGGER_MODAL, msg });
+export const triggerModal = (msg, pokemon) => ({ type: TRIGGER_MODAL, msg, pokemon });
 
 export const closeModal = () => ({type: CLOSE_MODAL})
 
@@ -17,9 +18,9 @@ export const closeModal = () => ({type: CLOSE_MODAL})
 export default (state = showModal, action) => {
   switch (action.type) {
     case TRIGGER_MODAL:
-      return {isOpen: true, msg: action.msg}
+      return {isOpen: true, msg: action.msg, pokemon: action.pokemon}
     case CLOSE_MODAL:
-      return {isOpen: false, msg: ''}
+      return Object.assign({}, state, {isOpen: false})
     default: 
       return state;
   }

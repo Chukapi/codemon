@@ -17,8 +17,8 @@ class Navbar extends Component {
     this.props.logout()
   }
 
-  challenge(opponentId, msg) {
-    socket.emit('battle click', opponentId, msg)
+  challenge(opponentId, msg, poke) {
+    socket.emit('battle click', opponentId, msg, poke)
   }
 
   invalidBattleClick(){
@@ -38,7 +38,7 @@ class Navbar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.opponent.opponentSocketId) {
-      socket.on('battle click', this.challenge(nextProps.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`))
+      socket.on('battle click', this.challenge(nextProps.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`, nextProps.challengerPokemon))
     }
   }
 
@@ -80,6 +80,7 @@ const mapState = state => {
     user: state.user,
     isLoggedIn: !!state.user.id,
     opponent: state.fight,
+    challengerPokemon: state.allPokemon.find(poke => poke.id === state.currentPokemonId),
     currentPokemonId: state.currentPokemonId
   }
 }

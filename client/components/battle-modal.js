@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Modal from 'react-responsive-modal';
 import BattleModalPokemon from './battle-modPokemon'
 import {closeModal} from '../store';
+import currentPokemon from '../store/currentPokemon';
+import battle from '.';
 
 class BattleModal extends Component {
 
@@ -33,6 +35,7 @@ class BattleModal extends Component {
             onClose={decline}
             closeButton={true}>
             <h2>{msg}</h2>
+            <img src={this.props.challenger.imageUrl} />
             <BattleModalPokemon />
           </Modal>
         </div>
@@ -43,7 +46,8 @@ class BattleModal extends Component {
 
 const mapState = (state) => ({
   showBattleModal: state.battleModal.isOpen, 
-  msg: state.battleModal.msg
+  msg: state.battleModal.msg,
+  challenger: state.battleModal.pokemon
 })
 
 const mapDispatch = (dispatch) => ({

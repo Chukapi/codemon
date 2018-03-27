@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const showModal = {
-  isOpen: false, 
+  isOpen: false,
   msg: ''
 }
 //ACTION TYPES
@@ -21,8 +21,8 @@ export const triggerModal = (msg) => {
 export default (state = showModal, action) => {
   switch (action.type) {
     case TRIGGER_MODAL:
-      return {isOpen: true, msg: action.msg}
-    default: 
+      return { isOpen: true, msg: action.msg }
+    default:
       return state;
   }
 }

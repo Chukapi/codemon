@@ -5,7 +5,7 @@ import {
   Card,
   CardTitle,
   CardText
-} from "material-ui/Card";
+} from 'material-ui/Card';
 
 function UserStats(props) {
 

@@ -35,7 +35,7 @@ class Navbar extends Component {
     const { isLoggedIn, user } = this.props;
     return (
       <div className="nav-bar-poke">
-        <Link className="logo-image" to='/home'><img src='https://fontmeme.com/permalink/180322/3dfe322ae57284bad89b0a9f92ab5ae5.png' alt='pokemon-font' border='0' /></Link>
+        <Link className="logo-image" to="/home"><img src="https://fontmeme.com/permalink/180322/3dfe322ae57284bad89b0a9f92ab5ae5.png" alt="pokemon-font" border="0" /></Link>
         <br />
         <nav>
           {isLoggedIn ? (

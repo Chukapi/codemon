@@ -6,19 +6,8 @@ import {closeModal} from '../store';
 
 class BattleModal extends Component {
 
-
-  // declineBattle = () => {
-  //   closeModal();
-  // }
-
   render(){
-    console.log('HI PROPS', this.props)
     const {decline, showBattleModal, msg} = this.props
-    
-    if(showBattleModal === false){
-      return null;
-    }
-
     let modalStyle = {
       content : {
         position: 'absolute',        
@@ -33,17 +22,11 @@ class BattleModal extends Component {
       }
     }
 
-    let backdropStyle = {
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      top: '0px',
-      left: '0px',
-      zIndex: '9998',
-      background: 'rgba(0, 0, 0, 0.3)'
-    }
+    if(showBattleModal === false){
+      return null;
+    } else {
       return (
-        <div style={backdropStyle}>
+        <div>
           <Modal 
             open={showBattleModal} 
             styles={modalStyle}
@@ -54,6 +37,7 @@ class BattleModal extends Component {
           </Modal>
         </div>
       )
+    }
   }
 }
 

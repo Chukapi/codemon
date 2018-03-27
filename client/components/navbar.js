@@ -21,6 +21,10 @@ class Navbar extends Component {
     socket.emit('battle click', opponentId, msg)
   }
 
+  invalidBattleClick(){
+    alert('Please select a Pokemon in your Gym to battle with.')
+  }
+
   battleClick() {
     this.props.fetchOpponent(this.props.user.id)
   }
@@ -41,9 +45,9 @@ class Navbar extends Component {
           {isLoggedIn ? (
             <div className="nav-links">
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
+              <Link to="/home">Gym</Link>
               <Link to={`/mystats/${user.id}`}>My Statistics</Link>
-              <Link onClick={this.battleClick} to={`/fights/${user.id}`}>Battle!</Link>
+              {this.props.currentPokemonId ? <Link onClick={this.battleClick} to={`/fights/${user.id}`}>Battle!</Link> : <Link to="/home" onClick={this.invalidBattleClick}>Battle!</Link>}
               <a href="#" onClick={this.handleClick}>Logout</a>
             </div>
           ) : (
@@ -67,7 +71,8 @@ const mapState = state => {
   return {
     user: state.user,
     isLoggedIn: !!state.user.id,
-    opponent: state.fight
+    opponent: state.fight,
+    currentPokemonId: state.currentPokemonId
   }
 }
 

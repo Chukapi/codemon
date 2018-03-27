@@ -4,7 +4,6 @@ import {setCurrentPokemon, closeModal} from '../store';
 import { Link } from 'react-router-dom';
 
 class BattleModalPokemon extends Component {
-
     
   handleClick = (evt, pokeId) => {
     this.props.setCurrent(pokeId)
@@ -24,7 +23,7 @@ class BattleModalPokemon extends Component {
           )
         })}
         <div>
-          <button><Link to={`/fights/${user.id}`}>Battle!</Link></button>
+          <button onClick={decline}><Link to={`/fights/${user.id}`}>Battle!</Link></button>
           <button onClick={decline}>Decline</button>
         </div>
       </div>

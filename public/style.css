@@ -3,6 +3,7 @@ body {
   height: 100%;
   display: flex;
   justify-content: space-around;
+  background-color: #efefef;
 }
 
 a {
@@ -21,7 +22,6 @@ nav {
 
 .nav-bar-poke {
   text-align: center;
-  background-color: #efefef;
   width: 100%;
 }
 
@@ -45,6 +45,10 @@ nav a:last-of-type {
 
 nav a:hover {
   background-color: #f9cf00;
+}
+
+.logo-image {
+  margin-top: 15px;
 }
 
 form div {

@@ -35,7 +35,7 @@ class PokemonParty extends Component {
               )
             }) :
             <div>
-              <button onClick={evt => this.handleFirstPoke(event, firstPokemon)}>Click here to receive your first Pokémon!</button>
+              <button className="animated bounce" onClick={evt => this.handleFirstPoke(event, firstPokemon)}>Click here to receive your first Pokémon!</button>
             </div>
         }
       </div>

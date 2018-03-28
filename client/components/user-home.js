@@ -41,7 +41,8 @@ class UserHome extends Component {
     return (
       <div>
         <h2>Welcome, {username}</h2>
-        <h4>You have {pokemon.length} Pokemon! To train your Pokemon, select one of your Pokeballs and solve the problem below. To catch 'em all, stay on the lookout for wild Pokemon attacks!</h4>
+        <p>You have {pokemon.length} Pokemon! To train your Pokemon, select one of your Pokeballs and solve the problem below.</p>
+        <p> To catch 'em all, stay on the lookout for wild Pokemon attacks!</p>
         <PokemonParty />
         <br />
         <div className="training-container">

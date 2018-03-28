@@ -37,7 +37,8 @@ class Training extends Component {
           })
           alert('You won the battle!')       
         }
-      })
+      }
+    })
   }
 
   onNextClick = () => {

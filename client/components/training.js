@@ -21,7 +21,7 @@ class Training extends Component {
   onClick = () => {
     const code = this.ace.editor.getValue();
     const { currentPokemonId, testSpecCode, allPokemon, problem, inBattle, challengerSocket, defenderSocket } = this.props;
-    
+
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
     this.setState({ code });
     testSpecCode({ code }, problem.id, currentPokemon, problem.experience)
@@ -37,8 +37,7 @@ class Training extends Component {
           })
           alert('You won the battle!')       
         }
-      }
-    }) 
+      })
   }
 
   onNextClick = () => {

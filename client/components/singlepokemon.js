@@ -12,8 +12,8 @@ const SinglePokemon = props => {
             <div className="poke-image-container">
               <img className="poke-images" src={pokemon.imageUrl} />
             </div>
-            <div className="poke-stats">
-              <h3>{pokemon.name}</h3>
+            <div className="single-poke-stats">
+              <h1>{pokemon.name}</h1>
               <p>Level: {Math.floor(pokemon.exp / 100)}</p>
               <p>EXP: {pokemon.exp}</p>
             </div>

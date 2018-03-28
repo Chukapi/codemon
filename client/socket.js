@@ -16,11 +16,15 @@ socket.on('ready to fight', (id) => {
   store.dispatch(getFightAfterAccept(id))
 })
 
-socket.on('announce winner', (msg, fightId) => {
+socket.on('announce winner', (msg) => {
   store.dispatch(openEndModal(msg))
-  store.dispatch(getFightAfterAccept(fightId))  
-  // store.dispatch(updateFight(winnerId))
 })
+
+socket.on('fetch fight info', (fightId) => {
+  store.dispatch(getFightAfterAccept(fightId))
+})
+
+socket.on
 
 export default socket
  

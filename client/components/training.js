@@ -31,6 +31,10 @@ class Training extends Component {
           socket.emit('correct answer', challengerSocket, `${this.props.user.username} won the battle!`, this.props.fightId)
           socket.emit('correct answer 2', defenderSocket, `${this.props.user.username} won the battle!`, this.props.fightId)
           this.props.putFightAfterBattle(this.props.fightId, this.props.user.id)
+          .then(() => {
+            socket.emit('grab fight info', challengerSocket, this.props.fightId)
+            socket.emit('grab fight info 2', defenderSocket, this.props.fightId)            
+          })
           alert('You won the battle!')       
         }
       }

@@ -11,11 +11,17 @@ module.exports = (io) => {
     socket.on('fetch fight', (socketId, fightId, pokeId) => {
       socket.broadcast.to(socketId).emit('ready to fight', fightId, pokeId)
     })
-    socket.on('correct answer', (socketId, msg, fightId) => {
-      socket.broadcast.to(socketId).emit('announce winner', msg, fightId)
+    socket.on('correct answer', (socketId, msg) => {
+      socket.broadcast.to(socketId).emit('announce winner', msg)
     })
-    socket.on('correct answer 2', (socketId, msg, fightId) => {        
-      socket.broadcast.to(socketId).emit('announce winner', msg, fightId)
+    socket.on('correct answer 2', (socketId, msg) => {        
+      socket.broadcast.to(socketId).emit('announce winner', msg)
+    })
+    socket.on('grab fight info', (socketId, fightId) => {
+      socket.broadcast.to(socketId).emit('fetch fight info', fightId)
+    })
+    socket.on('grab fight info 2', (socketId, fightId) => {
+      socket.broadcast.to(socketId).emit('fetch fight info', fightId)
     })
   })
 }

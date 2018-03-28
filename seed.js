@@ -40,7 +40,7 @@ const problems = [
   {
     id: 3,
     prompt: 'Write a function tripleNum that takes an integer and returns triple that integer',
-    tests: ['tripleNum(4) === 12)']
+    tests: ['tripleNum(4) === 12']
   },
   {
     id: 4,

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { testCode, fetchOneProblem } from '../store';
 import AceEditor from 'react-ace';
+import socket from '../socket';
 
 import 'brace/mode/javascript';
 import 'brace/theme/github';
@@ -13,21 +14,32 @@ class Training extends Component {
   state = { code: '' }
 
   componentDidMount() {
-    this.props.fetchProblem(this.props.userId);
+    this.props.fetchProblem(this.props.user.id);
   }
 
 
   onClick = () => {
     const code = this.ace.editor.getValue();
-    const { currentPokemonId, testSpecCode, allPokemon, problem } = this.props;
-
+    const { currentPokemonId, testSpecCode, allPokemon, problem, inBattle, challengerSocket, defenderSocket } = this.props;
+    
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
-    testSpecCode({ code }, problem.id, currentPokemon, problem.experience);
+    console.log('CURRENT POKE', allPokemon, currentPokemonId)
     this.setState({ code });
+    testSpecCode({ code }, problem.id, currentPokemon, problem.experience)
+    .then(() => {
+      if(inBattle){
+        console.log('IN BATTLE', this.props.result)
+        if(this.props.result === true){
+          socket.emit('correct answer', challengerSocket, this.props.user.username)
+          socket.emit('correct answer 2', defenderSocket, this.props.user.username)
+          alert('You won the battle!')       
+        }
+      }
+    }) 
   }
 
   onNextClick = () => {
-    this.props.fetchProblem(this.props.userId);
+    this.props.fetchProblem(this.props.user.id);
   }
 
 
@@ -63,12 +75,15 @@ class Training extends Component {
 
 const mapState = state => {
   return {
-    problem: state.training,
-    userId: state.user.id,
+    problem: state.training.problem,
+    user: state.user,
     result: state.codeEntry,
     currentPokemonId: state.currentPokemonId,
     allPokemon: state.allPokemon,
-    showWildModal: state.wildModal.showModal
+    showWildModal: state.wildModal.showModal,
+    inBattle: state.training.inBattle,
+    challengerSocket: state.fight.fightInfo.challengerSocket,
+    defenderSocket: state.fight.fightInfo.opponentSocket
   }
 };
 

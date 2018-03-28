@@ -15,8 +15,10 @@ class Battle extends Component {
     return (
       <div>
         {pokemons[0] && <img src={pokemons[0].imageUrl} />}
+        {pokemons[0] && <p>{pokemons[0].exp}</p>}
         <h1>VS.</h1>
         {pokemons[0] && <img src={pokemons[1].imageUrl} />}
+        {pokemons[0] && <p>{pokemons[1].exp}</p>}
         <Training />
       </div>
     )

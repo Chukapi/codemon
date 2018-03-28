@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-responsive-modal';
+import BattleTimer from './timer';
 import { hideModal, testCode, clearResult, fetchWildInfo } from '../store';
 import AceEditor from 'react-ace';
 
@@ -67,6 +68,7 @@ class WildPokemonModal extends Component {
 
             <div className="wild-poke-code-area">
               <h5>{wildProblem.prompt}</h5>
+              <BattleTimer />
               <AceEditor
                 className="text-editor"
                 value={this.state.code}

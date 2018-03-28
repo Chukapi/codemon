@@ -21,7 +21,7 @@ class Training extends Component {
   onClick = () => {
     const code = this.ace.editor.getValue();
     const { currentPokemonId, testSpecCode, allPokemon, problem, inBattle, challengerSocket, defenderSocket } = this.props;
-    
+
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
     console.log('CURRENT POKE', allPokemon, currentPokemonId)
     this.setState({ code });
@@ -32,14 +32,15 @@ class Training extends Component {
         if(this.props.result === true){
           socket.emit('correct answer', challengerSocket, this.props.user.username)
           socket.emit('correct answer 2', defenderSocket, this.props.user.username)
-          alert('You won the battle!')       
+          alert('You won the battle!')
         }
       }
-    }) 
+    })
   }
 
   onNextClick = () => {
     this.props.fetchProblem(this.props.user.id);
+    this.props.result = ""
   }
 
 

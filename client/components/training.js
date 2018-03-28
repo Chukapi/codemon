@@ -36,7 +36,7 @@ class Training extends Component {
             socket.emit('grab fight info', challengerSocket, this.props.fightId)
             socket.emit('grab fight info 2', defenderSocket, this.props.fightId)            
           })
-          alert('You won the battle!')       
+          // alert('You won the battle!')       
         }
       }
     }) 

@@ -41,53 +41,56 @@ class WildPokemonModal extends Component {
 
 
   render() {
-    const { open, wildPokemon, wildProblem, onCloseModal, result } = this.props;
+    const { open, wildPokemon, wildProblem, onCloseModal, result, inBattle } = this.props;
+    if(inBattle){
+      return null;
+    } else {
+      return (
+        <div className="wild-poke-attack">
+          <Modal
+            open={open}
+            onClose={onCloseModal}
+            styles={customStyles}
+            little
+            classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}>
+            <div>
+              <img src={wildPokemon.imageUrl} />
+              <h3>Wild {wildPokemon.name} has attacked!</h3>
+              <p>To catch it, solve the problem below</p>
+            </div>
 
-    return (
-      <div className="wild-poke-attack">
-        <Modal
-          open={open}
-          onClose={onCloseModal}
-          styles={customStyles}
-          little
-          classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}>
-          <div>
-            <img src={wildPokemon.imageUrl} />
-            <h3>Wild {wildPokemon.name} has attacked!</h3>
-            <p>To catch it, solve the problem below</p>
-          </div>
+            <div className="wild-poke-code-area">
+              <h5>{wildProblem.prompt}</h5>
+              <AceEditor
+                className="text-editor"
+                value={this.state.code}
+                mode="javascript"
+                theme="github"
+                name="UNIQUE_ID_OF_DIV"
+                editorProps={{ $blockScrolling: true }}
+                ref={(ref) => { this.ace = ref }}
+                height="200px"
+              />
+            </div>
 
-          <div className="wild-poke-code-area">
-            <h5>{wildProblem.prompt}</h5>
-            <AceEditor
-              className="text-editor"
-              value={this.state.code}
-              mode="javascript"
-              theme="github"
-              name="UNIQUE_ID_OF_DIV"
-              editorProps={{ $blockScrolling: true }}
-              ref={(ref) => { this.ace = ref }}
-              height="200px"
-            />
-          </div>
-
-          <div>
-            <button type="submit" onClick={this.onClick}>Capture</button>
-            <button onClick={onCloseModal}>Run Away</button>
-          </div>
-          <div>
-            {result !== null && (result === false || result.includes('Error')) ? (
-              <div>
-                <h2>Unsuccessful. Try Again.</h2>
-                <p>{result}</p>
-              </div>
-            )
-              : null}
-            {result === true ? <h2>You have successfully captured {wildPokemon.name}!</h2> : null}
-          </div>
-        </Modal>
-      </div>
-    )
+            <div>
+              <button type="submit" onClick={this.onClick}>Capture</button>
+              <button onClick={onCloseModal}>Run Away</button>
+            </div>
+            <div>
+              {result !== null && (result === false || result.includes('Error')) ? (
+                <div>
+                  <h2>Unsuccessful. Try Again.</h2>
+                  <p>{result}</p>
+                </div>
+              )
+                : null}
+              {result === true ? <h2>You have successfully captured {wildPokemon.name}!</h2> : null}
+            </div>
+          </Modal>
+        </div>
+      )
+    }
   }
 }
 
@@ -96,7 +99,8 @@ const mapState = state => ({
   wildPokemon: state.wildModal.wildPokemon,
   wildProblem: state.wildModal.wildProblem,
   uId: state.user.id,
-  result: state.codeEntry
+  result: state.codeEntry,
+  inBattle: state.training.inBattle
 });
 
 const mapDispatch = dispatch => ({

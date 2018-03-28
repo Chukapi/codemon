@@ -18,7 +18,7 @@ export const testCode = (userCode, id, pokemon, exp) => dispatch =>
   axios.post(`/api/training/${id}`, userCode)
     .then(res => res.data)
     .then(result => {
-      // console.log('RESULT ', typeof result, result)
+      console.log('RESULT ', typeof result, result)
       if (result === true) {
         if (pokemon.id) {
           let totalExp = pokemon.exp + exp;

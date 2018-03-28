@@ -16,5 +16,9 @@ socket.on('ready to fight', (id, pokeId) => {
   store.dispatch(getFightAfterAccept(id, pokeId))
 })
 
+socket.on('announce winner', (winner) => {
+  alert(`${winner} won the battle!`)
+})
+
 export default socket
  

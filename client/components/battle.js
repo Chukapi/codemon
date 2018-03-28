@@ -17,7 +17,7 @@ class Battle extends Component {
     return (
       <div>
       {/* {Object.keys(prepare).length !== 0 ? <h1> HI </h1> : <h1> BYE  </h1> } */}
-        {Object.keys(prepare).length === 0  ? <div><img src="https://i.ytimg.com/vi/n03yTW2_ZSw/maxresdefault.jpg" /> </div> :
+        { prepare === null ? <div><img src="https://i.ytimg.com/vi/n03yTW2_ZSw/maxresdefault.jpg" /> </div> :
            <div>{pokemons[0] && <img src={pokemons[0].imageUrl} />}
            {pokemons[0] && <p>{pokemons[0].exp}</p>}
            <h1>VS.</h1>
@@ -37,7 +37,7 @@ const mapState = function (state){
   return {
     pokemons: state.fight.pokemon,
     inBattle: state.training.inBattle,
-    prepare: state.fight.fightInfo,
+    prepare: state.fight.fightInfo.opponentPokemonId,
   }
 }
 

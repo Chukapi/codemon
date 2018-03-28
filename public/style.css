@@ -21,6 +21,13 @@
   margin: 25px;
 }
 
+.below-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 95 vw;
+  margin: auto;
+}
+
 a {
   text-decoration: none;
 }
@@ -29,6 +36,7 @@ body {
   font-family: 'Exo 2', sans-serif;
   height: 100%;
   background-color: #efefef;
+  background: url("/images/poke-background 2.jpg") fixed;
 }
 
 nav {
@@ -104,13 +112,6 @@ footer {
   align-self: center;
 }
 
-.below-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 95 vw;
-  margin: auto;
-}
-
 #stats-container {
   width: 95vw;
 }
@@ -121,11 +122,14 @@ footer {
   flex-wrap: wrap;
   align-items: baseline;
   background-color: white;
+  opacity: 0.5;
+  z-index: 1;
 }
 
 .single-poke-stat {
   min-width: 200px;
   margin-bottom: 20px;
+  z-index: 2;
 }
 
 label {

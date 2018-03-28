@@ -17,7 +17,7 @@ let wildPokemonMiddleware = store => next => action => {
   let chance = Math.random();
 
   if (
-    chance <= 0.2 &&
+    chance <= 0.3 &&
     !store.getState().fight.opponentSocketId &&
     action.type !== 'REMOVE_USER' &&
     action.type !== 'GET_USER' &&

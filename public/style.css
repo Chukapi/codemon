@@ -144,11 +144,6 @@ label {
   height: auto;
 }
 
-.timer {
-  display: flex;
-  align-items: center;
-}
-
 .battle-poke-opp {
   display: flex;
   justify-content: space-around;

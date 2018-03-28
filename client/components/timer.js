@@ -32,7 +32,7 @@ class BattleTimer extends Component {
   }
   render () {
     return (
-      <div className='timer'>
+      <div className="wild-poke-attack">
         <h3>Time Remaining: {this.state.count}</h3>
       </div>
     )

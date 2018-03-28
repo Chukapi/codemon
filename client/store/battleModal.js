@@ -23,7 +23,7 @@ export default (state = showModal, action) => {
       return {isOpen: true, msg: action.msg, pokemon: action.pokemon}
     case CLOSE_MODAL:
       return Object.assign({}, state, {isOpen: false})
-    default: 
+    default:
       return state;
   }
 }

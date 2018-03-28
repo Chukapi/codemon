@@ -4,6 +4,7 @@ import { initBattle } from '../store';
 import { connect } from 'react-redux';
 import socket from '../socket';
 
+
 class Battle extends Component {
 
   componentDidMount() {
@@ -11,18 +12,22 @@ class Battle extends Component {
   }
 
   render() {
-    const { pokemons } = this.props;
+    const { pokemons, prepare } = this.props;
     return (
       <div>
-        <div className="battle-poke-opp">
-          {pokemons[0] && <img src={pokemons[0].imageUrl} />}
-          <h1>VS.</h1>
-          {pokemons[0] && <img src={pokemons[1].imageUrl} />}
-        </div>
+        {prepare === null ? <div><img src="https://i.imgur.com/obkmYYl.gif" /> </div> :
+          <div>
+            <div className="battle-poke-opp">
+              {pokemons[0] && <img src={pokemons[0].imageUrl} />}
+              <h1>VS.</h1>
+              {pokemons[0] && <img src={pokemons[1].imageUrl} />}
+            </div>
+            <div className="battle-problem">
+              <Training />
+            </div>
+          </div>
 
-        <div className="battle-problem">
-          <Training />
-        </div>
+        }
       </div>
     )
   }
@@ -32,7 +37,8 @@ class Battle extends Component {
 const mapState = function (state) {
   return {
     pokemons: state.fight.pokemon,
-    inBattle: state.training.inBattle
+    inBattle: state.training.inBattle,
+    prepare: state.fight.fightInfo.opponentPokemonId,
   }
 }
 

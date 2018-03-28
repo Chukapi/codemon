@@ -4,25 +4,28 @@ import { initBattle } from '../store';
 import { connect } from 'react-redux';
 import socket from '../socket';
 
+
 class Battle extends Component {
 
   componentDidMount() {
     this.props.initBattle()
   }
 
-  render() {
-    const { pokemons } = this.props;
+  render(){
+    const {pokemons, prepare } = this.props;
+    console.log(prepare, "PREPARE")
     return (
       <div>
-        <div className="battle-poke-opp">
-          {pokemons[0] && <img src={pokemons[0].imageUrl} />}
-          <h1>VS.</h1>
-          {pokemons[0] && <img src={pokemons[1].imageUrl} />}
-        </div>
+        { prepare === null ? <div><img src="https://i.ytimg.com/vi/n03yTW2_ZSw/maxresdefault.jpg" /> </div> :
+           <div>{pokemons[0] && <img src={pokemons[0].imageUrl} />}
+           {pokemons[0] && <p>{pokemons[0].exp}</p>}
+           <h1>VS.</h1>
+           {pokemons[0] && <img src={pokemons[1].imageUrl} />}
+           {pokemons[0] && <p>{pokemons[1].exp}</p>}
+           <Training />
+           </div>
 
-        <div className="battle-problem">
-          <Training />
-        </div>
+        }
       </div>
     )
   }
@@ -32,7 +35,8 @@ class Battle extends Component {
 const mapState = function (state) {
   return {
     pokemons: state.fight.pokemon,
-    inBattle: state.training.inBattle
+    inBattle: state.training.inBattle,
+    prepare: state.fight.fightInfo.opponentPokemonId,
   }
 }
 

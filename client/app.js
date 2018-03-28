@@ -4,12 +4,14 @@ import Routes from './routes';
 
 const App = () => {
   return (
-    <div>
+    <div className="entire-app">
       <Navbar />
-      <WildPokemonModal />
-      <BattleModal />
-      <div className="codemon-body">
-        <Routes />
+      <div className="below-nav">
+        <WildPokemonModal />
+        <BattleModal />
+        <div className="codemon-body">
+          <Routes />
+        </div>
       </div>
       <footer>
         <p>Pokémon is Copyright Gamefreak, Nintendo and The Pokémon Company 2001-2018</p>

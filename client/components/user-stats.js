@@ -1,36 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  Card,
-  CardTitle,
-  CardText
-} from 'material-ui/Card';
-
 function UserStats(props) {
 
   const { email, username, pokemon } = props;
 
   return (
-    <div className="container">
+    <div id="stats-container">
       <div>
         <h1>{username}'s Statistics!</h1>
         <h3> Your email: {email}</h3>
         <h3> Your Pokemon:
-          <Card >
-            <CardText>
-              {pokemon.map(poke =>
-                (<div key={poke.id}>
-                  <CardTitle title={poke.name} />
-                  <img src={poke.imageUrl} />
-                  <p>Experience Level: {poke.exp}</p>
-                  <p>Evolution Level: {poke.evolutionLevel}</p>
-                </div>
-                )
-              )}
-              <br />
-            </CardText>
-          </Card>
+          <div className="poke-stats">
+            {pokemon.map(poke =>
+              (<div className="single-poke-stat" key={poke.id}>
+                <h3>{poke.name}</h3>
+                <p>Exp: {poke.exp}</p>
+                <img src={poke.imageUrl} />
+              </div>
+              )
+            )}
+            <br />
+          </div>
         </h3>
       </div>
     </div>

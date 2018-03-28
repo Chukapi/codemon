@@ -26,16 +26,16 @@ class Training extends Component {
     console.log('CURRENT POKE', allPokemon, currentPokemonId)
     this.setState({ code });
     testSpecCode({ code }, problem.id, currentPokemon, problem.experience)
-    .then(() => {
-      if(inBattle){
-        console.log('IN BATTLE', this.props.result)
-        if(this.props.result === true){
-          socket.emit('correct answer', challengerSocket, this.props.user.username)
-          socket.emit('correct answer 2', defenderSocket, this.props.user.username)
-          alert('You won the battle!')
+      .then(() => {
+        if (inBattle) {
+          console.log('IN BATTLE', this.props.result)
+          if (this.props.result === true) {
+            socket.emit('correct answer', challengerSocket, this.props.user.username)
+            socket.emit('correct answer 2', defenderSocket, this.props.user.username)
+            alert('You won the battle!')
+          }
         }
-      }
-    })
+      })
   }
 
   onNextClick = () => {

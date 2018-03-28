@@ -52,3 +52,10 @@ router.get('/find/:fightId', (req, res, next) => {
   })
   .catch(next)
 })
+
+router.put('/find/:fightId', (req, res, next) => {
+  Fight.findById(req.params.fightId)
+  .then(fight => fight.update({winnerId: +Object.keys(req.body)[0]}))
+  .then(updated => res.json(updated))
+  .catch(next)
+})

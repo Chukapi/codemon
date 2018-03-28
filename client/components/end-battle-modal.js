@@ -33,7 +33,7 @@ class EndBattleModal extends Component {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         zIndex: '9999',
-        backgroundColor: 'rgba(255,255,255)'          
+        backgroundColor: 'rgba(255,255,255, 0.363)'                  
       }
     }
     const {pokemons, showEndBattleModal, usersPokemon, currentPokemonId, closeEndModal, msg, winnerId, user} = this.props
@@ -54,12 +54,14 @@ class EndBattleModal extends Component {
             styles={modalStyle}
             onClose={closeEndModal}
             closeButton={true}>
-            <h1>{msg}</h1>
-            <img src={winningPokemon.imageUrl}/>
-            <p>{winningPokemon.exp} EXP</p>
-            <br></br>
-            <button onClick={closeEndModal}><Link to="/home">I need more training.</Link></button>
-            <button onClick={this.rematchClick}>Rematch!</button>     
+            <div className="wild-poke-attack">
+              <h1>{msg}</h1>
+              <img src={winningPokemon.imageUrl}/>
+              <p>{winningPokemon.exp} EXP</p>
+              <br></br>
+              <button onClick={closeEndModal}><Link to="/home">I need more training.</Link></button>
+              <button onClick={this.rematchClick}>Rematch!</button> 
+            </div>    
           </Modal>
         </div>
       )

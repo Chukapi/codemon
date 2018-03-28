@@ -12,7 +12,7 @@ module.exports = (io) => {
       socket.broadcast.to(socketId).emit('ready to fight', fightId, pokeId)
     })
     socket.on('correct answer', (socketId, msg) => {
-      socket.broadcast.to(socketId).emit('announce winner', msg)
+      io.emit('announce winner', msg)
     })
     socket.on('correct answer 2', (socketId, msg) => {        
       socket.broadcast.to(socketId).emit('announce winner', msg)

@@ -121,15 +121,12 @@ footer {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  background-color: white;
-  opacity: 0.5;
-  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.678);
 }
 
 .single-poke-stat {
   min-width: 200px;
   margin-bottom: 20px;
-  z-index: 2;
 }
 
 label {

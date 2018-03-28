@@ -11,18 +11,21 @@ class Battle extends Component {
     this.props.initBattle()
   }
 
-  render(){
-    const {pokemons, prepare } = this.props;
+  render() {
+    const { pokemons, prepare } = this.props;
     return (
       <div>
-        { prepare === null ? <div><img src="https://i.ytimg.com/vi/n03yTW2_ZSw/maxresdefault.jpg" /> </div> :
-           <div>{pokemons[0] && <img src={pokemons[0].imageUrl} />}
-           {pokemons[0] && <p>{pokemons[0].exp}</p>}
-           <h1>VS.</h1>
-           {pokemons[0] && <img src={pokemons[1].imageUrl} />}
-           {pokemons[0] && <p>{pokemons[1].exp}</p>}
-           <Training />
-           </div>
+        {prepare === null ? <div><img src="https://i.imgur.com/obkmYYl.gif" /> </div> :
+          <div>
+            <div className="battle-poke-opp">
+              {pokemons[0] && <img src={pokemons[0].imageUrl} />}
+              <h1>VS.</h1>
+              {pokemons[0] && <img src={pokemons[1].imageUrl} />}
+            </div>
+            <div className="battle-problem">
+              <Training />
+            </div>
+          </div>
 
         }
       </div>

@@ -5,7 +5,7 @@ import {closeEndModal} from '../store';
 import { Link } from 'react-router-dom';
 import socket from '../socket';
 
-class EndBattleModal extends Component {
+export class EndBattleModal extends Component {
   constructor(){
     super();
     this.rematchClick = this.rematchClick.bind(this)
@@ -36,12 +36,21 @@ class EndBattleModal extends Component {
         backgroundColor: 'rgba(255,255,255)'          
       }
     }
-    const {pokemons, showEndBattleModal, usersPokemon, currentPokemonId, closeEndModal, msg, winnerId, user} = this.props
+    let {pokemons, showEndBattleModal, usersPokemon, currentPokemonId, closeEndModal, msg, winnerId, user} = this.props
     let winningPokemon;
-    if(winnerId === user.id){
+    // pokemons = pokemons || []
+    
+    // let winningPokemon = pokemons.find(poke => poke.userId === winnerId)
+    
+    // } else if(winnerId){
+    //   winningPokemon = pokemons.find(poke => poke.id !== currentPokemonId)
+    // }
+    // console.log('HELLO!!!!', pokemons)
+
+    if(winnerId && winnerId === user.id){
       winningPokemon = usersPokemon.find(poke => poke.id === currentPokemonId)
     } else {
-      winningPokemon = pokemons.find(poke => poke.id !== currentPokemonId)
+      winningPokemon = pokemons.find(poke => poke.userId === winnerId)
     }
 
     if(this.props.showEndBattleModal === false){
@@ -63,11 +72,12 @@ class EndBattleModal extends Component {
           </Modal>
         </div>
       )
-    }
+    } 
   }
 }
 
 const mapState = (state) => ({
+  // userOwnProps: ownProps.user,
   showEndBattleModal: state.training.viewModal, 
   msg: state.training.resultMsg,
   pokemons: state.fight.pokemon,

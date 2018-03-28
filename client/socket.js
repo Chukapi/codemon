@@ -8,7 +8,6 @@ socket.on('connect', () => {
 })
 
 socket.on('my message', (msg, poke) => {
-  console.log('MY MESSAGE', msg, poke)
   store.dispatch(triggerModal(msg, poke))
 })
 

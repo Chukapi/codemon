@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { testCode, fetchOneProblem, putFightAfterBattle } from '../store';
 import AceEditor from 'react-ace';
 import socket from '../socket';
+import {EndBattleModal} from './end-battle-modal';
 
 import 'brace/mode/javascript';
 import 'brace/theme/github';
@@ -47,7 +48,8 @@ class Training extends Component {
 
 
   render() {
-    const { currentPokemonId, result, problem, showWildModal, inBattle } = this.props;
+    const { currentPokemonId, user, result, problem, showWildModal, inBattle, winnerId, pokemons } = this.props;
+    console.log('IN TRAINING', winnerId, user.id)
     return (
       <div className="training-area">
         <h3>{problem.prompt}</h3>
@@ -71,6 +73,7 @@ class Training extends Component {
                 <h2>{result}</h2>
               )
         }
+        {/* {winnerId && user.id === winnerId ? <EndBattleModal user={user.id} pokemons={pokemons}/> : null} */}
       </div>
     )
   }
@@ -87,7 +90,9 @@ const mapState = state => {
     inBattle: state.training.inBattle,
     challengerSocket: state.fight.fightInfo.challengerSocket,
     defenderSocket: state.fight.fightInfo.opponentSocket,
-    fightId: state.fight.fightInfo.id
+    fightId: state.fight.fightInfo.id,
+    winnerId: state.fight.fightInfo.winnerId,
+    pokemons: state.fight.pokemon
   }
 };
 

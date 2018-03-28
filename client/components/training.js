@@ -40,7 +40,7 @@ class Training extends Component {
 
   onNextClick = () => {
     this.props.fetchProblem(this.props.user.id);
-    this.props.result = ""
+    this.props.result = ''
   }
 
 

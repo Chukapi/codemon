@@ -4,6 +4,7 @@ import { initBattle } from '../store';
 import { connect } from 'react-redux';
 import socket from '../socket';
 
+
 class Battle extends Component {
 
   componentDidMount(){
@@ -11,15 +12,21 @@ class Battle extends Component {
   }
 
   render(){
-    const {pokemons} = this.props;
+    const {pokemons, prepare } = this.props;
+    console.log(prepare, "PREPARE")
     return (
       <div>
-        {pokemons[0] && <img src={pokemons[0].imageUrl} />}
-        {pokemons[0] && <p>{pokemons[0].exp}</p>}
-        <h1>VS.</h1>
-        {pokemons[0] && <img src={pokemons[1].imageUrl} />}
-        {pokemons[0] && <p>{pokemons[1].exp}</p>}
-        <Training />
+      {/* {Object.keys(prepare).length !== 0 ? <h1> HI </h1> : <h1> BYE  </h1> } */}
+        {Object.keys(prepare).length === 0  ? <div><img src="https://i.ytimg.com/vi/n03yTW2_ZSw/maxresdefault.jpg" /> </div> :
+           <div>{pokemons[0] && <img src={pokemons[0].imageUrl} />}
+           {pokemons[0] && <p>{pokemons[0].exp}</p>}
+           <h1>VS.</h1>
+           {pokemons[0] && <img src={pokemons[1].imageUrl} />}
+           {pokemons[0] && <p>{pokemons[1].exp}</p>}
+           <Training />
+           </div>
+
+        }
       </div>
     )
   }
@@ -29,7 +36,8 @@ class Battle extends Component {
 const mapState = function (state){
   return {
     pokemons: state.fight.pokemon,
-    inBattle: state.training.inBattle
+    inBattle: state.training.inBattle,
+    prepare: state.fight.fightInfo,
   }
 }
 

@@ -16,20 +16,20 @@ class Navbar extends Component {
     this.props.logout()
   }
 
-  invalidBattleClick(){
+  invalidBattleClick() {
     alert('Please select a Pokemon in your Gym to battle with.')
   }
 
   battleClick() {
     this.props.fetchOpponent(this.props.user.id)
-    .then(opponent => {
-      this.props.startFight({
-        challengerSocket: this.props.user.socketId,
-        opponentSocket: this.props.opponent.opponentSocketId,
-        challengerPokemonId: this.props.currentPokemonId
+      .then(opponent => {
+        this.props.startFight({
+          challengerSocket: this.props.user.socketId,
+          opponentSocket: this.props.opponent.opponentSocketId,
+          challengerPokemonId: this.props.currentPokemonId
+        })
+        socket.emit('battle click', this.props.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`, this.props.challengerPokemon)
       })
-      socket.emit('battle click', this.props.opponent.opponentSocketId, `${this.props.user.username} challenges you to a battle!`, this.props.challengerPokemon)
-    })
   }
 
 
@@ -43,7 +43,7 @@ class Navbar extends Component {
           {isLoggedIn ? (
             <div className="nav-links">
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">GYM</Link>
+              <Link to="/home">GYM</Link>&emsp;
               <Link to={`/mystats/${user.id}`}>STATISTICS</Link>&emsp;
               {this.props.currentPokemonId ? <Link onClick={this.battleClick} to={`/fights/${user.id}`}>BATTLE</Link> : <Link to="/home" onClick={this.invalidBattleClick}>BATTLE</Link>}&emsp;
               <a href="#" onClick={this.handleClick}>LOGOUT</a>

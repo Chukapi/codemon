@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-responsive-modal';
-import { hideModal, testCode, clearResult } from '../store';
+import { hideModal, testCode, clearResult, fetchWildInfo } from '../store';
 import AceEditor from 'react-ace';
 
 import 'brace/mode/javascript';
@@ -39,15 +39,19 @@ class WildPokemonModal extends Component {
     this.setState({ code });
   }
 
+  onload = editor => {
+    editor.setValue('');
+  }
+
 
   render() {
-    const { open, wildPokemon, wildProblem, onCloseModal, result } = this.props;
+    const { open, wildPokemon, wildProblem, onCloseModal, result, uId } = this.props;
 
     return (
       <div className="wild-poke-attack">
         <Modal
           open={open}
-          onClose={onCloseModal}
+          onClose={() => onCloseModal(uId)}
           styles={customStyles}
           little
           classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}>
@@ -65,6 +69,7 @@ class WildPokemonModal extends Component {
               mode="javascript"
               theme="github"
               name="UNIQUE_ID_OF_DIV"
+              onLoad={this.onload}
               editorProps={{ $blockScrolling: true }}
               ref={(ref) => { this.ace = ref }}
               height="200px"
@@ -73,17 +78,29 @@ class WildPokemonModal extends Component {
 
           <div>
             <button type="submit" onClick={this.onClick}>Capture</button>
-            <button onClick={onCloseModal}>Run Away</button>
+            <button onClick={() => onCloseModal(uId)}>Run Away</button>
           </div>
           <div>
-            {result !== null && (result === false || result.includes('Error')) ? (
+            {result !== null && (result === false || (typeof result !== 'boolean' && result.includes('Error'))) ? (
               <div>
                 <h2>Unsuccessful. Try Again.</h2>
                 <p>{result}</p>
               </div>
             )
               : null}
-            {result === true ? <h2>You have successfully captured {wildPokemon.name}!</h2> : null}
+            {result === true
+              ?
+              (
+                <div>
+                  <h2>You have successfully captured {wildPokemon.name}!</h2>
+                  <div className="set-timeout">
+                    {
+                      setTimeout(() => onCloseModal(uId), 3000)
+                    }
+                  </div>
+                </div>
+              )
+              : null}
           </div>
         </Modal>
       </div>
@@ -100,9 +117,10 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  onCloseModal: () => {
-    dispatch(hideModal())
+  onCloseModal: id => {
+    dispatch(hideModal());
     dispatch(clearResult());
+    dispatch(fetchWildInfo(id));
   },
   testSpecCode: (code, id, poke, probExp) => dispatch(testCode(code, id, poke, probExp))
 });

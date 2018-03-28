@@ -17,7 +17,16 @@ const reducer = combineReducers({ user, battleModal, codeEntry, training, fight,
 let wildPokemonMiddleware = store => next => action => {
   let chance = Math.random();
 
-  if (chance <= 0.1 && !store.getState().fight.opponentSocketId && action.type !== 'REMOVE_USER' && action.type !== 'GET_USER') {
+  if (
+    chance <= 0.1 &&
+    !store.getState().fight.opponentSocketId &&
+    action.type !== 'REMOVE_USER' &&
+    action.type !== 'GET_USER' &&
+    action.type !== 'GET_WILD_PROBLEM' &&
+    action.type !== 'GET_WILD_POKEMON' &&
+    action.type !== 'HIDE_MODAL' &&
+    action.type !== 'CLEAR_RESULT'
+  ) {
     store.dispatch(wildAttack());
   }
   next(action);

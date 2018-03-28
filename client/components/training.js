@@ -10,24 +10,41 @@ import 'brace/snippets/javascript';
 
 
 class Training extends Component {
-  state = { code: '' }
+  state = { 
+    code: '',
+    winner: ''
+  }
 
   componentDidMount() {
-    this.props.fetchProblem(this.props.userId);
+    this.props.fetchProblem(this.props.user.id);
   }
 
 
   onClick = () => {
     const code = this.ace.editor.getValue();
-    const { currentPokemonId, testSpecCode, allPokemon, problem } = this.props;
-
+    const { currentPokemonId, testSpecCode, allPokemon, problem, inBattle, result, challengerSocket, defenderSocket } = this.props;
+    
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
-    testSpecCode({ code }, problem.id, currentPokemon, problem.experience);
+    console.log('CURRENT POKE', allPokemon, currentPokemonId)
     this.setState({ code });
+    testSpecCode({ code }, problem.id, currentPokemon, problem.experience)
+    // .then(variable => {
+    //   console.log('HELLOOOOOO', variable)
+      if(inBattle){
+        console.log('IN BATTLE', this.props.result)
+        if(result && result === true){
+          console.log('CORRECT ANSWER')        
+          this.setState({winner: this.props.user.username})
+          if(this.state.winner){
+            socket.emit('correct answer', challengerSocket, defenderSocket, this.state.winner)
+          }
+        }
+      }
+    // })
   }
 
   onNextClick = () => {
-    this.props.fetchProblem(this.props.userId);
+    this.props.fetchProblem(this.props.user.id);
   }
 
 
@@ -63,12 +80,15 @@ class Training extends Component {
 
 const mapState = state => {
   return {
-    problem: state.training,
-    userId: state.user.id,
+    problem: state.training.problem,
+    user: state.user,
     result: state.codeEntry,
     currentPokemonId: state.currentPokemonId,
     allPokemon: state.allPokemon,
-    showWildModal: state.wildModal.showModal
+    showWildModal: state.wildModal.showModal,
+    inBattle: state.training.inBattle,
+    challengerSocket: state.fight.fightInfo.challengerSocket,
+    defenderSocket: state.fight.fightInfo.opponentSocket
   }
 };
 

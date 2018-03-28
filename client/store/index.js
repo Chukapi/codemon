@@ -11,7 +11,6 @@ import allPokemon from './pokemon';
 import battleModal from './battleModal';
 import wildModal, { wildAttack } from './wildModal';
 
-
 const reducer = combineReducers({ user, battleModal, codeEntry, training, fight, currentPokemonId, allPokemon, wildModal });
 
 let wildPokemonMiddleware = store => next => action => {

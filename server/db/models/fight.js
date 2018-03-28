@@ -5,9 +5,6 @@ const Fight = db.define('fight', {
   winnerId: {
     type: Sequelize.INTEGER,
   },
-  loserId: {
-    type: Sequelize.INTEGER,
-  },
   problemsIds: {
     type: Sequelize.ARRAY(Sequelize.INTEGER),
     defaultValue: []

@@ -71,7 +71,8 @@ const mapState = state => {
     isLoggedIn: !!state.user.id,
     opponent: state.fight,
     challengerPokemon: state.allPokemon.find(poke => poke.id === state.currentPokemonId),
-    currentPokemonId: state.currentPokemonId
+    currentPokemonId: state.currentPokemonId,
+    prepare: state.fight.fightInfo,
   }
 }
 

@@ -22,7 +22,7 @@ class Training extends Component {
   onClick = () => {
     const code = this.ace.editor.getValue();
     const { currentPokemonId, testSpecCode, allPokemon, problem, inBattle, challengerSocket, defenderSocket } = this.props;
-    
+
     const [currentPokemon] = allPokemon.filter(poke => poke.id === currentPokemonId);
     this.setState({ code });
     testSpecCode({ code }, problem.id, currentPokemon, problem.experience)
@@ -34,16 +34,21 @@ class Training extends Component {
           this.props.putFightAfterBattle(this.props.fightId, this.props.user.id)
           .then(() => {
             socket.emit('grab fight info', challengerSocket, this.props.fightId)
-            socket.emit('grab fight info 2', defenderSocket, this.props.fightId)            
+            socket.emit('grab fight info 2', defenderSocket, this.props.fightId)
           })
+<<<<<<< HEAD
           // alert('You won the battle!')       
+=======
+          alert('You won the battle!')
+>>>>>>> master
         }
       }
-    }) 
+    })
   }
 
   onNextClick = () => {
     this.props.fetchProblem(this.props.user.id);
+    this.props.result = ''
   }
 
 

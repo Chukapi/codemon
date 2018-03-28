@@ -1,32 +1,48 @@
-body {
+@font-face {
+  font-family: 'Lato', sans-serif;
+  src: url('https://fonts.googleapis.com/css?family=Lato')
+}
+
+/* body {
   font-family: 'Exo 2', sans-serif;
   height: 100%;
   display: flex;
   justify-content: space-around;
   background-color: #efefef;
+} */
+
+.entire-app {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.codemon-body {
+  margin: 25px;
+}
+
+.below-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 95 vw;
+  margin: auto;
 }
 
 a {
   text-decoration: none;
 }
 
-label {
-  display: block;
+body {
+  font-family: 'Exo 2', sans-serif;
+  height: 100%;
+  background-color: #efefef;
+  background: url("/images/poke-background 2.jpg") fixed;
 }
 
 nav {
-  display: inline-flex;
+  display: flex;
   margin: 1em;
   justify-content: space-around;
-}
-
-.nav-bar-poke {
-  text-align: center;
-  width: 100%;
-}
-
-.codemon-body {
-  margin: 25px;
 }
 
 nav a {
@@ -34,36 +50,26 @@ nav a {
   align-content: center;
   justify-content: space-between;
   margin-right: 15px;
-  text-decoration: none;
   font-size: 20px;
   color: #4484ce;
-}
-
-nav a:last-of-type {
-  margin-right: 0;
+  text-decoration: none;
 }
 
 nav a:hover {
   background-color: #f9cf00;
 }
 
+nav a:last-of-type {
+  margin-right: 0;
+}
+
 .logo-image {
   margin-top: 15px;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
-.poke-image-container {
-  display: flex;
-  align-items: center;
-}
-
-.poke-images {
-  width: 35%;
-  align-self: center;
+.nav-bar-poke {
+  text-align: center;
+  width: 100%;
 }
 
 .pokemon-nav {
@@ -71,17 +77,13 @@ form div {
   flex-wrap: wrap;
 }
 
+.pokemon-nav img::selection {
+  background-color: red;
+}
+
 .pokemon-nav img {
   width: 45px;
-}
-
-.pokemon-nav img :first-of-type {
-  margin-left: 25px;
-}
-
-@font-face {
-  font-family: 'Lato', sans-serif;
-  src: url('https://fonts.googleapis.com/css?family=Lato')
+  margin-bottom: 10px;
 }
 
 .training-container {
@@ -94,25 +96,93 @@ form div {
   width: 50%;
 }
 
+.single-pokemon-view {
+  width: 50%;
+  align-self: center;
+  margin: auto;
+  text-align: center;
+}
+
 footer {
   text-align: center;
 }
 
-.single-pokemon-view {
-  width: 50%;
+.poke-images {
+  width: 200px;
   align-self: center;
+}
+
+#stats-container {
+  width: 95vw;
+}
+
+.poke-stats {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  background-color: rgba(255, 255, 255, 0.678);
+}
+
+.single-poke-stat {
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
 }
 
 .wild-poke-attack {
   display: flex;
-  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
 }
 
-.wild-poke-code-area {
-  /* max-width: 300px; */
-  max-height: 300px;
+.wild-poke-attack img {
+  min-width: 100px;
+  height: auto;
+}
+
+.battle-poke-opp {
+  display: flex;
+  justify-content: space-around;
+}
+
+.battle-poke-opp img {
+  min-height: 120px;
+  width: auto;
+}
+
+.battle-problem {
+  display: flex;
+  justify-content: center;
+}
+
+.bounce {
+  height: 70px;
+  width: 200px;
+  color: #4484ce;
+  background-color: #f9cf00;
+  /* border-radius: 15%; */
+  font-family: 'Exo 2', sans-serif;
+  font-size: 15px;
+  border: #4484ce;
+  border-style: outset;
+  border-width: 10px;
 }
 
 .set-timeout {
   display: none;
+}
+
+.battle-own-poke {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.battle-own-poke-img {
+  min-width: 150px;
+  margin-bottom: 15px;
 }

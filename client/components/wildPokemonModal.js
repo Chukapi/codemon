@@ -17,7 +17,8 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'rgba(255,255,255, 0.363)'
   }
 };
 
@@ -51,14 +52,14 @@ class WildPokemonModal extends Component {
       return null;
     } else {
       return (
-        <div className="wild-poke-attack">
+        <div>
           <Modal
             open={open}
             onClose={() => onCloseModal(uId)}
             styles={customStyles}
             little
             classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}>
-            <div>
+            <div className="wild-poke-attack">
               <img src={wildPokemon.imageUrl} />
               <h3>Wild {wildPokemon.name} has attacked!</h3>
               <p>To catch it, solve the problem below</p>

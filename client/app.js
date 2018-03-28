@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, WildPokemonModal, BattleModal } from './components';
+import { Navbar, WildPokemonModal, BattleModal, EndBattleModal } from './components';
 import Routes from './routes';
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
       <div className="below-nav">
         <WildPokemonModal />
         <BattleModal />
+        <EndBattleModal />
         <div className="codemon-body">
           <Routes />
         </div>

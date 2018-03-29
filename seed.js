@@ -57,18 +57,11 @@ const problems = [
     tests: ['commonDivisor(9,3) === 3']
   },
   {
-    id: 6,
-    category: 'recursion',
-    difficulty: 'easy',
-    prompt: 'Write a function rangeOfNums that take two numbers as input and returns an array of the exclusive range of those numbers. Example: rangeOfNums(2, 9) === [3, 4, 5, 6, 7, 8]',
-    tests: ['rangeOfNums(2,9) === [3,4,5,6,7,8]']
-  },
-  {
     id: 7,
     category: 'recursion',
     difficulty: 'easy',
-    prompt: 'Write a function sumFunc that takes an array of intergers as input and returns the sum of the integers. Example: sumFunc([3, 4, 5, 6, 7, 8]) === 21.',
-    tests: ['sumFunc([3, 4, 5, 6, 7, 8]) === 21']
+    prompt: 'Write a function sumFunc that takes an array of intergers as input and returns the sum of the integers. Example: sumFunc([3, 4, 5, 6, 7, 8]) === 33',
+    tests: ['sumFunc([3, 4, 5, 6, 7, 8]) === 33']
   },
   {
     id: 8,

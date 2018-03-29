@@ -38,7 +38,7 @@ export default function reducer(state = currentProblem, action) {
     case IN_BATTLE:
       return Object.assign({}, state, {inBattle: true})
     case END_BATTLE:
-      return Object.assign({}, state, {viewModal: true, resultMsg: action.msg})
+      return Object.assign({}, state, {viewModal: true, resultMsg: action.msg, inBattle: false})
     case CLOSE_END_MODAL:
       return Object.assign({}, state, {viewModal: false})
     default:

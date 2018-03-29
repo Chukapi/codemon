@@ -60,7 +60,7 @@ const problems = [
     id: 7,
     category: 'recursion',
     difficulty: 'easy',
-    prompt: 'Write a function sumFunc that takes an array of intergers as input and returns the sum of the integers. Example: sumFunc([3, 4, 5, 6, 7, 8]) === 33.',
+    prompt: 'Write a function sumFunc that takes an array of intergers as input and returns the sum of the integers. Example: sumFunc([3, 4, 5, 6, 7, 8]) === 33',
     tests: ['sumFunc([3, 4, 5, 6, 7, 8]) === 33']
   },
   {

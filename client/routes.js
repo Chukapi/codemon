@@ -22,22 +22,23 @@ class Routes extends Component {
     const { isLoggedIn } = this.props
 
     return (
-        <Switch>
-          {/* Routes placed here are available to all visitors */}   
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          {
-            isLoggedIn &&
-            <Switch>
-              {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
-              <Route path="/mystats/:id" component={UserStats} />
-              <Route path="/fights/:id" component={Battle} />
-            </Switch>
-          }
-          {/* Displays our Login component as a fallback */}
-          <Route component={Login} />
-        </Switch>
+      <Switch>
+        {/* Routes placed here are available to all visitors */}
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        {
+          isLoggedIn &&
+          <Switch>
+            {/* Routes placed here are only available after logging in */}
+            <Route path="/home" component={UserHome} />
+            <Route path="/mystats/:id" component={UserStats} />
+            <Route path="/fights/:id" component={Battle} />
+            <Route path="*" component={UserHome} />
+          </Switch>
+        }
+        {/* Displays our Login component as a fallback */}
+        <Route component={Login} />
+      </Switch>
     )
   }
 }
@@ -51,7 +52,7 @@ const mapState = (state) => {
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     id: state.user.id,
-    showBattleModal: state.battleModal  
+    showBattleModal: state.battleModal
   }
 }
 

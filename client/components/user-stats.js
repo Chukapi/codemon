@@ -10,7 +10,8 @@ function UserStats(props) {
       <div>
         <h1>{username}'s Statistics!</h1>
         <h3> Your email: {email}</h3>
-        <h3> Your Pokemon:
+        <h3> Your Pokemon:</h3>
+        <h3>
           <div className="poke-stats">
             {pokemon.map(poke =>
               (<div className="single-poke-stat" key={poke.id}>

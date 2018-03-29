@@ -6,21 +6,22 @@ import { Link } from 'react-router-dom';
 import socket from '../socket';
 
 class EndBattleModal extends Component {
-  constructor(){
-    super();
-    this.rematchClick = this.rematchClick.bind(this)
-  }
+  // constructor(){
+  //   super();
+  //   this.rematchClick = this.rematchClick.bind(this)
+  // }
 
-  rematchClick(){
-    const {fight, user, currentPokemonId, usersPokemon} = this.props
-    const sockets = [fight.challengerSocket, fight.opponentSocket];
-    const socketId = sockets.find(socket => socket !== user.socketId);
-    const pokemon = usersPokemon.find(poke => poke.id === currentPokemonId)
-    if(socketId){
-      socket.emit('battle click', socketId, `${user.username} challenges you to a rematch!`, pokemon)
-    }
-    this.props.closeEndModal();
-  }
+  // rematchClick(){
+  //   const {fight, user, currentPokemonId, usersPokemon, challengerId} = this.props
+  //   const sockets = [fight.challengerSocket, fight.opponentSocket];
+  //   const socketId = sockets.find(socket => socket !== user.socketId);
+  //   const pokemon = usersPokemon.find(poke => poke.id === currentPokemonId)
+  //   if(socketId){
+  //     socket.emit('battle click', socketId, `${user.username} challenges you to a rematch!`, pokemon)
+  //     socket.emit('fetch fight', challengerId, fight.id, currentPokemonId)
+  //   }
+  //   this.props.closeEndModal();
+  // }
 
   render(){
     let modalStyle = {
@@ -59,8 +60,8 @@ class EndBattleModal extends Component {
               <img src={winningPokemon.imageUrl}/>
               <p>{winningPokemon.exp} EXP</p>
               <br></br>
-              <button onClick={closeEndModal}><Link to="/home">I need more training.</Link></button>
-              <button onClick={this.rematchClick}>Rematch!</button> 
+              <button onClick={closeEndModal}><Link to="/home">Take me back to training.</Link></button>
+              {/* <button onClick={this.rematchClick}>Rematch!</button>  */}
             </div>    
           </Modal>
         </div>
@@ -77,7 +78,8 @@ const mapState = (state) => ({
   user: state.user, 
   usersPokemon: state.allPokemon,
   currentPokemonId: state.currentPokemonId,
-  fight: state.fight.fightInfo
+  fight: state.fight.fightInfo,
+  challengerId: state.fight.fightInfo.challengerSocket,  
 })
 
 const mapDispatch = {closeEndModal}

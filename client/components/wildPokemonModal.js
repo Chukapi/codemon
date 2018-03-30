@@ -67,7 +67,7 @@ class WildPokemonModal extends Component {
             </div>
 
             <div className="wild-poke-code-area">
-              <h5>{wildProblem.prompt}</h5>
+              {wildProblem.prompt ? <h5>{wildProblem.prompt}</h5> : null}
               <BattleTimer />
               <AceEditor
                 className="text-editor"

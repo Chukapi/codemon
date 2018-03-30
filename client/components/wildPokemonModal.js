@@ -54,7 +54,7 @@ class WildPokemonModal extends Component {
     } else {
       return (
         <div>
-          <Modal
+          {wildProblem && <Modal
             open={open}
             onClose={() => onCloseModal(uId)}
             styles={customStyles}
@@ -108,7 +108,7 @@ class WildPokemonModal extends Component {
                 )
                 : null}
             </div>
-          </Modal>
+          </Modal>}
         </div>
       )
     }

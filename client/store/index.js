@@ -24,7 +24,8 @@ let wildPokemonMiddleware = store => next => action => {
     action.type !== 'GET_WILD_PROBLEM' &&
     action.type !== 'GET_WILD_POKEMON' &&
     action.type !== 'HIDE_MODAL' &&
-    action.type !== 'CLEAR_RESULT'
+    action.type !== 'CLEAR_RESULT' &&
+    action.type !== 'POST_SOCKET'
   ) {
     store.dispatch(wildAttack());
   }

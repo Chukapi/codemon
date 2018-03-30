@@ -42,7 +42,6 @@ class Training extends Component {
 
   onNextClick = () => {
     this.props.fetchProblem(this.props.user.id);
-    this.props.result = ''
   }
 
 
@@ -71,6 +70,7 @@ class Training extends Component {
                 <h2>{result}</h2>
               )
         }
+        {result === false ? <h2>Tests Failed. Try Again.</h2> : null}
       </div>
     )
   }

@@ -74,8 +74,8 @@ const problems = [
     id: 9,
     category: 'recursion',
     difficulty: 'medium',
-    prompt: 'Write a function fibonacci to compute the first n Fibonacci numbers. Note: The Fibonacci Sequence is the series of numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34. . . Each subsequent number is the sum of the previous two. Example: fibonacci(8) === [ 0, 1, 1, 2, 3, 5, 8, 13, 21 ]',
-    tests: ['fibonacci(8) === [ 0, 1, 1, 2, 3, 5, 8, 13, 21 ]']
+    prompt: 'Write a fibonacci function that calculates the Nth Fibonacci number. Note: The Fibonacci Sequence is the series of numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34. . . Each subsequent number is the sum of the previous two. Example: fibonacci(10) === 55',
+    tests: ['fibonacci(10) === 55']
   },
   {
     id: 10,

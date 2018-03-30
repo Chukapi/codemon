@@ -2,25 +2,21 @@ const { Fight, Pokemon, Problem, User, Evolution } = require('./server/db/models
 const db = require('./server/db/db');
 
 const users = [{
-  id: 1,
   username: 'Heather',
   email: 'heatherkop320@gmail.com',
   password: 'themyscira',
 },
 {
-  id: 2,
   username: 'Johanna',
   email: 'johanna@fullstack.com',
   password: 'starwars',
 },
 {
-  id: 3,
   username: 'Daymis',
   email: 'daymis@fullstack.com',
   password: 'seedy123',
 },
 {
-  id: 4,
   username: 'Veronica',
   email: 'veronica@fullstack.com',
   password: 'password',
@@ -88,73 +84,61 @@ const problems = [
 
 const pokemon = [
   {
-    userId: 1,
     name: 'Igglybuff',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/igglybuff.gif'
   },
   {
-    userId: 1,
     name: 'Horsea',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/horsea.gif'
   },
   {
-    userId: 1,
     name: 'Torchic',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/torchic.gif'
   },
   {
-    userId: 2,
     name: 'Pichu',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/pichu.gif'
   },
   {
-    userId: 2,
     name: 'Bulbasaur',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/bulbasaur.gif'
   },
   {
-    userId: 2,
     name: 'Geodude',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/geodude.gif'
   },
   {
-    userId: 3,
     name: 'Budew',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/budew.gif'
   },
   {
-    userId: 3,
     name: 'Dratini',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/dratini.gif'
   },
   {
-    userId: 3,
     name: 'Bagon',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/bagon.gif'
   },
   {
-    userId: 4,
     name: 'Charmander',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/charmander.gif'
   },
   {
-    userId: 4,
     name: 'Abra',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/abra.gif'
   },
   {
-    userId: 4,
     name: 'Gastly',
     exp: 1590,
     imageUrl: 'https://play.pokemonshowdown.com/sprites/xyani/gastly.gif'

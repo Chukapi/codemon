@@ -23,8 +23,12 @@ www.codemon.us
 * [Johanna Fulghum](https://github.com/jfulghum)
 * [Heather Kopenski](https://github.com/hbkopenski)
 
-![ScreenShot](./screenshot2.png?raw=true "Wild Pokemon Attack")
-![ScreenShot](./screenshot1.png?raw=true "Statistics Page")
+
+
+As you navigate the Codemon application, there is a 5% chance you may be attacked by a wild pokemon! If you solve the problem before the time runs out, you can head over to your statistics page to see that your pokemon has been added as one of your own.
+
+![ScreenShot](./screenshot1.png?raw=true "Wild Pokemon Attack")
+![ScreenShot](./screenshot2.png?raw=true "Statistics Page")
 
 
 ## Getting Started on Your Local Machine
